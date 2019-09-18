@@ -4,7 +4,6 @@
 ?>
 
 
-
 <?php
     
     $host="localhost";
@@ -19,62 +18,59 @@
     } else echo ("Você conseguiu!!");
 ?>
 
-<?php 
-    
+<?php
+
     print_r($_POST);
     session_start();
 
     if(isset($_POST["email"])){
+        
         $email = $_POST["email"];
         $senha = $_POST["senha"];
         
         $login = "SELECT * FROM pessoa ";
-        $login .= "WHERE email = '{$email}' AND ";
-        $login .= "senha = '{$senha}' ";
-        
-        $loginAdm = "SELECT adm FROM pessoa ";
-        $loginAdm .= "WHERE email = '{$email}' ";
+        $login .= "WHERE email = '{$email}' ";
         
         $acesso = mysqli_query($conecta, $login);
+        
         if (!$acesso){
-            die ("Falha na consulta ao banco");
+            die("Falha na consulta ao banco");
         }
         
         $informacao = mysqli_fetch_assoc($acesso);
         
-        echo $informacao["senha"] . " .. 111   ";
+        echo $informacao["email"];
         
-        $acessoAdm = mysqli_query($conecta, $loginAdm);
-        if(!$acessoAdm){
-            die("Falha na consulta ao banco");
+        if(($informacao["email"]==$email)&&($informacao["adm"]==1)&&($informacao["senha"]==(md5($senha)))){
+            header("location:IndexAdm.php");
+            $_SESSION["cpf"]=$informacao["cpf"];
         }
-        
-        $adm = mysqli_fetch_assoc($acessoAdm);
-        
+        else if (($informacao["email"]==$email)&&($informacao["senha"]==(md5($senha)))){
+            header("location:Index.php");
+            $_SESSION["cpf"]=$informacao["cpf"];
+        }
+        else{
+            $mensagem = "Deu ruim";
+            echo $mensagem;
+        }
+    
+    }
+?>
+<!DOCTYPE html>
+    
+<html>
+    <head>
+        <meta charset="UTF-8">
+    </head>
+    
+    <body>
         
      
-        
-        if (empty($informacao)){
-            $mensagem = "Login sem sucesso.";
-            echo $mensagem;
-            header("location:IndexAdm.php");
-        }
-            if ($adm["adm"]==1){
-                $_SESSION["email"];
-                $_SESSION["adm"]=$adm["adm"];
-                $_SESSION["senha"]=$informacao["senha"];
-                header("location:IndexAdm.php");
-            }
-            else{
 
-                header("location:Index.php");
-            }
-        
-    }
-
-?>
+       
+    </body>
+</html>    
+    
+    
 
 
-<?php
-    mysqli_close($conecta);
-?>

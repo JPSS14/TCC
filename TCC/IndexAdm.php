@@ -15,7 +15,7 @@
     <body>
         
         <p>Bem vindo, ADM!</p>
-        <a href="Alterar.php">Alterar</a>
+        <a href="Alterar.php">Alterar meu usuario</a>
         <p><a href="Logout.php">Sair</a></p>
     
     </body>

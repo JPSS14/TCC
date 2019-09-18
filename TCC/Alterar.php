@@ -5,21 +5,23 @@
 
 <?php
     session_start();
-    if (!isset($_SESSION["email"])){
+    if (!isset($_SESSION["cpf"])){
     header("location:Login.php");
-    }else $emailS = $_SESSION["email"];
+    }else $cpfS = $_SESSION["cpf"];
 ?>
 
-<?php
+<?php 
     
     if(isset($_POST["usuario"])){
         $p = new Professor();
         $c = new Conexão();
         $cx = $c->conexão();
-        $p->alterarDados($cx,$emailS,$_POST["estados"]);
+        $p->alterarDados($cx,$cpfS,$_POST["estados"]);
         $pe = new Pessoa();
-        $pe->alterarDadosPessoa($cx, $emailS, $_POST["nome_completo"], $_POST["usuario"]);
+        $pe->alterarDadosPessoa($cx, $cpfS, $_POST["nome_completo"], $_POST["usuario"], $_POST["email"]);
     }
+    
+    
 ?>
 
 <!DOCTYPE html>
@@ -39,8 +41,8 @@
                 $c = new Conexão();
                 $cx = $c->conexão(); 
                 $pro = new Professor();
-                $prof = $pro->exibirDadosProfessor($cx, $emailS);
-                while($linha = mysqli_fetch_assoc($prof)){
+                $prof = $pro->exibirDadosProfessor($cx, $cpfS);
+                $linha = mysqli_fetch_assoc($prof)
                     
                 
             ?>
@@ -56,8 +58,8 @@
             </ul>
             
         
-        
-        <div>
+         
+          <div>
                 <form class="box" name="formCadastro" action="Alterar.php" method="post">
                     
                        
@@ -66,6 +68,7 @@
                         
                     <input type="text" name="usuario" placeholder="Usuario" value="<?php echo $linha["usuario"];?>">
                        
+                    <input type="text" name="email" placeholder="E-mail" value="<?php echo $linha["email"];?>">
                     
                     <select name="estados">
                     <?php 
@@ -107,9 +110,7 @@
                         
                       
                 </form>
-                <?php
-                }
-            ?>
+              
             </div>
        
         

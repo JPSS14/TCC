@@ -51,9 +51,9 @@ class Professor extends pessoa{
         $select = "SELECT p.nome_completo, p.usuario, p.email, pro.estado, ";
         $select .= "nvp.nome_nivel, ml.nome_materia ";
         $select .= "FROM pessoa AS p ";
-        $select .= "RIGHT JOIN professor AS pro ON p.email = pro.email ";
-        $select .= "RIGHT JOIN niveis_professores AS nvp ON p.email = nvp.email ";
-        $select .= "RIGHT JOIN materias_lecionadas AS ml ON p.email = ml.email";
+        $select .= "RIGHT JOIN professor AS pro ON p.cpf = pro.cpf ";
+        $select .= "RIGHT JOIN niveis_professores AS nvp ON p.cpf = nvp.cpf ";
+        $select .= "RIGHT JOIN materias_lecionadas AS ml ON p.cpf = ml.cpf";
         
         $exibirDados = mysqli_query($conecta, $select);
         if(!$exibirDados){
@@ -62,17 +62,17 @@ class Professor extends pessoa{
         return $exibirDados;
     }
     
-    public function exibirDadosProfessor($cx, $emailS){
+    public function exibirDadosProfessor($cx, $cpfS){
         $conecta = $cx;
-        $email = $emailS;
+        $cpf = $cpfS;
         
         $select = "SELECT p.nome_completo, p.usuario, p.email, pro.estado, ";
         $select .= "nvp.nome_nivel, ml.nome_materia ";
         $select .= "FROM pessoa AS p ";
-        $select .= "RIGHT JOIN professor AS pro ON p.email = pro.email ";
-        $select .= "RIGHT JOIN niveis_professores AS nvp ON p.email = nvp.email ";
-        $select .= "RIGHT JOIN materias_lecionadas AS ml ON p.email = ml.email ";
-        $select .= "WHERE p.email = '{$email}'";
+        $select .= "RIGHT JOIN professor AS pro ON p.cpf = pro.cpf ";
+        $select .= "RIGHT JOIN niveis_professores AS nvp ON p.cpf = nvp.cpf ";
+        $select .= "RIGHT JOIN materias_lecionadas AS ml ON p.cpf = ml.cpf ";
+        $select .= "WHERE p.cpf = '{$cpf}'";
         
         
         
@@ -83,19 +83,19 @@ class Professor extends pessoa{
         return $exibirDados;
     }
     
-   public function alterarDados($cx, $emailS, $estadoS){
+   public function alterarDados($cx, $cpfS, $estadoS){
        $conecta = $cx;
-       $email = $emailS;
+       $cpf = $cpfS;
        $estado = $estadoS;
        
       
        $select = "UPDATE professor SET ";
        $select .= "estado = (SELECT nome_estado ";
        $select .= "FROM estados WHERE idestado = {$estado}) ";
-       $select .= "WHERE email = '{$email}'; ";
+       $select .= "WHERE cpf = '{$cpf}'; ";
         
        echo $estado;
-       echo $email;
+       echo $cpf;
        
        $alterarProfessor = mysqli_query($conecta, $select);
        

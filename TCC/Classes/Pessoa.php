@@ -102,19 +102,21 @@ class Pessoa{
         return $cpf;
     }
     
-    public function alterarDadosPessoa($cx, $emailS, $nomeCompletoS, $usuarioS){
+    public function alterarDadosPessoa($cx, $cpfS, $nomeCompletoS, $usuarioS, $emailS){
         
         $conecta = $cx;
         $usuario = $usuarioS;
         $nomeCompleto = $nomeCompletoS;
+        $cpf = $cpfS;
         $email = $emailS;
         
-        echo ("...." . $email . " " . $nomeCompleto . " " . $usuario . " " );
+        echo ("...." . $cpf . " " . $nomeCompleto . " " . $usuario . " " );
         
         $select = "UPDATE pessoa SET ";
         $select .= "nome_completo = '{$nomeCompleto}', ";
-        $select .= "usuario = '{$usuario}' ";
-        $select .= "WHERE email = '{$email}'";
+        $select .= "usuario = '{$usuario}', ";
+        $select .= "email = '{$email}' ";
+        $select .= "WHERE cpf = '{$cpf}'";
         
     
         $alterarPessoa = mysqli_query($conecta, $select);
