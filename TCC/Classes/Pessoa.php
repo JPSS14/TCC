@@ -127,6 +127,23 @@ class Pessoa{
         return $alterarPessoa;
     }
     
+    public function adicionarAdm($cx, $cpfNovoAdm){
+        $conecta = $cx;
+        $cpf = $cpfNovoAdm;
+        
+        $select = "UPDATE pessoa SET ";
+        $select .= "adm = 1 ";
+        $select .= "WHERE cpf = '{$cpf}' ";
+        
+        $adicionar = mysqli_query($conecta, $select);
+        
+        if (!$adicionar){
+            die("Erro no Banco " . $cpf);
+        }
+        
+        return $adicionar;
+    }
+    
     
 }
 

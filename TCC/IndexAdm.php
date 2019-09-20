@@ -16,6 +16,7 @@
         
         <p>Bem vindo, ADM!</p>
         <a href="Alterar.php">Alterar meu usuario</a>
+        <a href="AdicionarAdm.php">Adicionar novo Adm</a>
         <p><a href="Logout.php">Sair</a></p>
     
     </body>
