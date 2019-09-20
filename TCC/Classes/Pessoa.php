@@ -144,6 +144,22 @@ class Pessoa{
         return $adicionar;
     }
     
+     public function deletarUsuario($cx, $cpfDeletar){
+        $conecta = $cx;
+        $cpf = $cpfDeletar;
+        
+        $select = "DELETE FROM pessoa ";
+        $select .= "WHERE cpf = '{$cpf}' ";
+        
+        $deletar = mysqli_query($conecta, $select);
+        
+        if (!$deletar){
+            die("Erro no Banco " . $cpf);
+        }
+        
+        return $deletar;
+    }
+    
     
 }
 
