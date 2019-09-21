@@ -33,6 +33,7 @@ include ("Classes/Conexão.php");
           
         <a href="AdicionarMaterias.php">Adicionar Matérias</a>
         <a href="DeletarMaterias.php">Deletar Matérias</a>
+        <a href="AlterarMaterias.php">Alterar Matérias</a>
     </body>
 
 </html>

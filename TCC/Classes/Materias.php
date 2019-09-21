@@ -81,6 +81,25 @@ class Materias{
         return $deletar;
     }
     
+    public function alterarMaterias($cx, $idMaterias, $nomeMateria){
+        $conecta = $cx;
+        $idMateria = $idMaterias;
+        $materia = $nomeMateria;
+        
+        $select = "UPDATE materias SET ";
+        $select .= "nome_materia = '{$materia}' ";
+        $select .= "WHERE idmateria = {$idMateria}";
+        
+        $alterar = mysqli_query($conecta, $select);
+        
+        if(!$alterar){
+            die("Erro no Banco");
+        }
+        
+        return $alterar;
+        
+    }
+    
 }
 
 
