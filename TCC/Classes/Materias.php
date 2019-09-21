@@ -65,6 +65,22 @@ class Materias{
         return $lista_materias;
     }
     
+    public function deletarMaterias($cx, $materiaDeletar){
+        $conecta = $cx;
+        $materia = $materiaDeletar;
+        
+        $select = "DELETE FROM materias ";
+        $select .= "WHERE idmateria = (SELECT idmateria FROM materias WHERE nome_materia = '{$materia}')";
+            
+        $deletar = mysqli_query($conecta, $select);
+        
+        if(!$deletar){
+            die("Erro no Banco");
+        }
+        
+        return $deletar;
+    }
+    
 }
 
 
