@@ -1,0 +1,42 @@
+.externa {
+    position: relative;
+    width:100%;
+    height:200px;
+    }
+
+.tela{
+border: ridge gray;
+border-radius:20px;
+background-color:#f3f2f1;
+left:50%;
+top:50%;
+margin-left:-250px; /* Metade do valor da Largura */
+margin-top:60px; /* Metade da valor da Altura */
+margin-bottom: 100px;
+position:absolute;
+width:500px; /* Valor da Largura */
+height:300px; /* Valor da Altura */
+}
+body{
+    background-color: #f3f2f1;
+
+}
+.login_margen{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 10px
+}
+.tela_registrar{
+    border: ridge gray;
+    border-radius:20px;
+    background-color:#f3f2f1;
+    left:50%;
+    top:50%;
+    margin-left:-250px; /* Metade do valor da Largura */
+    margin-top:-20px; /* Metade da valor da Altura */
+    margin-bottom: 100px;
+    position:absolute;
+    width:500px; /* Valor da Largura */
+    height:690px; /* Valor da Altura */
+    }

@@ -1,58 +1,3 @@
-<?php
-
-include ("Classes/Classes.php");
-include ("Classes/Conexão.php");
-
-?>
-
-<?php
-    
-    $host="localhost";
-    $usuario="root";
-    $senha="";
-    $bd="tcc";
-
-    $conecta = mysqli_connect($host, $usuario, $senha, $bd);
-
-    if (mysqli_connect_errno()){
-        die("Falha na conexão");
-    }else echo ("Você conseguiu!!");
-?>
-
-
-<?php 
-
-    if(isset($_POST["email"])){
-        
-        print_r($_POST);
-       
-        $c = new Conexão();
-        $cx = $c->conexão();
-        $p = new Pessoa();
-        $e = new Estados();
-        $pro = new Professor();
-        $np = new NiveisProfessores();
-
-        
-        $pro->setCpf(utf8_decode($_POST["cpf"]));
-        $pro->setEstado($_POST["estados"]);
-        
-        $p -> setUsuario(utf8_decode($_POST["usuario"]));
-        $p->setNomeCompleto(utf8_decode($_POST["nome_completo"]));
-        $p -> setEmail(utf8_decode($_POST["email"]));
-        $p -> setSenha(md5($_POST["senha"]));
-        $p -> setCpf($_POST["cpf"]);
-        
-        $np->setCpf(utf8_decode($_POST["cpf"]));
-        $np->setNomeNivel(utf8_decode($_POST["nivel"]));
-        
-
-        $np->cadastrar($cx);
-        $pro->cadastrar($cx);
-        $p -> cadastrar($cx);
-    }
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -113,7 +58,7 @@ include ("Classes/Conexão.php");
                     </div>
                     <div class="form-group">
                         <label for="Estado">Estado</label>
-                        <select class="form-control" name="estados" id="Estado">
+                        <select class="form-control" id="Estado">
                             <?php 
                                 $e= new Estados();
                                 $tr = $e->listaEstados();
@@ -130,7 +75,7 @@ include ("Classes/Conexão.php");
                     </div>
                     <div class="form-group">
                         <label for="nivel">Nivel de ensino</label>
-                        <select class="form-control" name="nivel" id="nivel">
+                        <select class="form-control" id="nivel">
                             <?php
                                 $n= new Nivel();
                                 $ln= $n->listaNivel();

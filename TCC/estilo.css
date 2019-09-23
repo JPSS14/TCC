@@ -1,0 +1,30 @@
+body{
+	background-color:#f3f2f1	;
+	
+}
+
+.blue{
+	background-color: white;
+	margin-left:8%;
+}
+
+.borda{
+	
+border:solid 4px #2A5C6E;
+}
+
+.carrosel{ 
+margin-left:9%;
+margin-right:9%;
+
+}
+.div-um {
+  display: flex;
+  flex-flow: wrap;
+}
+.div-dois {
+  margin-right: auto;
+}
+.div-quatro {
+  width: 100%;
+}
