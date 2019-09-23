@@ -160,6 +160,28 @@ class Pessoa{
         return $deletar;
     }
     
+    public function alterarUsuarios($cx, $cpfAlterar, $nomeUsuario, $nomeCompleto, $emailS){
+        $conecta = $cx;
+        $cpf = $cpfAlterar;
+        $usuario = $nomeUsuario;
+        $nome = $nomeCompleto;
+        $email = $emailS;
+        
+        $select = "UPDATE pessoa SET ";
+        $select .= "nome_completo = '{$nome}', ";
+        $select .= "usuario = '{$usuario}', ";
+        $select .= "email = '{$email}' ";
+        $select .= "WHERE cpf = '{$cpf}' ";
+        
+        $alterar = mysqli_query($conecta, $select);
+        
+        if (!$alterar){
+            die("Erro no banco");
+        }
+        
+        return $alterar;
+        
+    }
     
 }
 
