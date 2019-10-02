@@ -64,6 +64,26 @@ class Nivel{
         return $lista_nivel;
     }
     
+    public function alterarNivel($cx, $idNivel, $nomeNivel){
+        
+        $conecta = $cx;
+        $nome = $nomeNivel;
+        $id = $idNivel;
+        
+        $select = "UPDATE nivel SET ";
+        $select .= "nome_nivel = '{$nome}' ";
+        $select .= "WHERE idnivel = {$id} ";
+        
+        $alterar = mysqli_query($conecta, $select);
+        
+        if(!$alterar){
+            die("Erro no banco");
+        }
+        
+        return $alterar;
+        
+    }
+    
 }
 
 
