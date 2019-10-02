@@ -37,14 +37,14 @@ class Nivel{
         return $conecta;
     }
     
-    public function cadastrar(){
+    public function cadastrar($cx){
         
-        
+        $conecta = $cx;
         
         $inserir = "INSERT INTO nivel (nome_nivel) ";
         $inserir .= "VALUES ('{$this->getNomeNivel()}')";
         
-        $operacao_inserir = mysqli_query($this->conexão(), $inserir);
+        $operacao_inserir = mysqli_query($conecta, $inserir);
         
         
         
