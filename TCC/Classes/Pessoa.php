@@ -87,19 +87,19 @@ class Pessoa{
         return $lista_pessoa;
     }
     
-    public function buscarCpf($cx, $emailS){
+    public function buscarPessoa($cx, $cpfS){
         $conecta = $cx;
-        $email = $emailS;
-        $select = "SELECT cpf FROM pessoa";
-        $select .= "WHERE email = '{$email}'";
+        $cpf = $cpfS;
+        $select = "SELECT * FROM pessoa";
+        $select .= "WHERE cpf = '{$cpf}'";
         
-        $cpf = mysqli_query($conecta, $select);
+        $pessoa = mysqli_query($conecta, $select);
         
         if(!$cpf){
             die("Erro no banco, falha na busca do cpf");
         }
         
-        return $cpf;
+        return $pessoa;
     }
     
     public function alterarDadosPessoa($cx, $cpfS, $nomeCompletoS, $usuarioS, $emailS){
@@ -171,6 +171,25 @@ class Pessoa{
         $select .= "nome_completo = '{$nome}', ";
         $select .= "usuario = '{$usuario}', ";
         $select .= "email = '{$email}' ";
+        $select .= "WHERE cpf = '{$cpf}' ";
+        
+        $alterar = mysqli_query($conecta, $select);
+        
+        if (!$alterar){
+            die("Erro no banco");
+        }
+        
+        return $alterar;
+        
+    }
+    
+    public function alterarSenha($cx, $cpfAlterar, $senhaS){
+        $conecta = $cx;
+        $cpf = $cpfAlterar;
+        $senha = $senhaS;
+        
+        $select = "UPDATE pessoa SET ";
+        $select .= "senha = '{$senha}' ";
         $select .= "WHERE cpf = '{$cpf}' ";
         
         $alterar = mysqli_query($conecta, $select);

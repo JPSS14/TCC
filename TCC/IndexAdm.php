@@ -20,6 +20,7 @@
         <a href="AdicionarAdm.php">Adicionar novo Adm</a><br>
         <a href="DeletarUsuario.php">Deletar Usuário</a><br>
         <a href="GerenciarMaterias.php">Gerenciar Matérias</a><br>
+        <a href="AlterarSenha.php">Alterar Senha</a><br>
         <p><a href="Logout.php">Sair</a></p>
     
     </body>

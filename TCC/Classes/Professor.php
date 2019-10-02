@@ -48,9 +48,10 @@ class Professor extends pessoa{
     public function exibirDados($cx){
         $conecta = $cx;
         
-        $select = "SELECT p.nome_completo, p.usuario, p.email, pro.estado, ";
+        $select = "SELECT p.senha, p.nome_completo, p.usuario, p.email, pro.estado, ";
         $select .= "nvp.nome_nivel, ml.nome_materia ";
         $select .= "FROM pessoa AS p ";
+        $select .= "RIGHT JOIN senha AS p ON p.cpf = pro.cpf ";
         $select .= "RIGHT JOIN professor AS pro ON p.cpf = pro.cpf ";
         $select .= "RIGHT JOIN niveis_professores AS nvp ON p.cpf = nvp.cpf ";
         $select .= "RIGHT JOIN materias_lecionadas AS ml ON p.cpf = ml.cpf";
@@ -66,7 +67,7 @@ class Professor extends pessoa{
         $conecta = $cx;
         $cpf = $cpfS;
         
-        $select = "SELECT p.nome_completo, p.usuario, p.email, pro.estado, ";
+        $select = "SELECT p.cpf, p.senha, p.nome_completo, p.usuario, p.email, pro.estado, ";
         $select .= "nvp.nome_nivel, ml.nome_materia ";
         $select .= "FROM pessoa AS p ";
         $select .= "RIGHT JOIN professor AS pro ON p.cpf = pro.cpf ";
