@@ -84,6 +84,24 @@ class Nivel{
         
     }
     
+    public function deletarNivel($cx, $idNivel){
+        
+        $conecta = $cx;
+        $id = $idNivel;
+        
+        $select = "DELETE FROM nivel ";
+        $select .= "WHERE idnivel = {$id} ";
+        
+        $deletar = mysqli_query($conecta, $select);
+        
+        if(!$deletar){
+            die("Erro no banco");
+        }
+        
+        return $deletar;
+        
+    }
+    
 }
 
 

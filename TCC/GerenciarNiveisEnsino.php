@@ -32,8 +32,8 @@ include ("Classes/Conexão.php");
         </header>
           
         <a href="AdicionarNivelEnsino.php">Adicionar Nível</a>
-        <a href="DeletarMaterias.php">Deletar Matérias</a>
-        <a href="AlterarNivelEnsino.php">Alterar Nivel</a>
+        <a href="DeletarNivelEnsino.php">Deletar Nível</a>
+        <a href="AlterarNivelEnsino.php">Alterar Nível</a>
     </body>
 
 </html>
