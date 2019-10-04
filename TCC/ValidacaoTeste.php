@@ -42,11 +42,11 @@
         echo $informacao["email"];
         
         if(($informacao["email"]==$email)&&($informacao["adm"]==1)&&($informacao["senha"]==(md5($senha)))){
-            header("location:IndexAdm.php");
+            header("location:IndexAdm/IndexAdm.php");
             $_SESSION["cpf"]=$informacao["cpf"];
         }
         else if (($informacao["email"]==$email)&&($informacao["senha"]==(md5($senha)))){
-            header("location:Index.php");
+            header("location:Index/Index.php");
             $_SESSION["cpf"]=$informacao["cpf"];
         }
         else{
