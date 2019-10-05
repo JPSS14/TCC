@@ -15,8 +15,10 @@
     if(isset($_POST["nomeTopico"])){
         
         $t = new Topico();
+        $c = new Conexão();
+        $cx = $c->conexão();
         $t->setNomeTopico(utf8_decode($_POST["nomeTopico"]));
-        $t->cadastrar();
+        $t->cadastrar($cx);
     
     }
 
@@ -40,17 +42,17 @@
         </header>
           
         <?php 
-            $m = new Materias();
-            $ma = $m->listaMaterias();
-            while($linha = mysqli_fetch_assoc($ma)){
-                echo $linha["nome_materia"];
-            }
+           # $t = new Topico();
+            #$to = $t->listaMaterias();
+           # while($linha = mysqli_fetch_assoc($ma)){
+           #     echo $linha["nome_materia"];
+          #  }
             
         ?>
         
-        <form action="AdicionarMaterias.php" method="post">
+        <form action="AdicionarTopico.php" method="post">
         
-            <input type="text" name="nomeMateria" placeholder="Nome Matéria">
+            <input type="text" name="nomeTopico" placeholder="Nome Topico">
             
             <input type="submit" value="Cadastrar">
             

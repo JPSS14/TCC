@@ -22,6 +22,7 @@
         <a href="GerenciarMaterias.php">Gerenciar Matérias</a><br>
         <a href="GerenciarNiveisEnsino.php">Gerenciar Niveis de Ensino</a><br>
         <a href="../Index/AlterarSenha.php">Alterar Senha</a><br>
+        <a href="../Questao/AdicionarTopico.php">Adicionar Topico</a><br>
         <p><a href="../Logout.php">Sair</a></p>
     
     </body>

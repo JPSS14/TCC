@@ -27,13 +27,15 @@ class Topico {
         $conecta = $cx;
         
         $select = "INSERT INTO topico (nome_topico) ";
-        $select .= "VALUES ('{$this->getNomeTopico}')";
+        $select .= "VALUES ('{$this->getNomeTopico()}'); ";
         
         $inserir = mysqli_query($conecta, $select);
         
         if (!$inserir){
             die("Erro no Banco");
         }
+        
+        return $inserir;
     }
  
 }
