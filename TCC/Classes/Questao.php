@@ -3,60 +3,60 @@
 class Questao{
 
 
-    private $Enunciado;
-    private $Id_questao;
-    private $Materia;
-    private $Topico;
-    private $Nivel_questao;
-    private $CPF;
+    private $enunciado;
+    private $idQuestao;
+    private $materia;
+    private $topico;
+    private $nivelQuestao;
+    private $cpf;
 
 
     public function getEnunciado(){
-        return $this -> Enunciado;
+        return $this -> enunciado;
     }
     
-    public function setEnunciado($Enunciado){
-        $this -> Enunciado = $Enunciado;
+    public function setEnunciado($enunciado){
+        $this -> enunciado = $enunciado;
     }
     
-    public function getId_questao(){
-        return $this -> Id_questao;
+    public function getIdQuestao(){
+        return $this -> idQuestao;
     }
     
-    public function setId_questao($Id_questao){
-        $this -> Id_questao = $Id_questao;
+    public function setIdQuestao($idQuestao){
+        $this -> idQuestao = $idQuestao;
     }
 
     public function getMateria(){
-        return $this -> Materia;
+        return $this -> materia;
     }
     
-    public function setMateria($Materia){
-        $this -> Materia = $Materia;
+    public function setMateria($materia){
+        $this -> materia = $materia;
     }
 
     public function getTopico(){
-        return $this -> Topico;
+        return $this -> topico;
     }
     
-    public function setTopico($Topico){
-        $this -> Topico = $Topico;
+    public function setTopico($topico){
+        $this -> topico = $topico;
     }
 
-    public function getNivel_questao(){
-        return $this -> Nivel_questao;
+    public function getNivelQuestao(){
+        return $this -> NivelQuestao;
     }
     
-    public function setNivel_questao($Nivel_questao){
-        $this -> Nivel_questao = $Nivel_questao;
+    public function setNivelQuestao($NivelQuestao){
+        $this -> nivelQuestao = $nivelQuestao;
     }
 
-    public function getCPF(){
-        return $this -> CPF;
+    public function getCpf(){
+        return $this -> cpf;
     }
     
-    public function setCPF($CPF){
-        $this -> CPF = $CPF;
+    public function setCpf($cpf){
+        $this -> cpf = $cpf;
     }
 }
 

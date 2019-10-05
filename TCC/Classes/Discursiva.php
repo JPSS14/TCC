@@ -3,23 +3,23 @@
 class Discursiva extends Questao{
 
 
-    private $Id_discursiva;
-    private $Resposta;
+    private $idDiscursiva;
+    private $resposta;
 
-    public function getId_discursiva(){
-        return $this -> Id_discursiva;
+    public function getIdDiscursiva(){
+        return $this -> idDiscursiva;
     }
     
-    public function setId_discursiva($Id_discursiva){
-        $this -> Id_discursiva = $Id_discursiva;
+    public function setIdDiscursiva($idDiscursiva){
+        $this -> idDiscursiva = $idDiscursiva;
     }
     
-    public function getIesposta(){
-        return $this -> Resposta;
+    public function getResposta(){
+        return $this -> resposta;
     }
     
-    public function setResposta($Resposta){
-        $this -> Resposta = $Resposta;
+    public function setResposta($resposta){
+        $this -> resposta = $resposta;
     }
  
 }
