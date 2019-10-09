@@ -1,29 +1,3 @@
-<?php
-    include("..\Classes/Classes.php");
-    include("..\Classes/Conexão.php");
-?>
-
-<?php
-    session_start();
-    if (!isset($_SESSION["cpf"])){
-    header("location:Login.php");
-    }else $cpfS = $_SESSION["cpf"];
-?>
-
-<?php 
-    
-    if(isset($_POST["usuario"])){
-        $p = new Professor();
-        $c = new Conexão();
-        $cx = $c->conexão();
-        $p->alterarDados($cx,$cpfS,$_POST["estados"]);
-        $pe = new Pessoa();
-        $pe->alterarDadosPessoa($cx, $cpfS, $_POST["nome_completo"], $_POST["usuario"], $_POST["email"]);
-    }
-    
-    
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
