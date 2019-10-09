@@ -34,11 +34,11 @@
                             <a class="dropdown-item" href="GerenciarMaterias.php"  >Gerenciar Matérias</a>
                             <a class="dropdown-item" href="GerenciarNiveisEnsino.php"  >Gerenciar Niveis de Ensino</a>
                             <a class="dropdown-item" href="#"  >Gerenciar Topicos</a>
-
-                        </div>	
+                        </div>
+                    </li>	
                     <li class="nav-item">
 					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
-                    </li>
+                   
                     </li>
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>

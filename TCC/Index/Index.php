@@ -27,18 +27,8 @@
             </button>
 		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:23%">
 			    <ul class="navbar-nav ">
-                    <li class="nav-item dropdown" >
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >ADM</a>
-                        <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item" href="#"  >Gerenciar Usuarios</a>
-                            <a class="dropdown-item" href="GerenciarMaterias.php"  >Gerenciar Matérias</a>
-                            <a class="dropdown-item" href="GerenciarNiveisEnsino.php"  >Gerenciar Niveis de Ensino</a>
-                            <a class="dropdown-item" href="#"  >Gerenciar Topicos</a>
-
-                        </div>	
                     <li class="nav-item">
 					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
-                    </li>
                     </li>
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
