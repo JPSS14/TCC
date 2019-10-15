@@ -100,6 +100,21 @@ class Materias{
         
     }
     
+    public function exibirTopicos(){
+        $id = $_GET['id'];
+        $select = "SELECT * FROM topico ";
+        $select .= "WHERE idmateria = '{$id}' ORDER BY nome ";
+        
+        $exibir = mysqli_query($this->conecta,$select);
+        
+        while($linha = mysqli_fetch_assoc($exibir)){
+            $nome = $linha["nome"];
+            $id = $linha["idtopico"];
+            
+            echo '<option value="$id">echo $nome</option>';
+        }
+    }
+    
 }
 
 

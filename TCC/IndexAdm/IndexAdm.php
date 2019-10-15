@@ -33,7 +33,7 @@
                             <a class="dropdown-item" href="#"  >Gerenciar Usuarios</a>
                             <a class="dropdown-item" href="GerenciarMaterias.php"  >Gerenciar Matérias</a>
                             <a class="dropdown-item" href="GerenciarNiveisEnsino.php"  >Gerenciar Niveis de Ensino</a>
-                            <a class="dropdown-item" href="#"  >Gerenciar Topicos</a>
+                            <a class="dropdown-item" href="../Questao/AdicionarTopico.php"  >Gerenciar Topicos</a>
                         </div>
                     </li>	
                     <li class="nav-item">
