@@ -64,6 +64,7 @@ include ("../Classes/Conexão.php");
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="../style.css" type="text/css">
 
+    <script type="text/javascript" src="../jquery-3.2.1.min.js"></script>
     <title>registrar</title>
   </head>
   <body> 
@@ -134,17 +135,51 @@ include ("../Classes/Conexão.php");
                                 }
                             ?>
                         </select>
+                         <select class="form-control" name="materia" id="materia">
+                        </select>
+                        <select class="form-control" name="topico" id="topico">
+                        </select>
                     </div>
                     <button type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>
                  </form>
 
-
+                
             </Div>
         </div>  
     </div> 
+      
+        <script src="_js/jquery.js"></script>
+        <script>
+            function retornarMaterias(data){
+                var materias = "";
+                $.each(data, function(chave,valor){
+                    materias += '<option value="' + valor.idmateria + '">' + valor.nome_materia + '</option>';
+                });
+                $('#materia').html(materias);
+            }
+            
+            $('#materia').change(function(e){
+                var idmateria = $(this).val();
+                
+                $.ajax({
+                    type:"GET",
+                    data:"idmateria=" + idmateria,
+                    url:"http://localhost/TCC/Questao/Retornar_topicos.php",
+                    async:false
+                }).done(function(data){
+                    var topico = "";
+                    $.each($.parseJSON(data), function(chave,valor){
+                        topico += '<option value="' + valor.idtopico + '">' + valor.nome_topico + '</option>';
+                        
+                    });
+                   
+                    $('#topico').html(topico);
+                })
+            })
+        </script>
+        <script src="http://localhost/TCC/Questao/Retornar_materias.php?callback=retornarMaterias"></script>
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   </body>

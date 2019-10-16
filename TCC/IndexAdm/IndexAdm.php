@@ -30,10 +30,17 @@
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >ADM</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
+<<<<<<< HEAD
                             <a class="dropdown-item" href="GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
                             <a class="dropdown-item" href="GerenciarMaterias.html"  >Gerenciar Matérias</a>
                             <a class="dropdown-item" href="GerenciarNiveisEnsino.html"  >Gerenciar Niveis de Ensino</a>
                             <a class="dropdown-item" href="GerenciarTopicos.html"  >Gerenciar Topicos</a>
+=======
+                            <a class="dropdown-item" href="#"  >Gerenciar Usuarios</a>
+                            <a class="dropdown-item" href="GerenciarMaterias.php"  >Gerenciar Matérias</a>
+                            <a class="dropdown-item" href="GerenciarNiveisEnsino.php"  >Gerenciar Niveis de Ensino</a>
+                            <a class="dropdown-item" href="../Questao/AdicionarTopico.php"  >Gerenciar Topicos</a>
+>>>>>>> cd25b0fd0b9893c0890908396a4dce39ab57de93
                         </div>
                     </li>	
                     <li class="nav-item">
