@@ -30,10 +30,10 @@
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >ADM</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item" href="#"  >Gerenciar Usuarios</a>
-                            <a class="dropdown-item" href="GerenciarMaterias.php"  >Gerenciar Matérias</a>
-                            <a class="dropdown-item" href="GerenciarNiveisEnsino.php"  >Gerenciar Niveis de Ensino</a>
-                            <a class="dropdown-item" href="#"  >Gerenciar Topicos</a>
+                            <a class="dropdown-item" href="GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
+                            <a class="dropdown-item" href="GerenciarMaterias.html"  >Gerenciar Matérias</a>
+                            <a class="dropdown-item" href="GerenciarNiveisEnsino.html"  >Gerenciar Niveis de Ensino</a>
+                            <a class="dropdown-item" href="GerenciarTopicos.html"  >Gerenciar Topicos</a>
                         </div>
                     </li>	
                     <li class="nav-item">
@@ -56,20 +56,20 @@
             <div class="card-columns " style="margin-left: 20%; margin-right: 25%; margin-top: 1%; width: 48rem">
                 <div class="card "  >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
-                    <div class="card-body">
-                        <a href="../Questao/CadastrarQuestao.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf;">Cadastrar questão</a>  
+                    <div class="card-img-overlay" style="margin-top: 160%;">
+                        <a href="../Questao/CadastrarQuestao.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Cadastrar questão</a>  
                     </div>
                 </div>      
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
-                    <div class="card-body">
-                        <a href="izone.html" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf;">Visitar</a>  
+                    <div class="card-img-overlay" style="margin-top: 160%;">
+                        <a href="izone.html" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Visitar</a>  
                     </div>
                 </div>    
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
-                    <div class="card-body">
-                        <a href="izone.html" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf;">Visitar</a>  
+                    <div class="card-img-overlay" style="margin-top: 160%;">
+                        <a href="izone.html" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Visitar</a>  
                     </div>
                 </div>
             </div>

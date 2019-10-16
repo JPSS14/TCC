@@ -31,16 +31,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style_index.css" type="text/css">
 
-    <title>Alterar informoções da conta</title>
+    <title>Alterar senha</title>
   </head>
   <body>
         <div>
-             <?php
+            <?php
                 $c = new Conexão();
                 $cx = $c->conexão(); 
                 $pro = new Professor();
                 $prof = $pro->exibirDadosProfessor($cx, $cpfS);
-                $linha = mysqli_fetch_assoc($prof)
+                $linha = mysqli_fetch_assoc($prof);
+                
+          
             ?>
         <div> 
 	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
@@ -58,8 +60,8 @@
                     <li class="nav-item dropdown" >
                         <a class="nav-link active dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item active" href="Alterar.php" style="background-color: #f3f2f1; color: black" >Alterar meu usuario</a>
-                            <a class="dropdown-item" href="AlterarSenha.php">Alterar Senha</a>
+                            <a class="dropdown-item" href="Alterar.php">Alterar meu usuario</a>
+                            <a class="dropdown-item active" href="AlterarSenha.php" style="background-color: #f3f2f1; color: black" >Alterar Senha</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../Logout.php">Sair</a>
                         </div>
@@ -68,59 +70,21 @@
 		    </div>
 	    </nav>
         <div class="externa">
-            <div class="tela_alterar">
+            <div class="tela_senha">
                 <Div class="alterar_margen">    
-                    <form name="formalterar" action="Alterar.php" method="post">
-                        <h5 class="text_alterar">
-                            Alterar informoções<br>
-                            <small id="text_alterar">
-                                Suas informoções serão alteradas e as antigas deixarão de existir
+                    <form name="formsenha" action="AlterarSenha.php" method="post">
+                        <h5 class="text_senha">
+                            Alterar senha<br>
+                            <small id="text_senha">
+                                Sua senha sera alterada e a antiga deixara de existir
                             </small> 
                         </h5>
+                        <input type="hidden" name="cpfAlterar" value="<?php echo $linha["cpf"];?>">
                         <div class="form-group">
-                            <label for="alteraremail">Endereço de email</label>
-                            <input type="email" class="form-control" name="email" id="alteraremail" aria-describedby="emailHelp" placeholder="Seu email" value="<?php echo $linha["email"];?>">
+                            <label for="alterarsenha">Senha</label>
+                            <input type="password" class="form-control" name="senha" id="alterarsenha" aria-describedby="emailHelp" placeholder="Nova senha">
                         </div>
-                        <div class="form-group">
-                            <label for="usuario">Usuario</label>
-                            <input class="form-control" type="text" name="usuario" id="usuario" placeholder="Seu Usuario" value="<?php echo $linha["usuario"];?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="nome">Nome</label>
-                            <input class="form-control" type="text" name="nome_completo" id="nome" placeholder="Nome" value="<?php echo $linha["nome_completo"];?>">
-                        </div>
-                        <div class="form-group">
-                            <label for="Estado">Estado</label>
-                            <select name="estados" class="form-control" id="Estado">
-                                <?php 
-                                    $estado = $linha["estado"];
-                                    echo $estado;
-                                    echo $linha["estado"];
-                                    $e= new Estados();
-                                    $e1= new Estados();
-                                    $tr = $e->listaEstados();
-                                    $estadoAtual = $e1->exibirEstado($cx,$linha["estado"]);
-                                    $meuEstado = mysqli_fetch_assoc($estadoAtual);
-                                    while($linha = mysqli_fetch_assoc($tr)){
-                                        if ($meuEstado["idestado"]==$linha["idestado"]){
-                                ?>  
-                                <option value="<?php echo $linha["idestado"];?>" selected>
-                                <?php echo utf8_encode($linha["nome_estado"]); ?>
-                                </option>
-                                <?php
-                                    } else{
-                                ?>
-                                <option value="<?php echo $linha["idestado"];?>">
-                                    <?php echo utf8_encode($linha["nome_estado"]); ?>
-    
-                                </option>
-                                <?php
-                                        }
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                        <button type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Alterar</button>
+                        <button type="submit" value="Alterar" onclick="return validarForm()" class="btn btn-primary">Alterar</button>
                     </form>
                 </Div>
             </div> 
