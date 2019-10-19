@@ -2,7 +2,13 @@
     include ("Classes/Classes.php");
     include ("Classes/Conexão.php");
 ?>
-
+<?php
+    session_start();
+    if (!isset($_SESSION["cpf"])){
+        header("location:../Login.php");
+    }
+    echo ("Bem vindo " . $_SESSION["nivel"]);
+?>
 
 <?php
     
@@ -20,16 +26,10 @@
 
 <?php
 
-    print_r($_POST);
-    session_start();
-
-    if(isset($_POST["email"])){
-        
-        $email = $_POST["email"];
-        $senha = $_POST["senha"];
+    if(isset($_SESSION["email"])){
         
         $login = "SELECT * FROM pessoa ";
-        $login .= "WHERE email = '{$email}' ";
+        $login .= "WHERE email = '{$_SESSION["email"]}' ";
         
         $acesso = mysqli_query($conecta, $login);
         
@@ -41,13 +41,24 @@
         
         echo $informacao["email"];
         
-        if(($informacao["email"]==$email)&&($informacao["adm"]==1)&&($informacao["senha"]==(md5($senha)))){
-            header("location:IndexAdm.php");
+        $selectN = "SELECT * FROM niveis_professores ";
+        $selectN .= "WHERE cpf = '{$informacao["cpf"]}'";
+        
+        $nivel = mysqli_query($conecta, $selectN);
+        
+        $informacaoN = mysqli_fetch_assoc($nivel);
+        
+        if(($informacao["email"]==$_SESSION["email"])&&($informacao["adm"]==1)){
+            header("location:IndexAdm/IndexAdm.php");
             $_SESSION["cpf"]=$informacao["cpf"];
+            $_SESSION["email"]=$informacao["email"];
+            $_SESSION["nivel"]=$informacaoN["idnivel"];
         }
-        else if (($informacao["email"]==$email)&&($informacao["senha"]==(md5($senha)))){
-            header("location:Index.php");
+        else if (($informacao["email"]==$_SESSION["email"])){
+            header("location:Index/Index.php");
             $_SESSION["cpf"]=$informacao["cpf"];
+            $_SESSION["email"]=$informacao["email"];
+            $_SESSION["nivel"]=$informacaoN["idnivel"];
         }
         else{
             $mensagem = "Deu ruim";
@@ -65,7 +76,16 @@
     
     <body>
         
-     
+        <?php
+           echo  " 1111 " . $_POST["email"];
+            $c = new Conexão();
+            $cx = $c->conexão();
+            $p = new Pessoa();
+            $pe = $p->listaPessoa($cx);
+            $linha = mysqli_fetch_assoc($pe);
+            echo $linha["usuario"];
+        
+        ?>
 
        
     </body>

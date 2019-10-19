@@ -19,7 +19,7 @@
     </head>
     <body> 
 	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
-            <a class="navbar-brand" href="index.php"style="margin-left:45%">
+            <a class="navbar-brand" href="../Validacao.php"style="margin-left:45%">
                 <img src="logoipp.png" width="110" height="auto" alt="">
             </a>
 		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">

@@ -75,7 +75,7 @@ include ("../Classes/Conexão.php");
   </head>
   <body> 
   <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
-      <a class="navbar-brand" href="index.html">
+      <a class="navbar-brand" href="../Validacao.php">
           <img src="logoipp.png" width="110" height="auto" alt="">
       </a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
