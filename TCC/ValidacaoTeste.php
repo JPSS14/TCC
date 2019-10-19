@@ -41,13 +41,24 @@
         
         echo $informacao["email"];
         
+        $selectN = "SELECT * FROM niveis_professores ";
+        $selectN .= "WHERE cpf = '{$informacao["cpf"]}'";
+        
+        $nivel = mysqli_query($conecta, $selectN);
+        
+        $informacaoN = mysqli_fetch_assoc($nivel);
+        
         if(($informacao["email"]==$email)&&($informacao["adm"]==1)&&($informacao["senha"]==(md5($senha)))){
             header("location:IndexAdm/IndexAdm.php");
             $_SESSION["cpf"]=$informacao["cpf"];
+            $_SESSION["email"]=$informacao["email"];
+            $_SESSION["nivel"]=$informacaoN["idnivel"];
         }
         else if (($informacao["email"]==$email)&&($informacao["senha"]==(md5($senha)))){
             header("location:Index/Index.php");
             $_SESSION["cpf"]=$informacao["cpf"];
+            $_SESSION["email"]=$informacao["email"];
+            $_SESSION["nivel"]=$informacaoN["idnivel"];
         }
         else{
             $mensagem = "Deu ruim";

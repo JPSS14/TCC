@@ -66,7 +66,7 @@
                 header("location:IndexAdm.php");
             }
             else{
-
+                $_SESSION["email"] = $_POST["email"];
                 header("location:Index.php");
             }
         }

@@ -40,3 +40,6 @@ body{
     width:500px; /* Valor da Largura */
     height:690px; /* Valor da Altura */
     }
+#validar{
+    display: none;
+}

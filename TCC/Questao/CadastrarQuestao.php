@@ -1,8 +1,16 @@
 <?php
+    session_start();
+    if (!isset($_SESSION["cpf"])){
+        header("location:../Login.php");
+    }
+    echo ("Bem vindo " . $_SESSION["nivel"]);
+?>
+
+<?php
 
 include ("../Classes/Classes.php");
 include ("../Classes/Conexão.php");
-
+    
 ?>
 
 <?php
@@ -47,9 +55,7 @@ include ("../Classes/Conexão.php");
         $np->setNomeNivel(utf8_decode($_POST["nivel"]));
         
 
-        $np->cadastrar($cx);
-        $pro->cadastrar($cx);
-        $p -> cadastrar($cx);
+       
     }
 ?>
 
@@ -90,39 +96,27 @@ include ("../Classes/Conexão.php");
         <div class="tela_registrar">
             <Div class="login_margen">
                 
-                <form name="formCadastro" action="CadastrarQestao.php" method="post">
+                <form name="formCadastro" enctype="multipart/form-data" action="validarQuestao.php" method="post">
                     <div class="form-group">
-                            <label for="usuario">Enunciado</label>
+                            <label for="enunciado">Enunciado</label>
                             <input class="form-control" type="text" name="enunciado" id="enunciado" placeholder="Seu Enunciado">
                         </div>
                     <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input class="form-control" type="text" name="nome_completo" id="nome" placeholder="Nome">
+                        <label for="nome">Adicionar imagem</label>
+                        <input name="arquivo" type="file" class="form-control" >
                     </div>
                     <div class="form-group">
-                        <label for="cpf">CPF</label>
-                        <input class="form-control" type="text" name="cpf" id="cpf" placeholder="CPF">
-                    </div>
-                    <div class="form-group">
-                        <label for="Estado">Estado</label>
-                        <select class="form-control" name="estados" id="Estado">
-                            <?php 
-                                $e= new Estados();
-                                $tr = $e->listaEstados();
-                                while($linha = mysqli_fetch_assoc($tr)){  
-                            ?>  
-                                <option value="<?php echo $linha["idestado"];?>">
-                                    <?php echo utf8_encode($linha["nome_estado"]); ?>
-        
-                                </option>
-                            <?php
-                                }
-                            ?>
+                        <label for="Estado">Dificuldade</label>
+                        <select class="form-control" name="dificuldade" id="dificuldade">
+                            <option value="0">Fácil</option>
+                            <option value="1">Difícil</option>
                         </select>
                     </div>
                     <div class="form-group">
+                        <input type="hidden" id="nivelP" name="nivelP" value="<?php echo $_SESSION["nivel"] ?>">
                         <label for="nivel">Nivel de ensino</label>
-                        <select class="form-control" name="nivel" id="nivel">
+                        <select class="form-control" name="nivel" id="nivel" onchange="mudar()">
+                            <option value="" disabled selected>Selecione...</option>
                             <?php
                                 $n= new Nivel();
                                 $ln= $n->listaNivel();
@@ -135,12 +129,48 @@ include ("../Classes/Conexão.php");
                                 }
                             ?>
                         </select>
-                         <select class="form-control" name="materia" id="materia">
+                        <small id="nivelErro" class="form-text text-muted"></small>
+                        <label id="lblMateria" for="materia" style="display:none">Matéria</label>
+                        <select class="form-control" name="materia" id="materia" style="display:none">
+                            <option value="" disabled selected>Selecione...</option>
                         </select>
-                        <select class="form-control" name="topico" id="topico">
+                        <label id="lblTopico" for="topico" style="display:none">Topico</label>
+                        <select class="form-control" name="topico" id="topico" style="display:none">
+                            <option value="" disabled selected>Selecione...</option>
                         </select>
                     </div>
-                    <button type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>
+                    <label id="lblTipo" style="display:none">Questão</label>
+                    <select id="tipo" class="form-control" onchange="validar()" style="display:none">
+                        <option value="" disabled selected>Selecione...</option>
+                        <option value="0">Alternativa</option>
+                        <option value="1">Discursiva</option>
+                    </select>
+                    <div id="validarAlternativa" style="display:none">
+                        <div class="form-group">
+                            <label for="resposta">Resposta</label>
+                            <input class="form-control" type="text" name="resposta" id="resposta" placeholder="Resposta Correta">
+                        </div>
+                         <div class="form-group">
+                            <input class="form-control" type="text" name="alternativa1" id="alternativa1" placeholder="Alternativa">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="alternativa2" id="alternativa2" placeholder="Alternativa">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="alternativa3" id="alternativa3" placeholder="Alternativa">
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="alternativa4" id="alternativa4" placeholder="Alternativa">
+                        </div>
+                        <button  type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>
+                    </div> 
+                    <div id="validarDiscursiva" style="display:none">
+                        <div class="form-group">
+                            <label for="resposta">Resposta</label>
+                            <input class="form-control" type="text" name="resposta" id="resposta" placeholder="Resposta Correta">
+                        </div>
+                        <button  type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>
+                    </div>
                  </form>
 
                 
@@ -152,6 +182,7 @@ include ("../Classes/Conexão.php");
         <script>
             function retornarMaterias(data){
                 var materias = "";
+                materias += '<option value="" disabled selected>Selecione...</option>';
                 $.each(data, function(chave,valor){
                     materias += '<option value="' + valor.idmateria + '">' + valor.nome_materia + '</option>';
                 });
@@ -176,6 +207,42 @@ include ("../Classes/Conexão.php");
                     $('#topico').html(topico);
                 })
             })
+            
+            function mudar(){
+                var np = document.getElementById('nivelP').value;
+                var n = document.getElementById('nivel').value;
+                
+                if(n>np){
+                    var mensagem = "Nivel de ensino incompativel com o seu";
+                    $('#nivelErro').html(mensagem);
+                    $('#materia').css('display','none');
+                    $('#topico').css('display','none');
+                    $('#lblMateria').css('display','none');
+                    $('#lblTopico').css('display','none');
+                    $('#tipo').css('display','none');
+                    $('#lblTipo').css('display','none');
+                }
+                else if(n<=np){
+                    var mensagem = "";
+                    $('#nivelErro').html(mensagem);
+                    $('#materia').css('display','block');
+                    $('#topico').css('display','block');
+                    $('#lblMateria').css('display','block');
+                    $('#lblTopico').css('display','block');
+                    $('#tipo').css('display','block');
+                    $('#lblTipo').css('display','block');
+                }
+            }
+             function validar(){
+                var op = document.getElementById('tipo').value;
+                 if(op==0){
+                     $('#validarDiscursiva').css('display','none');
+                     $('#validarAlternativa').css('display','block');
+                 }else if(op==1){
+                     $('#validarAlternativa').css('display','none');
+                     $('#validarDiscursiva').css('display','block');
+                 }
+            ;}
         </script>
         <script src="http://localhost/TCC/Questao/Retornar_materias.php?callback=retornarMaterias"></script>
     <!-- JavaScript (Opcional) -->
