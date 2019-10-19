@@ -38,10 +38,10 @@ class NiveisProfessores{
         
         $conecta = $cx;
         
-        $inserir = "INSERT INTO niveis_professores (cpf, nome_nivel) ";
+        $inserir = "INSERT INTO niveis_professores (cpf, nome_nivel, idnivel) ";
         $inserir .= "VALUES ('{$this->getCpf()}', "; 
         $inserir.="(SELECT nome_nivel FROM nivel WHERE ";
-        $inserir.= "idnivel='{$this->getNomeNivel()}'))";
+        $inserir.= "idnivel='{$this->getNomeNivel()}'),{$this->getNomeNivel()})";
         
         $operacao_inserir = mysqli_query($conecta,$inserir);
         
