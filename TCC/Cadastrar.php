@@ -46,10 +46,10 @@ include ("Classes/Conexão.php");
         $np->setCpf(utf8_decode($_POST["cpf"]));
         $np->setNomeNivel(utf8_decode($_POST["nivel"]));
         
-
+        $p -> cadastrar($cx);
         $np->cadastrar($cx);
         $pro->cadastrar($cx);
-        $p -> cadastrar($cx);
+        
     }
 ?>
 

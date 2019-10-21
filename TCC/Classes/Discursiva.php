@@ -22,6 +22,18 @@ class Discursiva extends Questao{
         $this -> resposta = $resposta;
     }
  
+    public function cadastrar($cx){
+        $conecta = $cx;
+        
+        $select = "INSERT INTO discursiva (idquestao, resposta, iddiscursiva) ";
+        $select .= "VALUES (LAST_INSERT_ID(), '{$this->getResposta()}',default)";
+        
+        $inserir = mysqli_query($conecta, $select);
+        
+        if(!$inserir){
+            die("Erro no banco discursiva");
+        }
+    }
 }
 
 

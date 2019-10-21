@@ -25,6 +25,14 @@ include ("../Classes/Conexão.php");
     if (mysqli_connect_errno()){
         die("Falha na conexão");
     }else echo ("Você conseguiu!!");
+        
+          $c = new Conexão();
+        $cx = $c->conexão();
+      $q = new Questao();
+        $qe = $q->idQuestao($cx, $_SESSION["cpf"], "O que é? o que é?");
+        $linha = mysqli_fetch_assoc($qe);
+        echo ($linha["idquestao"] . "11");
+    
 ?>
 
 
@@ -54,7 +62,8 @@ include ("../Classes/Conexão.php");
         $np->setCpf(utf8_decode($_POST["cpf"]));
         $np->setNomeNivel(utf8_decode($_POST["nivel"]));
         
-
+        $q = new Questao();
+        echo ($q->idQuestao($cx, $cpfS, $enunciadoS));
        
     }
 ?>
@@ -96,7 +105,7 @@ include ("../Classes/Conexão.php");
         <div class="tela_registrar">
             <Div class="login_margen">
                 
-                <form name="formCadastro" enctype="multipart/form-data" action="validarQuestao.php" method="post">
+                <form name="formCadastro" enctype="multipart/form-data" action="ValidarQuestao.php" method="post">
                     <div class="form-group">
                             <label for="enunciado">Enunciado</label>
                             <input class="form-control" type="text" name="enunciado" id="enunciado" placeholder="Seu Enunciado">
@@ -108,8 +117,8 @@ include ("../Classes/Conexão.php");
                     <div class="form-group">
                         <label for="Estado">Dificuldade</label>
                         <select class="form-control" name="dificuldade" id="dificuldade">
-                            <option value="0">Fácil</option>
-                            <option value="1">Difícil</option>
+                            <option value=0>Fácil</option>
+                            <option value=1>Difícil</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -140,15 +149,15 @@ include ("../Classes/Conexão.php");
                         </select>
                     </div>
                     <label id="lblTipo" style="display:none">Questão</label>
-                    <select id="tipo" class="form-control" onchange="validar()" style="display:none">
+                    <select id="tipo" name="tipo" class="form-control" onchange="validar()" style="display:none">
                         <option value="" disabled selected>Selecione...</option>
-                        <option value="0">Alternativa</option>
-                        <option value="1">Discursiva</option>
+                        <option value=0>Alternativa</option>
+                        <option value=1>Discursiva</option>
                     </select>
                     <div id="validarAlternativa" style="display:none">
                         <div class="form-group">
                             <label for="resposta">Resposta</label>
-                            <input class="form-control" type="text" name="resposta" id="resposta" placeholder="Resposta Correta">
+                            <input class="form-control" type="text" name="respostaAlt" id="resposta" placeholder="Resposta Correta">
                         </div>
                          <div class="form-group">
                             <input class="form-control" type="text" name="alternativa1" id="alternativa1" placeholder="Alternativa">
@@ -167,7 +176,7 @@ include ("../Classes/Conexão.php");
                     <div id="validarDiscursiva" style="display:none">
                         <div class="form-group">
                             <label for="resposta">Resposta</label>
-                            <input class="form-control" type="text" name="resposta" id="resposta" placeholder="Resposta Correta">
+                            <input class="form-control" type="text" name="respostaDis" id="resposta" placeholder="Resposta Correta">
                         </div>
                         <button  type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>
                     </div>

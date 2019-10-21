@@ -9,8 +9,23 @@ class Questao{
     private $topico;
     private $nivelQuestao;
     private $cpf;
+    private $imagem;
+    private $nivelEnsino;
 
-
+    public function getNivelEnsino(){
+        return $this -> nivelEnsino;
+    }
+    
+    public function setNivelEnsino($nivelEnsino){
+        $this -> nivelEnsino = $nivelEnsino;
+    }
+    public function getImagem(){
+        return $this -> imagem;
+    }
+    
+    public function setImagem($imagem){
+        $this -> imagem = $imagem;
+    }
     public function getEnunciado(){
         return $this -> enunciado;
     }
@@ -44,10 +59,10 @@ class Questao{
     }
 
     public function getNivelQuestao(){
-        return $this -> NivelQuestao;
+        return $this -> nivelQuestao;
     }
     
-    public function setNivelQuestao($NivelQuestao){
+    public function setNivelQuestao($nivelQuestao){
         $this -> nivelQuestao = $nivelQuestao;
     }
 
@@ -57,6 +72,50 @@ class Questao{
     
     public function setCpf($cpf){
         $this -> cpf = $cpf;
+    }
+    
+    public function cadastrarImg($cx, $destino){
+        $conecta = $cx;
+        $imagem = $destino;
+        $select = "INSERT INTO questao (idquestao, cpf, enunciado, nivel_questao, idmateria, idtopico, publico, imagem, nivel_ensino) ";
+        $select .= "VALUES (default,'{$this->getCpf()}','{$this->getEnunciado()}',{$this->getNivelQuestao()},{$this->getMateria()}, ";
+        $select .= "{$this->getTopico()},0,'{$imagem}',{$this->getNivelEnsino()})";
+        
+        $cadastrar = mysqli_query($conecta, $select);
+        if (!$cadastrar){
+            die("Erro no banco");
+        }
+        
+    }
+     public function cadastrar($cx){
+        $conecta = $cx;
+        $select = "INSERT INTO questao (idquestao, cpf, enunciado, nivel_questao, idmateria, idtopico, publico, nivel_ensino) ";
+        $select .= "VALUES (default,'{$this->getCpf()}','{$this->getEnunciado()}',{$this->getNivelQuestao()},{$this->getMateria()}, ";
+        $select .= "{$this->getTopico()},0,{$this->getNivelEnsino()})";
+        
+        $cadastrar = mysqli_query($conecta, $select);
+        if (!$cadastrar){
+            die("Erro no banco questao");
+        }
+        
+    }
+    public function idQuestao($cx, $cpfS, $enunciadoS){
+        $conecta = $cx;
+        $cpf = $cpfS;
+        $enunciado = $enunciadoS;
+        
+        $select ="SELECT * FROM questao WHERE ";
+        $select .= "cpf = '{$cpf}' AND enunciado = '{$enunciado}' ";
+        echo $cpf;
+        echo $enunciado;
+        
+        $busca = mysqli_query($conecta, $select);
+        $linha = mysqli_fetch_assoc($busca);
+        echo $linha["cpf"];
+        if(!$busca){
+            die("Erro no banco");
+        }
+        return $busca;
     }
 }
 

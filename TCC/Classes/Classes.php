@@ -9,7 +9,9 @@ include ("Nivel.php");
 include ("MateriasLecionadas.php");
 include ("NiveisProfessores.php");
 include ("Topico.php");
-
+include ("Questao.php");
+include ("Alternativas.php");
+include ("Discursiva.php");
 
 
 ?>
