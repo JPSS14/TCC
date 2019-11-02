@@ -63,7 +63,7 @@
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
-                        <a href="izone.html" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Visitar</a>  
+                        <a href="../teste.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Teste</a>  
                     </div>
                 </div>    
                 <div class="card" >

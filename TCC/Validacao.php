@@ -26,10 +26,10 @@
 
 <?php
 
-    if(isset($_SESSION["email"])){
+    if(isset($_SESSION["cpf"])){
         
         $login = "SELECT * FROM pessoa ";
-        $login .= "WHERE email = '{$_SESSION["email"]}' ";
+        $login .= "WHERE cpf = '{$_SESSION["cpf"]}' ";
         
         $acesso = mysqli_query($conecta, $login);
         
@@ -47,17 +47,17 @@
         $nivel = mysqli_query($conecta, $selectN);
         
         $informacaoN = mysqli_fetch_assoc($nivel);
+                    
+        $_SESSION["email"]=$informacao["email"];
         
         if(($informacao["email"]==$_SESSION["email"])&&($informacao["adm"]==1)){
             header("location:IndexAdm/IndexAdm.php");
             $_SESSION["cpf"]=$informacao["cpf"];
-            $_SESSION["email"]=$informacao["email"];
             $_SESSION["nivel"]=$informacaoN["idnivel"];
         }
         else if (($informacao["email"]==$_SESSION["email"])){
             header("location:Index/Index.php");
             $_SESSION["cpf"]=$informacao["cpf"];
-            $_SESSION["email"]=$informacao["email"];
             $_SESSION["nivel"]=$informacaoN["idnivel"];
         }
         else{

@@ -68,11 +68,10 @@ class Professor extends pessoa{
         $cpf = $cpfS;
         
         $select = "SELECT p.cpf, p.senha, p.nome_completo, p.usuario, p.email, pro.estado, ";
-        $select .= "nvp.nome_nivel, ml.nome_materia ";
+        $select .= "nvp.nome_nivel ";
         $select .= "FROM pessoa AS p ";
         $select .= "RIGHT JOIN professor AS pro ON p.cpf = pro.cpf ";
         $select .= "RIGHT JOIN niveis_professores AS nvp ON p.cpf = nvp.cpf ";
-        $select .= "RIGHT JOIN materias_lecionadas AS ml ON p.cpf = ml.cpf ";
         $select .= "WHERE p.cpf = '{$cpf}'";
         
         
