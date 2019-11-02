@@ -84,25 +84,31 @@ include ("../Classes/Conexão.php");
   </head>
   <body> 
   <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
-      <a class="navbar-brand" href="../Validacao.php">
-          <img src="logoipp.png" width="110" height="auto" alt="">
-      </a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
-			<ul class="navbar-nav ">
-				<li class="nav-item ">
-					<a class="nav-link" href="login.php" style="font-size:18px;">LOGIN</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link active" href="cadastrar.php" style="font-size:18px;">REGISTRAR-SE</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+            <a class="navbar-brand" href="../Validacao.php"style="margin-left:45%">
+                <img src="../logoipp.png" width="110" height="auto" alt="">
+            </a>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+			    <span class="navbar-toggler-icon"></span>
+            </button>
+		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:23%">
+			    <ul class="navbar-nav ">
+                    <li class="nav-item">
+					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
+                    </li>
+                    <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
+                        <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
+                            <a class="dropdown-item" href="../Index/Alterar.php"  >Alterar meu usuario</a>
+                            <a class="dropdown-item" href="../Index/AlterarSenha.php">Alterar Senha</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="../Logout.php">Sair</a>
+                        </div>
+                    </li>
+		  	    </ul>
+		    </div>
+	    </nav>
     <div class="externa">
-        <div class="tela_registrar">
+        <div class="tela_questao">
             <Div class="login_margen">
                 
                 <form name="formCadastro" enctype="multipart/form-data" action="ValidarQuestao.php" method="post">

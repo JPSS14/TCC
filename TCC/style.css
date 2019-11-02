@@ -43,3 +43,17 @@ body{
 #validar{
     display: none;
 }
+.tela_questao{
+    border: ridge gray;
+    border-radius:20px;
+    background-color:#f3f2f1;
+    left:50%;
+    top:50%;
+    margin-left:-250px; /* Metade do valor da Largura */
+    margin-top:-20px; /* Metade da valor da Altura */
+    margin-bottom: 100px;
+    position:absolute;
+    width:500px; /* Valor da Largura */
+    display: flex;
+    }
+
