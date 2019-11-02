@@ -16,15 +16,6 @@ border:solid 4px #2A5C6E;
 .carrosel{ 
 margin-left:9%;
 margin-right:9%;
-
-}
-.div-um {
-  display: flex;
-  flex-flow: wrap;
-}
-.div-dois {
-  margin-right: auto;
-}
-.div-quatro {
-  width: 100%;
+margin-bottom: 1%;
+margin-top: 1%;
 }

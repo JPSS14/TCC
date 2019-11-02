@@ -1,37 +1,7 @@
-<?php
-
-include ("Classes/Classes.php");
-include ("Classes/Conexão.php");
-
-?>
-
-<?php
-    session_start();
-    if (!isset($_SESSION["cpf"])){
-    header("location:Login.php");
-    }else $cpfS = $_SESSION["cpf"];
-?>
-
-<?php
-
-    if(isset($_POST["nomeMateria"])){
-        
-        $m = new Materias();
-        $c = new Conexão();
-        $cx = $c->conexão();
-        $m -> deletarMaterias($cx, $_POST["nomeMateria"]);
-    
-    }
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
     <!-- Meta tags Obrigatórias -->
-    <link href="https://fonts.googleapis.com/css?family=Saira+Stencil+One&display=swap" rel="stylesheet"> 
-    <script type="text/javascript" src="javaScript.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -39,7 +9,7 @@ include ("Classes/Conexão.php");
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style_index.css" type="text/css">
 
-    <title>Deletar Materias</title>
+    <title>Adicionar Materia</title>
     </head>
     <body> 
 	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
@@ -76,35 +46,29 @@ include ("Classes/Conexão.php");
 		  	    </ul>
 		    </div>
 	    </nav>
-  
+        <div class="externa">
             <h5 class="text_alterar">
-                Deletar Materias<br>
+                Adicionar Materia<br>
             </h5>
             <?php 
             $m = new Materias();
             $ma = $m->listaMaterias();
             while($linha = mysqli_fetch_assoc($ma)){
                 echo $linha["nome_materia"];
-            
+            }
             
         ?>
-      <div class="space">
-            <ul>
+                <ul>
                         
-                    <form action="DeletarMaterias.php" method="post" class="form-inline" >
-                        <input  type="hidden" name="nomeMateria" value="<?php echo $linha["nome_materia"];?>">
-                        <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["nome_materia"];?>" readonly>
-                            
-                        <button type="submit" value="Deletar" class="btn btn-danger">Deletar Materia</button>
+                    <form action="AdicionarMaterias.php" method="post" class="form-inline" >
+                       
+                            <input style="margin-right: 1rem;" class="form-control" name="nomeMateria" type="text" placeholder="Nome Matéria">
+                            <button type="submit" value="Cadastrar" class="btn btn-primary">Cadastrar Materia</button>
                     </form>
                     
                 </ul>
                   
             </div>
-            
-            <?php
-        }
-    ?>
         </div> 
         <!-- JavaScript (Opcional) -->
         <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->

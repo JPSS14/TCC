@@ -1,31 +1,3 @@
-<?php
-
-include ("Classes/Classes.php");
-include ("Classes/Conexão.php");
-
-?>
-
-<?php
-    session_start();
-    if (!isset($_SESSION["cpf"])){
-    header("location:Login.php");
-    }else $cpfS = $_SESSION["cpf"];
-?>
-
-<?php
-
-    if(isset($_POST["nomeMateria"])){
-        
-        $m = new Materias();
-        $c = new Conexão();
-        $cx = $c->conexão();
-        $m -> deletarMaterias($cx, $_POST["nomeMateria"]);
-    
-    }
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -39,11 +11,11 @@ include ("Classes/Conexão.php");
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style_index.css" type="text/css">
 
-    <title>Deletar Materias</title>
+    <title>Adicionar Nivel de Ensino</title>
     </head>
     <body> 
 	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
-            <a class="navbar-brand" href="Validacao.php"style="margin-left:45%">
+            <a class="navbar-brand" href="..\Validacao.php"style="margin-left:45%">
                 <img src="logoipp.png" width="110" height="auto" alt="">
             </a>
 		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
@@ -54,10 +26,10 @@ include ("Classes/Conexão.php");
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >ADM</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item" href="indexadm/GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
-                            <a class="dropdown-item" href="indexadm/GerenciarMaterias.html"  >Gerenciar Matérias</a>
-                            <a class="dropdown-item" href="indexadm/GerenciarNiveisEnsino.html"  >Gerenciar Niveis de Ensino</a>
-                            <a class="dropdown-item" href="indexadm/GerenciarTopicos.html"  >Gerenciar Topicos</a>
+                            <a class="dropdown-item" href="GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
+                            <a class="dropdown-item" href="GerenciarMaterias.html"  >Gerenciar Matérias</a>
+                            <a class="dropdown-item" href="GerenciarNiveisEnsino.html"  >Gerenciar Niveis de Ensino</a>
+                            <a class="dropdown-item" href="GerenciarTopicos.html"  >Gerenciar Topicos</a>
 
                         </div>	
                     <li class="nav-item">
@@ -67,8 +39,8 @@ include ("Classes/Conexão.php");
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item" href="Index/Alterar.php"  >Alterar meu usuario</a>
-                            <a class="dropdown-item" href="Index/AlterarSenha.php">Alterar Senha</a>
+                            <a class="dropdown-item" href="..\Index/Alterar.php"  >Alterar meu usuario</a>
+                            <a class="dropdown-item" href="..\Index/AlterarSenha.php">Alterar Senha</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="Logout.php">Sair</a>
                         </div>
@@ -76,35 +48,28 @@ include ("Classes/Conexão.php");
 		  	    </ul>
 		    </div>
 	    </nav>
-  
+        <div class="externa">
             <h5 class="text_alterar">
-                Deletar Materias<br>
+                Adicionar Nivel de Ensino<br>
             </h5>
             <?php 
-            $m = new Materias();
-            $ma = $m->listaMaterias();
-            while($linha = mysqli_fetch_assoc($ma)){
-                echo $linha["nome_materia"];
+            $n = new Nivel();
+            $ni = $n->listaNivel();
+            while($linha = mysqli_fetch_assoc($ni)){
+            }
             
-            
-        ?>
-      <div class="space">
-            <ul>
+            ?>
+                <ul>
                         
-                    <form action="DeletarMaterias.php" method="post" class="form-inline" >
-                        <input  type="hidden" name="nomeMateria" value="<?php echo $linha["nome_materia"];?>">
-                        <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["nome_materia"];?>" readonly>
-                            
-                        <button type="submit" value="Deletar" class="btn btn-danger">Deletar Materia</button>
+                    <form action="AdicionarNivelEnsino.php" method="post" class="form-inline" >
+                       
+                            <input style="margin-right: 1rem;" class="form-control" name="nomeNivel" type="text" placeholder="Nome Nivel">
+                            <button type="submit" value="Cadastrar" class="btn btn-primary">Cadastrar</button>
                     </form>
                     
                 </ul>
                   
             </div>
-            
-            <?php
-        }
-    ?>
         </div> 
         <!-- JavaScript (Opcional) -->
         <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
