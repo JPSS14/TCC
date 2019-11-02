@@ -70,7 +70,7 @@
 	    </nav>
 
             <h5 class="text_alterar">
-                Alterar Usuarios<br>
+                Deletar Usuarios<br>
             </h5>
             <?php
             $c = new Conexão();
@@ -91,7 +91,7 @@
                             <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["email"];?>" readonly>
                             <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["cpf"];?>" readonly>
                             <input  type="hidden" name="cpfDeletar" value="<?php echo $linha["cpf"];?>">
-                            <button type="submit" value="Deletar Usuário" class="btn btn-Danger">Deletar Usuario</button>
+                            <button type="submit" value="Deletar Usuário" class="btn btn-danger">Deletar Usuario</button>
                     </form>
                     
                 </ul>

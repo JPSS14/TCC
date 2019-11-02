@@ -33,8 +33,9 @@
 
     <title>Alterar Usuarios</title>
     </head>
-    <body> 
-	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
+    
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
             <a class="navbar-brand" href="Validacao.php"style="margin-left:45%">
                 <img src="logoipp.png" width="110" height="auto" alt="">
             </a>
@@ -68,46 +69,44 @@
 		  	    </ul>
 		    </div>
 	    </nav>
-        <div class="externa">
-            <h5 class="text_alterar">
-                Alterar Usuarios<br>
-            </h5>
+        <h5 class="text_alterar">
+             Alterar Usuarios<br>
+        </h5>    
+        <div>
             <?php
-            $c = new Conexão();
-            $cx = $c->conexão(); 
-            $p = new Pessoa();
-            $pe = $p->listaPessoa($cx);
-            while($linha = mysqli_fetch_assoc($pe)){
-                
-                if($linha["adm"]!=1){
-        ?>
-
-            <ul>
-                        
-                    <form action="DeletarUsuario.php" method="post" class="form-inline" >
-                       
-                            <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["usuario"];?>" readonly>
-                            <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["nome_completo"];?>" readonly>
-                            <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["email"];?>" readonly>
-                            <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["cpf"];?>" readonly>
-                            <input  type="hidden" name="cpfDeletar" value="<?php echo $linha["cpf"];?>">
-                            <button type="submit" value="Deletar Usuário" class="btn btn-Danger">Deletar Usuario</button>
-                    </form>
+                $c = new Conexão();
+                $cx = $c->conexão(); 
+                $p = new Pessoa();
+                $pe = $p->listaPessoa($cx);
+                while($linha = mysqli_fetch_assoc($pe)){
                     
-                </ul>
-                  
-            </div>
-            
-            <?php
-        }
-    }
+                    if($linha["adm"]!=1){
+            ?>
+            <ul>
 
-?>
-        </div> 
+                <form action="AlterarUsuarios.php" method="post" class="form-inline" >
+                       <input  type="hidden" name="cpfAlterar" value="<?php echo $linha["cpf"];?>">
+                       <input style="margin-right: 1rem;" class="form-control" name="usuario" type="text" placeholder="usuario" value="<?php echo $linha["usuario"];?>" >
+                       <input style="margin-right: 1rem;" class="form-control" name="nome" type="text" placeholder="nome" value="<?php echo $linha["nome_completo"];?>" >
+                       <input style="margin-right: 1rem;" class="form-control" name="email" type="text" placeholder="email" value="<?php echo $linha["email"];?>" >
+                       <button type="submit" value="Alterar" class="btn btn-primary">Atualizar</button>
+                   </form>
+                   
+                </ul>
+                 
+           </div>
+        <?php
+                    }
+                }
+        
+        ?>
         <!-- JavaScript (Opcional) -->
         <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
     </body>
-</html> 
+
+
+</html>

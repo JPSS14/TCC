@@ -1,6 +1,6 @@
 <?php
-    include("Classes/Classes.php");
-    include("Classes/Conexão.php");
+    include("..\Classes/Classes.php");
+    include("..\Classes/Conexão.php");
 ?>
 
 <?php
@@ -35,7 +35,7 @@
     </head>
     <body> 
 	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
-            <a class="navbar-brand" href="Validacao.php"style="margin-left:45%">
+            <a class="navbar-brand" href="..\Validacao.php"style="margin-left:45%">
                 <img src="logoipp.png" width="110" height="auto" alt="">
             </a>
 		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
@@ -46,10 +46,10 @@
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >ADM</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item" href="indexadm/GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
-                            <a class="dropdown-item" href="indexadm/GerenciarMaterias.html"  >Gerenciar Matérias</a>
-                            <a class="dropdown-item" href="indexadm/GerenciarNiveisEnsino.html"  >Gerenciar Niveis de Ensino</a>
-                            <a class="dropdown-item" href="indexadm/GerenciarTopicos.html"  >Gerenciar Topicos</a>
+                            <a class="dropdown-item" href="GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
+                            <a class="dropdown-item" href="GerenciarMaterias.html"  >Gerenciar Matérias</a>
+                            <a class="dropdown-item" href="GerenciarNiveisEnsino.html"  >Gerenciar Niveis de Ensino</a>
+                            <a class="dropdown-item" href="GerenciarTopicos.html"  >Gerenciar Topicos</a>
 
                         </div>	
                     <li class="nav-item">
@@ -59,10 +59,10 @@
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item" href="Index/Alterar.php"  >Alterar meu usuario</a>
-                            <a class="dropdown-item" href="Index/AlterarSenha.php">Alterar Senha</a>
+                            <a class="dropdown-item" href="..\Index/Alterar.php"  >Alterar meu usuario</a>
+                            <a class="dropdown-item" href="..\Index/AlterarSenha.php">Alterar Senha</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="Logout.php">Sair</a>
+                            <a class="dropdown-item" href="..\Logout.php">Sair</a>
                         </div>
                     </li>
 		  	    </ul>
