@@ -13,7 +13,7 @@ public function conexão(){
 
     if(mysqli_connect_errno()){
         die ("Falha na conexão " . mysqli_connect_errno());
-    } else echo ("Você conseguiu!! ei");
+    } else
         return $conecta;
     }
 }

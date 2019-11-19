@@ -106,7 +106,46 @@ class Professor extends pessoa{
        return $alterarProfessor;
    
    }
+    
+    public function totalEstado($cx, $estado){
+        $conecta = $cx;
+        $estados = $estado;
+        
+        $select = "DROP VIEW IF EXISTS relatorio";
+        $total = mysqli_query($conecta, $select);
+        if(!$total){
+            die("Erro no banco 1");
+        }
+        $select = "CREATE VIEW relatorio AS ";
+        $select .= "SELECT e.nome_estado FROM estados AS e ";
+        $select .= "RIGHT JOIN professor AS p ON e.nome_estado=p.estado";
+        $total = mysqli_query($conecta, $select);
+          if(!$total){
+            die("Erro no banco 2");
+          }
+        $select = "SELECT nome_estado, COUNT(nome_estado) AS total FROM relatorio WHERE nome_estado='{$estados}'";
+        $total = mysqli_query($conecta, $select);
+          if(!$total){
+            die("Erro no banco 3");
+        }
+             
+        return $total;
+    }
+    
+    public function totalProfessores($cx){
+        $conecta = $cx;
+        
        
+        $select = "SELECT COUNT(cpf) AS total FROM professor";
+
+        $total = mysqli_query($conecta, $select);
+          if(!$total){
+            die("Erro no banco");
+          }
+             
+        return $total;
+    }
+
 }
 
 

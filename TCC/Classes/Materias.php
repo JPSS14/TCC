@@ -33,7 +33,7 @@ class Materias{
 
     if(mysqli_connect_errno()){
         die ("Falha na conexão " . mysqli_connect_errno());
-    } else echo ("Você conseguiu!!");
+    } else 
         return $conecta;
     }
     
@@ -113,6 +113,30 @@ class Materias{
             
             echo '<option value="$id">echo $nome</option>';
         }
+    }
+     public function totalQuestoes($cx, $materia){
+        $conecta = $cx;
+        $materias = $materia;
+        
+        $select = "DROP VIEW IF EXISTS relatorio";
+        $total = mysqli_query($conecta, $select);
+        if(!$total){
+            die("Erro no banco 1");
+        }
+        $select = "CREATE VIEW relatorio AS ";
+        $select .= "SELECT m.nome_materia FROM materias AS m ";
+        $select .= "RIGHT JOIN questao AS q ON m.idmateria=q.idmateria";
+        $total = mysqli_query($conecta, $select);
+          if(!$total){
+            die("Erro no banco 2");
+          }
+        $select = "SELECT nome_materia, COUNT(nome_materia) AS total FROM relatorio WHERE nome_materia='{$materias}'";
+        $total = mysqli_query($conecta, $select);
+          if(!$total){
+            die("Erro no banco 3");
+        }
+             
+        return $total;
     }
     
 }
