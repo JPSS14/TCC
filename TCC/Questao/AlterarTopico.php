@@ -17,9 +17,8 @@
         $t = new Topico();
         $c = new Conexão();
         $cx = $c->conexão();
-        $t->setIdMateria($_POST["materia"]);
         $t->setNomeTopico(utf8_decode($_POST["nomeTopico"]));
-        $t->cadastrar($cx);
+        $t->alterar($cx,$_POST["topico"]);
     
     }
 
@@ -51,13 +50,15 @@
             
         ?>
         
-        <form action="AdicionarTopico.php" method="post">
+        <form action="AlterarTopico.php" method="post">
             
             <select id="materia" name="materia"></select>
-            
+            <select class="form-control" name="topico" id="topico" onclick="questaoTopico()">
+                            <option value="" disabled selected>Selecione...</option>
+                        </select>
             <input type="text" name="nomeTopico" placeholder="Nome Topico">
             
-            <input type="submit" value="Cadastrar">
+            <input type="submit" value="Alterar">
             
         </form>
         

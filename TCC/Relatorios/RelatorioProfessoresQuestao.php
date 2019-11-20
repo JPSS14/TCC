@@ -6,7 +6,7 @@
 <?php
     session_start();
     if (!isset($_SESSION["cpf"])){
-    header("location:..\Login.php");
+    header("location:Login.php");
     }else $cpfS = $_SESSION["cpf"];
 ?>
 
@@ -58,19 +58,19 @@
                                     
                     <form action="RelatorioEstados.php" method="post" class="form-inline" >
                             <?php 
-                                $e= new Estados();
-                                $tr = $e->listaEstados();
+                                $m= new Materias();
+                                $tr = $m->listaMaterias();
                                 $i=0;
                                 $c = new Conexão();
                                 $cx = $c->conexão();
-                                $p = new Professor();
+                                $q = new Questao();
                                 while($linha = mysqli_fetch_assoc($tr)){ 
-                                   $pro = $p->totalEstado($cx,$linha["nome_estado"]);
-                                      $linha1 = mysqli_fetch_assoc($pro);
+                                   $ma = $m->totalQuestoes($cx,$linha["nome_materia"]);
+                                      $linha1 = mysqli_fetch_assoc($ma);
                             ?> 
                                      
-                         <input style="margin-right: 1rem;" class="form-control" type="text" id="estados[<?php echo $i ?>]" value="<?php echo utf8_encode($linha["nome_estado"]);?>" readonly>
-                        <label id="lblTopico" for="topico">Professores: <?php echo (" ")?></label> 
+                         <input style="margin-right: 1rem;" class="form-control" type="text" id="estados[<?php echo $i ?>]" value="<?php echo utf8_encode($linha["nome_materia"]);?>" readonly>
+                        <label id="lblTopico" for="topico">Questões Cadastradas: <?php echo (" ")?></label> 
                         <input style="margin-right: 1rem;" class="form-control" type="text" id="total" placeholder="usuario" value=" <?php echo $linha1["total"];  ?>" readonly>
                         
                         <?php 

@@ -63,7 +63,7 @@ include ("Classes/Conexão.php");
                     <li class="nav-item">
 					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
                     </li>
-                    </li>
+                    
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
