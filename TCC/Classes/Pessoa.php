@@ -202,6 +202,31 @@ class Pessoa{
         
     }
     
+    public function totalQuestoesProfessor($cx, $cpfS){
+        $conecta = $cx;
+        $cpf = $cpfS;
+        
+        $select = "DROP VIEW IF EXISTS relatorio";
+        $total = mysqli_query($conecta, $select);
+        if(!$total){
+            die("Erro no banco 1");
+        }
+        $select = "CREATE VIEW relatorio AS ";
+        $select .= "SELECT p.cpf FROM pessoa AS p ";
+        $select .= "RIGHT JOIN questao AS q ON p.cpf=q.cpf";
+        $total = mysqli_query($conecta, $select);
+          if(!$total){
+            die("Erro no banco 2");
+          }
+        $select = "SELECT cpf, COUNT(cpf) AS total FROM relatorio WHERE cpf='{$cpf}'";
+        $total = mysqli_query($conecta, $select);
+          if(!$total){
+            die("Erro no banco 3");
+        }
+             
+        return $total;
+    }
+    
 }
 
 

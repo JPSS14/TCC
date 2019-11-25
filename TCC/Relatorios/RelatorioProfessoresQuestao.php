@@ -58,18 +58,18 @@
                                     
                     <form action="RelatorioEstados.php" method="post" class="form-inline" >
                             <?php 
-                                $m= new Materias();
-                                $tr = $m->listaMaterias();
+                                $p= new Pessoa();
                                 $i=0;
                                 $c = new Conexão();
                                 $cx = $c->conexão();
+                                $pe = $p->listaPessoa($cx);
                                 $q = new Questao();
-                                while($linha = mysqli_fetch_assoc($tr)){ 
-                                   $ma = $m->totalQuestoes($cx,$linha["nome_materia"]);
-                                      $linha1 = mysqli_fetch_assoc($ma);
+                                while($linha = mysqli_fetch_assoc($pe)){ 
+                                   $pes = $p->totalQuestoesProfessor($cx,$linha["cpf"]);
+                                      $linha1 = mysqli_fetch_assoc($pes);
                             ?> 
                                      
-                         <input style="margin-right: 1rem;" class="form-control" type="text" id="estados[<?php echo $i ?>]" value="<?php echo utf8_encode($linha["nome_materia"]);?>" readonly>
+                         <input style="margin-right: 1rem;" class="form-control" type="text" id="estados[<?php echo $i ?>]" value="<?php echo utf8_encode($linha["usuario"]);?>" readonly>
                         <label id="lblTopico" for="topico">Questões Cadastradas: <?php echo (" ")?></label> 
                         <input style="margin-right: 1rem;" class="form-control" type="text" id="total" placeholder="usuario" value=" <?php echo $linha1["total"];  ?>" readonly>
                         

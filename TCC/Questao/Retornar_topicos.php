@@ -17,8 +17,8 @@
         $retorno[] = $linha;
     } 	
 
-    echo json_encode($retorno);
-    
+ mb_convert_variables('UTF-8','iso-8859-1',$retorno);
+            echo json_encode($retorno);    
     // fechar conecta
     mysqli_close($conecta);
 ?>

@@ -115,13 +115,13 @@ include ("../Classes/Conexão.php");
                             <option value="" disabled selected>Selecione...</option>
                         </select>
                         <label id="lblTopico" for="topico">Topico</label>
-                        <select class="form-control" name="topico" id="topico" onclick="questaoTopico()">
+                        <select class="form-control" name="topico" id="topico" onclick="questaoTopico();totalQuestoes();">
                             <option value="" disabled selected>Selecione...</option>
                         </select>
                     </div>
                         <div class="form-group">
                             <label for="nivel">Nivel de ensino</label>
-                            <select class="form-control" name="nivel" id="nivel" onclick="questaoNivelEnsino()">
+                            <select class="form-control" name="nivel" id="nivel" onclick="questaoNivelEnsino();totalQuestoes();">
                                 <option value="" disabled selected>Selecione...</option>
                                 <?php
                                     $n= new Nivel();
@@ -145,17 +145,17 @@ include ("../Classes/Conexão.php");
                     <div class="form-group" id="tdQuestoes">
                         <label for="Estado">Total Questões</label>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="divDificil">
                         <label for="Estado">Questões Dificeis</label>
                         <select class="form-control" name="dificil" id="dificil" onclick="totalQuestoes();gerarProvaDificil()">
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" id="divFacil" >
                         <label for="Estado">Questões Fáceis</label>
                         <select class="form-control" name="facil" id="facil" onclick="totalQuestoes();gerarProvaFacil()">
                         </select>
                     </div>
-                    <div class="form-group" id="totalQuestoesProva">
+                    <div class="form-group" id="totalQuestoesProva" >
                         <label for="Estado">Total questões na Prova: </label>
                     </div>
                     <div class="form-group">
@@ -170,7 +170,11 @@ include ("../Classes/Conexão.php");
                     </div>
                  </form>
 
-                <div id="prova">
+                <div id="provaFacil" style="background-color:green">
+                
+                </div>
+                
+                 <div id="provaDificil" style="background-color:red">
                 
                 </div>
             </Div>
@@ -220,7 +224,175 @@ include ("../Classes/Conexão.php");
                 
             $('#topico').change(function(e){
                 var tp = document.getElementById('topico').value;
+                var ne = document.getElementById('nivel').value;   
+                
+                if( (document.getElementById('nivel').value!="")&&(document.getElementById('topico').value!="")&&(document.getElementById('tipo').value!="")){
+                    var dificuldade = 1;
+                    var ne = document.getElementById('nivel').value;
+                    var tp = document.getElementById('topico').value;
+                    var ti = document.getElementById('tipo').value;
 
+                    var total = document.getElementById('tdQuestoes').value;
+                    var facil = document.getElementById('facil').value;
+                    var dificil = parseInt(document.getElementById('dificil').value);
+                    var prova = 1;
+                    var total = facil+dificil;
+                    
+                    
+                    $.ajax({
+                    type:"GET",
+                    data:{tipo:ti,nivel_ensino:ne,topico:tp},
+                    url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                    async:false
+                }).done(function(data){
+                    var topico = "Total de Questões: ";
+                    console.log(data);
+                    $.each($.parseJSON(data), function(chave,valor){
+                        
+                  
+                        topico += valor.resultado;
+                        
+                    });
+                   console.log(topico);
+                    $('#tdQuestoes').html(topico);
+                })
+                    
+                    $.ajax({
+                        type:"GET",
+                        data:{dif:dificuldade,nivel_ensino:ne,topico:tp,tipo:ti},
+                        url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                        async:false
+                    }).done(function(data){
+                        var topico = "";
+                        console.log(data);
+
+                        $.each($.parseJSON(data), function(chave,valor){
+                            for (i=0;i<=valor.result;i++){
+
+                                 topico += '<option value="' + i + '">'  + i + '</option>';
+                                }
+                        
+                    });
+                   console.log(topico);
+                    $('#dificil').html(topico);
+                    })
+                    
+                    
+                    $.ajax({
+                    type:"GET",
+                    data:{dif:0,nivel_ensino:ne,topico:tp,tipo:ti},
+                    url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                    async:false
+                }).done(function(data){
+                    var topico = "";
+                    console.log(data);
+                   
+                    $.each($.parseJSON(data), function(chave,valor){
+                        for (i=0;i<=valor.result;i++){
+                
+                             topico += '<option value="' + i + '">'  + i + '</option>';
+                            }
+                        
+                    });
+                   console.log(topico);
+                    $('#facil').html(topico);
+                })
+               
+                    $.ajax({
+                        type:"GET",
+                        data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti,facil:facil},
+                        url:"http://localhost/TCC/Prova/RetornarProva.php",
+                        async:false
+                    }).done(function(data){
+                        var topico = "";
+                        var i=1;
+
+                        $.each($.parseJSON(data), function(chave,valor){
+                            console.log(valor.idquestao);
+
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += ' <label for="Estado">Alternativas</label> ';
+                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '</div>';
+                            i++;
+                        });
+                        console.log(total);
+                       console.log(topico);
+                        $('#provaFacil').html(topico);
+                })
+                    
+                    $.ajax({
+                        type:"GET",
+                        data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti,dificil:dificil},
+                        url:"http://localhost/TCC/Prova/RetornarProva.php",
+                        async:false
+                    }).done(function(data){
+                        var topico = "";
+                        var i=1;
+
+                        $.each($.parseJSON(data), function(chave,valor){
+                            console.log(valor.idquestao);
+
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += ' <label for="Estado">Alternativas</label> ';
+                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '</div>';
+                            i++;
+                        });
+                        console.log(total);
+                       console.log(topico);
+                        $('#provaDificil').html(topico);
+                })
+                
+                }
+                
+                else if( (document.getElementById('nivel').value!="")&&(document.getElementById('topico').value!="")){
+                    var ne = document.getElementById('nivel').value;
+                var tp = document.getElementById('topico').value;
+                $.ajax({
+                    type:"GET",
+                    data:{nivel_ensino:ne,topico:tp},
+                    url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                    async:false
+                }).done(function(data){
+                    var topico = "Total de Questões: ";
+                    console.log(data);
+                    $.each($.parseJSON(data), function(chave,valor){
+                        
+                        
+                        topico += valor.resultado;
+                       
+                    });
+                   console.log(topico);
+                    $('#tdQuestoes').html(topico);
+                })}else{
+                
                 $.ajax({
                     type:"GET",
                     data:{topico:tp},
@@ -238,13 +410,23 @@ include ("../Classes/Conexão.php");
                    console.log(topico);
                     $('#tdQuestoes').html(topico);
                 })
-            });}
+            }});}
             
             function questaoTipo(){
             $('#tipo').change(function(e){
                 var ne = document.getElementById('nivel').value;
                 var tp = document.getElementById('topico').value;
-                var ti = document.getElementById('tipo').value;
+                var ti = parseInt(document.getElementById('tipo').value);
+             
+                
+                
+                if( (document.getElementById('nivel').value!="")&&(document.getElementById('topico').value!="")&&(document.getElementById('tipo').value!="")&&(document.getElementById('facil').value!="")){
+                    var total = document.getElementById('tdQuestoes').value;
+                    var facil = document.getElementById('facil').value;
+                var dificil = parseInt(document.getElementById('dificil').value);
+                var prova = 1;
+                var total = facil+dificil;
+                    
                 $.ajax({
                     type:"GET",
                     data:{tipo:ti,nivel_ensino:ne,topico:tp},
@@ -261,7 +443,158 @@ include ("../Classes/Conexão.php");
                     });
                    console.log(topico);
                     $('#tdQuestoes').html(topico);
+                })    
+                    
+                 $.ajax({
+                        type:"GET",
+                        data:{dif:1,nivel_ensino:ne,topico:tp,tipo:ti},
+                        url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                        async:false
+                    }).done(function(data){
+                        var topico = "";
+                        console.log(data);
+
+                        $.each($.parseJSON(data), function(chave,valor){
+                            for (i=0;i<=valor.result;i++){
+
+                                 topico += '<option value="' + i + '">'  + i + '</option>';
+                                }
+                        
+                    });
+                   console.log(topico);
+                    $('#dificil').html(topico);
+                    })
+                    
+                    
+                    $.ajax({
+                    type:"GET",
+                    data:{dif:0,nivel_ensino:ne,topico:tp,tipo:ti},
+                    url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                    async:false
+                }).done(function(data){
+                    var topico = "";
+                    console.log(data);
+                   
+                    $.each($.parseJSON(data), function(chave,valor){
+                        for (i=0;i<=valor.result;i++){
+                
+                             topico += '<option value="' + i + '">'  + i + '</option>';
+                            }
+                        
+                    });
+                   console.log(topico);
+                    $('#facil').html(topico);
                 })
+                   
+                    
+                $.ajax({
+                        type:"GET",
+                        data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti,facil:facil},
+                        url:"http://localhost/TCC/Prova/RetornarProva.php",
+                        async:false
+                    }).done(function(data){
+                        var topico = "";
+                        var i=1;
+                    
+                    if(ti==0){
+                        $.each($.parseJSON(data), function(chave,valor){
+                            console.log(valor.idquestao);
+
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += ' <label for="Estado">Alternativas</label> ';
+                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '</div>';
+                            i++;
+                        });
+                        
+                    }else{
+                         $.each($.parseJSON(data), function(chave,valor){
+                            console.log(valor.idquestao);
+
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += '</div>';
+                            i++;
+                         
+                    })}
+                        console.log(total);
+                       console.log(topico);
+                        $('#provaFacil').html(topico);
+                })
+                    
+                    $.ajax({
+                        type:"GET",
+                        data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti,dificil:dificil},
+                        url:"http://localhost/TCC/Prova/RetornarProva.php",
+                        async:false
+                    }).done(function(data){
+                        var topico = "";
+                        var i=1;
+
+                        $.each($.parseJSON(data), function(chave,valor){
+                            console.log(valor.idquestao);
+
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += ' <label for="Estado">Alternativas</label> ';
+                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '</div>';
+                            i++;
+                        });
+                        console.log(total);
+                       console.log(topico);
+                        $('#provaDificil').html(topico);
+                })}else{
+                        $.ajax({
+                    type:"GET",
+                    data:{tipo:ti,nivel_ensino:ne,topico:tp},
+                    url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                    async:false
+                }).done(function(data){
+                    var topico = "Total de Questões: ";
+                    console.log(data);
+                    $.each($.parseJSON(data), function(chave,valor){
+                        
+                  
+                        topico += valor.resultado;
+                        
+                    });
+                   console.log(topico);
+                    $('#tdQuestoes').html(topico);
+                })
+                    }
             });}
             
             
@@ -270,6 +603,153 @@ include ("../Classes/Conexão.php");
             $('#nivel').change(function(e){
                 var ne = document.getElementById('nivel').value;
                 var tp = document.getElementById('topico').value;
+                
+                if( (document.getElementById('nivel').value!="")&&(document.getElementById('topico').value!="")&&(document.getElementById('tipo').value!="")){
+                    var dificuldade = 1;
+                    var ne = document.getElementById('nivel').value;
+                    var tp = document.getElementById('topico').value;
+                    var ti = document.getElementById('tipo').value;
+
+                    var total = document.getElementById('tdQuestoes').value;
+                    var facil = document.getElementById('facil').value;
+                    var dificil = parseInt(document.getElementById('dificil').value);
+                    var prova = 1;
+                    var total = facil+dificil;
+                    
+                    
+                    $.ajax({
+                    type:"GET",
+                    data:{tipo:ti,nivel_ensino:ne,topico:tp},
+                    url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                    async:false
+                }).done(function(data){
+                    var topico = "Total de Questões: ";
+                    console.log(data);
+                    $.each($.parseJSON(data), function(chave,valor){
+                        
+                  
+                        topico += valor.resultado;
+                        
+                    });
+                   console.log(topico);
+                    $('#tdQuestoes').html(topico);
+                })
+                    
+                    $.ajax({
+                        type:"GET",
+                        data:{dif:dificuldade,nivel_ensino:ne,topico:tp,tipo:ti},
+                        url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                        async:false
+                    }).done(function(data){
+                        var topico = "";
+                        console.log(data);
+
+                        $.each($.parseJSON(data), function(chave,valor){
+                            for (i=0;i<=valor.result;i++){
+
+                                 topico += '<option value="' + i + '">'  + i + '</option>';
+                                }
+                        
+                    });
+                   console.log(topico);
+                    $('#dificil').html(topico);
+                    })
+                    
+                    
+                    $.ajax({
+                    type:"GET",
+                    data:{dif:0,nivel_ensino:ne,topico:tp,tipo:ti},
+                    url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                    async:false
+                }).done(function(data){
+                    var topico = "";
+                    console.log(data);
+                   
+                    $.each($.parseJSON(data), function(chave,valor){
+                        for (i=0;i<=valor.result;i++){
+                
+                             topico += '<option value="' + i + '">'  + i + '</option>';
+                            }
+                        
+                    });
+                   console.log(topico);
+                    $('#facil').html(topico);
+                })
+               
+                    $.ajax({
+                        type:"GET",
+                        data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti,facil:facil},
+                        url:"http://localhost/TCC/Prova/RetornarProva.php",
+                        async:false
+                    }).done(function(data){
+                        var topico = "";
+                        var i=1;
+
+                        $.each($.parseJSON(data), function(chave,valor){
+                            console.log(valor.idquestao);
+
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += ' <label for="Estado">Alternativas</label> ';
+                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '</div>';
+                            i++;
+                        });
+                        console.log(total);
+                       console.log(topico);
+                        $('#provaFacil').html(topico);
+                })
+                    
+                    $.ajax({
+                        type:"GET",
+                        data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti,dificil:dificil},
+                        url:"http://localhost/TCC/Prova/RetornarProva.php",
+                        async:false
+                    }).done(function(data){
+                        var topico = "";
+                        var i=1;
+
+                        $.each($.parseJSON(data), function(chave,valor){
+                            console.log(valor.idquestao);
+
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += ' <label for="Estado">Alternativas</label> ';
+                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '</div>';
+                            i++;
+                        });
+                        console.log(total);
+                       console.log(topico);
+                        $('#provaDificil').html(topico);
+                })
+                
+                }else{
+                
                 $.ajax({
                     type:"GET",
                     data:{nivel_ensino:ne,topico:tp},
@@ -286,6 +766,37 @@ include ("../Classes/Conexão.php");
                     });
                    console.log(topico);
                     $('#tdQuestoes').html(topico);
+                })
+                }
+            });}
+            
+            function questaoDificil(){
+            $('#topico').change(function(e){
+                var dificuldade = 1;
+                var ne = document.getElementById('nivel').value;
+                var tp = document.getElementById('topico').value;
+                var ti = document.getElementById('tipo').value;
+                
+                var total = document.getElementById('tdQuestoes').value;
+                var facil = document.getElementById('facil').value;
+                $.ajax({
+                    type:"GET",
+                    data:{dif:dificuldade,nivel_ensino:ne,topico:tp,tipo:ti},
+                    url:"http://localhost/TCC/Prova/RetornarTotalQuestoes.php",
+                    async:false
+                }).done(function(data){
+                    var topico = "";
+                    console.log(data);
+                   
+                    $.each($.parseJSON(data), function(chave,valor){
+                        for (i=0;i<=valor.result;i++){
+                
+                             topico += '<option value="' + i + '">'  + i + '</option>';
+                            }
+                        
+                    });
+                   console.log(topico);
+                    $('#dificil').html(topico);
                 })
             });}
             
@@ -308,7 +819,7 @@ include ("../Classes/Conexão.php");
                     console.log(data);
                    
                     $.each($.parseJSON(data), function(chave,valor){
-                        for (i=1;i<=valor.result;i++){
+                        for (i=0;i<=valor.result;i++){
                 
                              topico += '<option value="' + i + '">'  + i + '</option>';
                             }
@@ -335,7 +846,7 @@ include ("../Classes/Conexão.php");
                     
                    
                     $.each($.parseJSON(data), function(chave,valor){
-                        for (i=1;i<=valor.result;i++){
+                        for (i=0;i<=valor.result;i++){
                         topico += '<option value="' + i + '">'  + i + '</option>';
                         }
                     });
@@ -345,6 +856,8 @@ include ("../Classes/Conexão.php");
             });}
             
             function totalQuestoes(){
+                
+                if ((document.getElementById('facil').value!="")&&(document.getElementById('dificil').value)){
                 var facil = parseInt(document.getElementById('facil').value);
                 var dificil = parseInt(document.getElementById('dificil').value);
                 
@@ -354,12 +867,13 @@ include ("../Classes/Conexão.php");
                 
                 $('#total').val(total);
             }
+            }
             
             function gerarProva(){
                 $('#tipo').change(function(e){
                 var ne = document.getElementById('nivel').value;
                 var tp = document.getElementById('topico').value;
-                var ti = document.getElementById('tipo').value;
+                var ti = parseInt(document.getElementById('tipo').value);
                 var facil = parseInt(document.getElementById('facil').value);
                 var dificil = parseInt(document.getElementById('dificil').value);
                 var prova = 1;
@@ -372,7 +886,7 @@ include ("../Classes/Conexão.php");
                 }).done(function(data){
                     var topico = "";
                     
-                   
+                   if (ti==0){
                     $.each($.parseJSON(data), function(chave,valor){
                         console.log(valor.idquestao);
                         
@@ -398,7 +912,31 @@ include ("../Classes/Conexão.php");
                     console.log(total);
                    console.log(topico);
                     $('#prova').html(topico);
+                   }else{
+                       $.each($.parseJSON(data), function(chave,valor){
+                        console.log(valor.idquestao);
+                        
+                       topico += ' <div class="form-group"> ';
+                        topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                        topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                        if (valor.imagem != null){
+                            topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                            topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                        }
+                        topico += ' <label for="Estado">Resposta</label> ';
+                        topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                        topico += ' <label for="Estado">Nivel da questão</label> ';
+                        topico += '</div>';
+                        i++;
+                    });
+                       console.log(total);
+                   console.log(topico);
+                    $('#prova').html(topico);
+                   }
+                    
+                    
                 })
+                
             });}
             
             function gerarProvaFacil(){
@@ -412,12 +950,12 @@ include ("../Classes/Conexão.php");
                 var total = facil+dificil;
                 $.ajax({
                     type:"GET",
-                    data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti},
+                    data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti,facil:facil},
                     url:"http://localhost/TCC/Prova/RetornarProva.php",
                     async:false
                 }).done(function(data){
                     var topico = "";
-                    
+                    var i=1;
                    
                     $.each($.parseJSON(data), function(chave,valor){
                         console.log(valor.idquestao);
@@ -443,7 +981,7 @@ include ("../Classes/Conexão.php");
                     });
                     console.log(total);
                    console.log(topico);
-                    $('#prova').html(topico);
+                    $('#provaFacil').html(topico);
                 })
             });}
             
@@ -451,14 +989,14 @@ include ("../Classes/Conexão.php");
                 $('#dificil').change(function(e){
                 var ne = document.getElementById('nivel').value;
                 var tp = document.getElementById('topico').value;
-                var ti = document.getElementById('tipo').value;
+                var ti = parseInt(document.getElementById('tipo').value);
                 var facil = parseInt(document.getElementById('facil').value);
                 var dificil = parseInt(document.getElementById('dificil').value);
                 var prova = 1;
                 var total = facil+dificil;
                 $.ajax({
                     type:"GET",
-                    data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti},
+                    data:{total:total,nivel_ensino:ne,topico:tp,tipo:ti,dificil:dificil},
                     url:"http://localhost/TCC/Prova/RetornarProva.php",
                     async:false
                 }).done(function(data){
@@ -488,7 +1026,7 @@ include ("../Classes/Conexão.php");
                     });
                     console.log(total);
                    console.log(topico);
-                    $('#prova').html(topico);
+                    $('#provaDificil').html(topico);
                 })
             });}
                 
