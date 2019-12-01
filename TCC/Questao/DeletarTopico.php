@@ -12,16 +12,15 @@
 
 <?php
 
-    if(isset($_POST["nomeTopico"])){
-        
+    if(isset($_POST["topico"])){
+        print_r($_POST);
         $t = new Topico();
         $c = new Conexão();
         $cx = $c->conexão();
-        $t->setNomeTopico(utf8_decode($_POST["nomeTopico"]));
         $t->deletar($cx,$_POST["topico"]);
     
     }
-
+print_r($_POST);
 ?>
 
 
@@ -53,7 +52,7 @@
         <form action="DeletarTopico.php" method="post">
             
             <select id="materia" name="materia"></select>
-            <select class="form-control" name="topico" id="topico" onclick="questaoTopico()">
+            <select class="form-control" name="topico" id="topico" >
                             <option value="" disabled selected>Selecione...</option>
                         </select>
           
@@ -85,7 +84,7 @@
                     var topico = "";
                     topico += '<option value="" disabled selected>Selecione...</option>';
                     $.each($.parseJSON(data), function(chave,valor){
-                        topico += '<option value="' + valor.idtopico + '">' + valor.nome_topico + '</option>';
+                        topico += '<option name="nomeTopico" value="' + valor.idtopico + '">' + valor.nome_topico + '</option>';
                         
                     });
                    

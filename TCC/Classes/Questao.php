@@ -117,6 +117,66 @@ class Questao{
         }
         return $busca;
     }
+    
+    public function retornarNaoValidada($cx){
+        $conecta = $cx;       
+        
+        $select = "SELECT * FROM questao ";
+        $select .= "WHERE  publico=0";
+        
+        $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco a");
+        }
+        
+        return $busca;
+    }
+    
+    public function retornarAlternativa($cx, $idQuestaoS){
+        $conecta = $cx;       
+        $idQuestao = $idQuestaoS;
+        
+        $select = "SELECT * FROM alternativa ";
+        $select .= "WHERE  idquestao={$idQuestao}";
+        
+        $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco a");
+        }
+        
+        return $busca;
+    }
+    
+    public function retornarDiscursiva($cx, $idQuestaoS){
+        $conecta = $cx;       
+        $idQuestao = $idQuestaoS;
+        
+        $select = "SELECT * FROM discursiva ";
+        $select .= "WHERE  idquestao={$idQuestao}";
+        
+        $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco d");
+        }
+        
+        return $busca;
+    }
+    
+    public function validarQuestao($cx, $idQuestaoS){
+        $conecta = $cx;       
+        $idQuestao = $idQuestaoS;
+        
+        $select = "UPDATE questao SET ";
+        $select .= "publico=1 ";
+        $select .= "WHERE  idquestao={$idQuestao}";
+        
+        $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco v");
+        }
+        
+        return $busca;
+    }
 }
 
 

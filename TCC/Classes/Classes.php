@@ -12,6 +12,7 @@ include ("Topico.php");
 include ("Questao.php");
 include ("Alternativas.php");
 include ("Discursiva.php");
-
+include ("Prova.php");
+include ("ProvaQuestoes.php");
 
 ?>

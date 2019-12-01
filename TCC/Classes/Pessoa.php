@@ -148,13 +148,40 @@ class Pessoa{
         $conecta = $cx;
         $cpf = $cpfDeletar;
         
+        $select = "SET SQL_SAFE_UPDATES=0 ";
+        
+        $deletar = mysqli_query($conecta, $select);
+        
+        if (!$deletar){
+            die("Erro no Banco b " . $cpf);
+        }
+         
+        $select = "DELETE FROM professor ";
+        $select .= "WHERE cpf = '{$cpf}' ";
+        
+        $deletar = mysqli_query($conecta, $select);
+        
+        if (!$deletar){
+            die("Erro no Banco a " . $cpf);
+        } 
+        
+        $select = "DELETE FROM niveis_professores ";
+        $select .= "WHERE cpf = '{$cpf}' ";
+        
+        $deletar = mysqli_query($conecta, $select);
+        
+        if (!$deletar){
+            die("Erro no Banco c " . $cpf);
+        }
+         
+         
         $select = "DELETE FROM pessoa ";
         $select .= "WHERE cpf = '{$cpf}' ";
         
         $deletar = mysqli_query($conecta, $select);
         
         if (!$deletar){
-            die("Erro no Banco " . $cpf);
+            die("Erro no Banco b " . $cpf);
         }
         
         return $deletar;

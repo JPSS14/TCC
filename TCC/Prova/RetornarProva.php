@@ -27,7 +27,7 @@
             $selecao .= "a.idquestao, a.resposta, a.alternativa1, a.alternativa2, a.alternativa3 ";
             $selecao .= "FROM questao AS q RIGHT JOIN alternativa AS a ";
             $selecao .= "ON q.idquestao = a.idquestao ";
-            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao=0 LIMIT {$facil}";
+            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao=0 AND publico=1 LIMIT {$facil}";
             $produtos = mysqli_query($conecta,$selecao);
             if (!$produtos){
                 die ("erro no banco aqui");
@@ -49,7 +49,7 @@
             $selecao .= "q.enunciado, d.resposta ";
             $selecao .= "FROM questao AS q RIGHT JOIN discursiva AS d ";
             $selecao .= "ON q.idquestao = d.idquestao ";
-            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino}";
+            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND publico=1";
             $produtos = mysqli_query($conecta,$selecao);
             $selecao = "SELECT * FROM prova_discursiva";
             $produtos = mysqli_query($conecta,$selecao);
@@ -86,7 +86,7 @@
                 $selecao .= "a.idquestao, a.resposta, a.alternativa1, a.alternativa2, a.alternativa3 ";
                 $selecao .= "FROM questao AS q RIGHT JOIN alternativa AS a ";
                 $selecao .= "ON q.idquestao = a.idquestao ";
-                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao=1 LIMIT {$dificil}";
+                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao=1 AND publico=1 LIMIT {$dificil}";
                 $produtos = mysqli_query($conecta,$selecao);
                 if (!$produtos){
                     die ("erro no banco aqui");
@@ -108,7 +108,7 @@
                 $selecao .= "q.enunciado, d.resposta ";
                 $selecao .= "FROM questao AS q RIGHT JOIN discursiva AS d ";
                 $selecao .= "ON q.idquestao = d.idquestao ";
-                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino}";
+                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND publico=1 ";
                 $produtos = mysqli_query($conecta,$selecao);
                 $selecao = "SELECT * FROM prova_discursiva";
                 $produtos = mysqli_query($conecta,$selecao);

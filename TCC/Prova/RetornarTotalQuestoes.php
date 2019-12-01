@@ -17,7 +17,7 @@
             $selecao .= "q.enunciado, a.resposta, a.alternativa1, a.alternativa2, a.alternativa3 ";
             $selecao .= "FROM questao AS q RIGHT JOIN alternativa AS a ";
             $selecao .= "ON q.idquestao = a.idquestao ";
-            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino}";
+            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND publico=1";
             $produtos = mysqli_query($conecta,$selecao);
             $selecao = "SELECT COUNT (*) AS FROM prova_alternativa";
             $produtos = mysqli_query($conecta,$selecao);
@@ -34,7 +34,7 @@
             $selecao .= "q.enunciado, d.resposta ";
             $selecao .= "FROM questao AS q RIGHT JOIN discursiva AS d ";
             $selecao .= "ON q.idquestao = d.idquestao ";
-            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino}";
+            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND publico=1";
             $produtos = mysqli_query($conecta,$selecao);
             $selecao = "SELECT * FROM prova_discursiva";
             $produtos = mysqli_query($conecta,$selecao);
@@ -61,7 +61,7 @@
                 $selecao .= "SELECT q.cpf, q.idtopico, q.idmateria, q.nivel_ensino, q.nivel_questao, a.idalternativa, a.idquestao ";
                 $selecao .= "FROM questao AS q RIGHT JOIN alternativa AS a ";
                 $selecao .= "ON q.idquestao = a.idquestao ";
-                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao={$dif}";
+                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao={$dif} AND publico=1";
                 $produtos = mysqli_query($conecta,$selecao);
                 $selecao = "SELECT COUNT(*) AS result FROM total_dificil_alternativa";
                 $produtos = mysqli_query($conecta,$selecao);
@@ -77,7 +77,7 @@
                 $selecao .= "SELECT q.cpf, q.idtopico, q.idmateria, q.nivel_ensino, q.nivel_questao, a.idalternativa, a.idquestao ";
                 $selecao .= "FROM questao AS q RIGHT JOIN alternativa AS a ";
                 $selecao .= "ON q.idquestao = a.idquestao ";
-                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao={$dif}";
+                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao={$dif} AND publico=1";
                 $produtos = mysqli_query($conecta,$selecao);
                 $selecao = "SELECT COUNT(*) AS result FROM total_facil_alternativa";
                 $produtos = mysqli_query($conecta,$selecao);
@@ -95,7 +95,7 @@
                 $selecao .= "SELECT q.cpf, q.idtopico, q.idmateria, q.nivel_ensino, q.nivel_questao, d.iddiscursiva, d.idquestao ";
                 $selecao .= "FROM questao AS q RIGHT JOIN discursiva AS d ";
                 $selecao .= "ON q.idquestao = d.idquestao ";
-                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao={$dif}";
+                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao={$dif} AND publico=1";
                 $produtos = mysqli_query($conecta,$selecao);
                 $selecao = "SELECT COUNT(*) AS result FROM total_dificil_discursiva";
                 $produtos = mysqli_query($conecta,$selecao);
@@ -110,7 +110,7 @@
                 $selecao .= "SELECT q.cpf, q.idtopico, q.idmateria, q.nivel_ensino, q.nivel_questao, d.iddiscursiva, d.idquestao ";
                 $selecao .= "FROM questao AS q RIGHT JOIN discursiva AS d ";
                 $selecao .= "ON q.idquestao = d.idquestao ";
-                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao={$dif}";
+                $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao={$dif} AND publico=1";
                 $produtos = mysqli_query($conecta,$selecao);
                 $selecao = "SELECT COUNT(*) AS result FROM total_facil_discursiva";
                 $produtos = mysqli_query($conecta,$selecao);
@@ -143,7 +143,7 @@
             $selecao .= "SELECT q.cpf, q.idtopico, q.idmateria, q.nivel_ensino, q.nivel_questao, a.idalternativa, a.idquestao ";
             $selecao .= "FROM questao AS q RIGHT JOIN alternativa AS a ";
             $selecao .= "ON q.idquestao = a.idquestao ";
-            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} ";
+            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND publico=1 ";
             $produtos = mysqli_query($conecta,$selecao);
             $selecao = "SELECT COUNT(*) AS resultado FROM total_alternativa";
             $produtos = mysqli_query($conecta,$selecao);
@@ -159,7 +159,7 @@
             $selecao .= "SELECT q.cpf, q.idtopico, q.idmateria, q.nivel_ensino, q.nivel_questao, d.iddiscursiva, d.idquestao ";
             $selecao .= "FROM questao AS q RIGHT JOIN discursiva AS d ";
             $selecao .= "ON q.idquestao = d.idquestao ";
-            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} ";
+            $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND publico=1 ";
             $produtos = mysqli_query($conecta,$selecao);
             $selecao = "SELECT COUNT(*) AS resultado FROM total_discursiva";
             $produtos = mysqli_query($conecta,$selecao);
@@ -178,7 +178,7 @@
         $catID = $_GET['nivel_ensino']; 
         $topico = $_GET['topico']; 
         $selecao  = "SELECT COUNT(*) AS resultado FROM questao ";
-        $selecao .= "WHERE nivel_ensino = {$catID} AND idtopico={$topico}";
+        $selecao .= "WHERE nivel_ensino = {$catID} AND idtopico={$topico} AND publico=1 ";
         $produtos = mysqli_query($conecta,$selecao);
 
         $retorno = array();
@@ -194,7 +194,7 @@
         $catID = $_GET['nivel_questao']; 
         $topico = $_GET['topico']; 
         $selecao  = "SELECT COUNT(*) AS resultado FROM questao ";
-        $selecao .= "WHERE nivel_questao = {$catID} AND idtopico={$topico}";
+        $selecao .= "WHERE nivel_questao = {$catID} AND idtopico={$topico} AND publico=1 ";
         $produtos = mysqli_query($conecta,$selecao);
 
         $retorno = array();
@@ -210,7 +210,7 @@
         $topico = $_GET['topico']; 
 
         $selecao  = "SELECT COUNT(*) AS resultado FROM questao ";
-        $selecao .= "WHERE idtopico = {$topico}";
+        $selecao .= "WHERE idtopico = {$topico} AND publico=1 ";
         $produto = mysqli_query($conecta,$selecao);
 
         $retorno = array();

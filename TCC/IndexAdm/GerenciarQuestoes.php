@@ -1,3 +1,18 @@
+<?php
+    include("../Classes/Classes.php");
+    include("../Classes/Conexão.php");
+?>
+
+<?php
+    session_start();
+    if (!isset($_SESSION["cpf"])){
+    header("location:Login.php");
+    }else $cpfS = $_SESSION["cpf"];
+?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -9,12 +24,12 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" href="style_index.css" type="text/css"/>
 
-    <title>Gerenciar Topicos</title>
+    <title>Gerenciar Usuarios</title>
     </head>
     <body> 
 	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
             <a class="navbar-brand" href="../Validacao.php"style="margin-left:45%">
-                <img src="logoipp.png" width="110" height="auto" alt="">
+                <img src="../logoipp.png" width="110" height="auto" alt="">
             </a>
 		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
 			    <span class="navbar-toggler-icon"></span>
@@ -54,19 +69,19 @@
                 <div class="card "  >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
-                        <a href="../Questao/AdicionarTopico.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Adicionar Topicos</a>  
+                        <a href="../Questao/ValidarQuestao.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Validar Questão</a>  
                     </div>
                 </div>      
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
-                        <a href="../Questao/AlterarTopico.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Alterar Topicos</a>  
+                        <a href="../Relatorios/RelatorioMaterias.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Relatório de <br>Matérias</a>  
                     </div>
                 </div>    
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
-                        <a href="../Questao/DeletarTopico.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Deletar Topicos</a>  
+                        <a href="../Relatorios/RelatorioProfessoresQuestao.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Relatóro Professores</a>  
                     </div>
                 </div>
             </div>

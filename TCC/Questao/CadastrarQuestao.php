@@ -111,7 +111,7 @@ include ("../Classes/Conexão.php");
         <div class="tela_questao">
             <Div class="login_margen">
                 
-                <form name="formCadastro" enctype="multipart/form-data" action="ValidarQuestao.php" method="post">
+                <form name="formCadastro" enctype="multipart/form-data" action="Validacao.php" method="post">
                     <div class="form-group">
                             <label for="enunciado">Enunciado</label>
                             <input class="form-control" type="text" name="enunciado" id="enunciado" placeholder="Seu Enunciado">

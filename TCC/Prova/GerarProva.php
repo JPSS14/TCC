@@ -104,7 +104,7 @@ include ("../Classes/Conexão.php");
         <div class="tela_registrar">
             <Div class="login_margen">
                 
-                <form name="formCadastro" enctype="multipart/form-data" action="ValidarQuestao.php" method="post">
+                <form name="formCadastro" enctype="multipart/form-data" action="SalvarProva.php" method="post">
                     <div class="form-group">
                             <label for="enunciado">Nome da Prova</label>
                             <input class="form-control" type="text" name="nomeProva" id="nomeProva" placeholder="Nome Prova">
@@ -161,22 +161,22 @@ include ("../Classes/Conexão.php");
                     <div class="form-group">
                             <input class="form-control" type="hidden" name="total" id="total" placeholder="Nome Prova">
                     </div>
-                    <div id="validarDiscursiva" style="display:none">
-                        <div class="form-group">
-                            <label for="resposta">Resposta</label>
-                            <input class="form-control" type="text" name="respostaDis" id="resposta" placeholder="Resposta Correta">
-                        </div>
-                        <button  type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>
+                    <div id="validarDiscursiva">
+                        
                     </div>
                  </form>
+                <form id="formDificil" action="SalvarProva.php" method="post">
+                    <div id="provaFacil" style="background-color:green">
 
-                <div id="provaFacil" style="background-color:green">
-                
-                </div>
-                
-                 <div id="provaDificil" style="background-color:red">
-                
-                </div>
+                           
+                    </div>
+                        
+                     <div id="provaDificil" style="background-color:red">
+
+                    </div>
+                   
+                    
+                </form>
             </Div>
         </div>  
     </div> 
@@ -312,20 +312,20 @@ include ("../Classes/Conexão.php");
 
                             topico += ' <div class="form-group"> ';
                             topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
-                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" readonly>' ;
                             if (valor.imagem != null){
                                 topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
                                 topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
                             }
                             topico += ' <label for="Estado">Resposta</label> ';
-                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
                             topico += ' <label for="Estado">Nivel da questão</label> ';
-                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
                             topico += ' <label for="Estado">Alternativas</label> ';
-                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
                             topico += '</div>';
                             i++;
                         });
@@ -502,20 +502,20 @@ include ("../Classes/Conexão.php");
 
                             topico += ' <div class="form-group"> ';
                             topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
-                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" readonly>' ;
                             if (valor.imagem != null){
                                 topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
                                 topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
                             }
                             topico += ' <label for="Estado">Resposta</label> ';
-                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
                             topico += ' <label for="Estado">Nivel da questão</label> ';
-                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
                             topico += ' <label for="Estado">Alternativas</label> ';
-                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
                             topico += '</div>';
                             i++;
                         });
@@ -690,20 +690,20 @@ include ("../Classes/Conexão.php");
 
                             topico += ' <div class="form-group"> ';
                             topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
-                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" name="enunciado['+ i +']"value="'+ valor.enunciado +'" readonly>' ;
                             if (valor.imagem != null){
                                 topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
                                 topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
                             }
                             topico += ' <label for="Estado">Resposta</label> ';
-                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
                             topico += ' <label for="Estado">Nivel da questão</label> ';
-                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
                             topico += ' <label for="Estado">Alternativas</label> ';
-                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
                             topico += '</div>';
                             i++;
                         });
@@ -726,20 +726,20 @@ include ("../Classes/Conexão.php");
 
                             topico += ' <div class="form-group"> ';
                             topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
-                            topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" name="enunciado['+ i +']"value="'+ valor.enunciado +'" readonly>' ;
                             if (valor.imagem != null){
                                 topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
                                 topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
                             }
                             topico += ' <label for="Estado">Resposta</label> ';
-                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
                             topico += ' <label for="Estado">Nivel da questão</label> ';
-                            topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
                             topico += ' <label for="Estado">Alternativas</label> ';
-                            topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
-                            topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
                             topico += '</div>';
                             i++;
                         });
@@ -892,20 +892,20 @@ include ("../Classes/Conexão.php");
                         
                        topico += ' <div class="form-group"> ';
                         topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
-                        topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                        topico += '<input class="form-control" type="text" name="enunciado['+ i +']"value="'+ valor.enunciado +'" readonly>' ;
                         if (valor.imagem != null){
                             topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
                             topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
                         }
                         topico += ' <label for="Estado">Resposta</label> ';
-                        topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                        topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
                         topico += ' <label for="Estado">Nivel da questão</label> ';
-                        topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
+                        topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
                         topico += ' <label for="Estado">Alternativas</label> ';
-                        topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
-                        topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
-                        topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
-                        topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
+                        topico += '<input class="form-control" type="text" name="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
+                        topico += '<input class="form-control" type="text" name="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
+                        topico += '<input class="form-control" type="text" name="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
+                        topico += '<input class="form-control" type="text" name="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
                         topico += '</div>';
                         i++;
                     });
@@ -918,13 +918,13 @@ include ("../Classes/Conexão.php");
                         
                        topico += ' <div class="form-group"> ';
                         topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
-                        topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
+                        topico += '<input class="form-control" type="text" name="enunciado['+ i +']"value="'+ valor.enunciado +'" readonly>' ;
                         if (valor.imagem != null){
                             topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
                             topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
                         }
                         topico += ' <label for="Estado">Resposta</label> ';
-                        topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
+                        topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
                         topico += ' <label for="Estado">Nivel da questão</label> ';
                         topico += '</div>';
                         i++;
@@ -959,26 +959,55 @@ include ("../Classes/Conexão.php");
                    
                     $.each($.parseJSON(data), function(chave,valor){
                         console.log(valor.idquestao);
-                        
-                        topico += ' <div class="form-group"> ';
-                        topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
-                        topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
-                        if (valor.imagem != null){
-                            topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
-                            topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                        if (ti==0){
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" name="enunciadof['+ i +']"value="'+ valor.enunciado +'" readonly>' ;
+                            topico += '<input class="form-control" type="hidden" name="idquestaof'+i+' "value="'+ valor.idquestao +'" readonly>';
+                            topico += '<input class="form-control" type="hidden" name="idalternativaf'+i+' "value="'+ valor.idalternativa +'" readonly>';
+                            topico += '<input class="form-control" type="hidden" name="iddiscursivaf'+i+' "value="'+ null +'" readonly>';
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" name="respostaf['+ i +']"value="'+ valor.resposta +'" readonly>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" name="respostaf['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
+                            topico += ' <label for="Estado">Alternativas</label> ';
+                            topico += '<input class="form-control" type="text" name="alternativa1f['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa2f['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa3f['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa4f['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
+                            topico += '</div>';
+                            i++;
+                        }else{
+                             topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" name="enunciadof['+ i +']"value="'+ valor.enunciado +'" readonly>' ;
+                            topico += '<input class="form-control" type="hidden" name="idquestaof'+i+' "value="'+ valor.idquestao +'" readonly>';
+                            topico += '<input class="form-control" type="hidden" name="iddiscursivaf'+i+' "value="'+ valor.iddiscursiva +'" readonly>';
+                            topico += '<input class="form-control" type="hidden" name="idalternativaf'+i+' "value="'+ null +'" readonly>';
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" name="respostaf['+ i +']"value="'+ valor.resposta +'" readonly>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" name="respostaf['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
+                            topico += '</div>';
+                            i++;
                         }
-                        topico += ' <label for="Estado">Resposta</label> ';
-                        topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
-                        topico += ' <label for="Estado">Nivel da questão</label> ';
-                        topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
-                        topico += ' <label for="Estado">Alternativas</label> ';
-                        topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
-                        topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
-                        topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
-                        topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
-                        topico += '</div>';
-                        i++;
                     });
+                    
+                    var nome = document.getElementById('nomeProva').value;
+                    topico += '<input type="hidden" name="nome_prova" value="'+nome+'">';
+                    topico += '<input type="hidden" name="nFacil" value="'+facil+'">';
+                    if(dificil==0){
+                       topico += '<button  type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>';
+                    }
+                    
                     console.log(total);
                    console.log(topico);
                     $('#provaFacil').html(topico);
@@ -1005,25 +1034,54 @@ include ("../Classes/Conexão.php");
                    
                     $.each($.parseJSON(data), function(chave,valor){
                         console.log(valor.idquestao);
-                       topico += ' <div class="form-group"> ';
-                        topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
-                        topico += '<input class="form-control" type="text" id="enunciado['+ i +']"value="'+ valor.enunciado +'" disabled>' ;
-                        if (valor.imagem != null){
-                            topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
-                            topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                        if (ti==0){
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" name="enunciado['+i+'] "value="'+ valor.enunciado +'" readonly>' ;
+                            topico += '<input class="form-control" type="hidden" name="idquestao'+i+' "value="'+ valor.idquestao +'" readonly>';
+                            topico += '<input class="form-control" type="hidden" name="idalternativa'+i+' "value="'+ valor.idalternativa +'" readonly>';
+                            topico += '<input class="form-control" type="hidden" name="iddiscursiva'+i+' "value="'+ null +'" readonly>';
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
+                            topico += ' <label for="Estado">Alternativas</label> ';
+                            topico += '<input class="form-control" type="text" name="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
+                            topico += '<input class="form-control" type="text" name="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
+                            topico += '</div>';
+                            i++;
+                        }else{
+                            topico += ' <div class="form-group"> ';
+                            topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
+                            topico += '<input class="form-control" type="text" name="enunciado['+i+'] "value="'+ valor.enunciado +'" readonly>' ;
+                            topico += '<input class="form-control" type="hidden" name="idquestao'+i+' "value="'+ valor.idquestao +'" readonly>';
+                            topico += '<input class="form-control" type="hidden" name="iddiscursiva'+i+' "value="'+ valor.iddiscursiva +'" readonly>';
+                            topico += '<input class="form-control" type="hidden" name="idalternativa'+i+' "value="'+ null +'" readonly>';
+                            if (valor.imagem != null){
+                                topico += ' <label for="Estado" style="margin-top:5%">Imagem</label> <br>';
+                                topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
+                            }
+                            topico += ' <label for="Estado">Resposta</label> ';
+                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
+                            topico += ' <label for="Estado">Nivel da questão</label> ';
+                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
+                            topico += '</div>';
+                            i++;
+                            
                         }
-                        topico += ' <label for="Estado">Resposta</label> ';
-                        topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.resposta +'" disabled>' ;
-                        topico += ' <label for="Estado">Nivel da questão</label> ';
-                        topico += '<input class="form-control" type="text" id="resposta['+ i +']"value="'+ valor.nivel_questao +'" disabled>' ;
-                        topico += ' <label for="Estado">Alternativas</label> ';
-                        topico += '<input class="form-control" type="text" id="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" disabled>' ;
-                        topico += '<input class="form-control" type="text" id="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" disabled>' ;
-                        topico += '<input class="form-control" type="text" id="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" disabled>' ;
-                        topico += '<input class="form-control" type="text" id="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" disabled>' ;
-                        topico += '</div>';
-                        i++;
                     });
+                    var nome = document.getElementById('nomeProva').value;
+                    topico += '<input type="hidden" name="nome_prova" value="'+nome+'">';
+                    topico += '<input type="hidden" name="nDificil" value="'+dificil+'">';
+                    if(facil==0){
+                       topico += '<button  type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>';
+                    }
                     console.log(total);
                    console.log(topico);
                     $('#provaDificil').html(topico);
