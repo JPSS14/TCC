@@ -39,12 +39,12 @@
                     <li class="nav-item active dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >ADM</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item active" style="background-color: #f3f2f1; color: black" href="GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
+                            <a class="dropdown-item active"  href="GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
                             <a class="dropdown-item" href="GerenciarMaterias.html"  >Gerenciar Matérias</a>
                             <a class="dropdown-item" href="GerenciarNiveldeensino.html"  >Gerenciar Niveis de Ensino</a>
                             <a class="dropdown-item" href="GerenciarTopicos.html"  >Gerenciar Topicos</a>
                             <a class="dropdown-item" href="GerenciarRelatorios.php"  >Gerenciar Relatórios</a>
-                            <a class="dropdown-item" href="GerenciarQuestoes.php"  >Gerenciar Questões</a>
+                            <a class="dropdown-item" href="GerenciarQuestoes.php" style="background-color: #f3f2f1; color: black" >Gerenciar Questões</a>
                             <a class="dropdown-item" href="Feedbacks.php"  >Feedbacks</a>
                         </div>
                     </li>	
@@ -76,13 +76,13 @@
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
-                        <a href="../Relatorios/RelatorioMaterias.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Relatório de <br>Matérias</a>  
+                        <a href="../Relatorios/RelatorioMaterias.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Editar Questão</a>  
                     </div>
                 </div>    
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
-                        <a href="../Relatorios/RelatorioProfessoresQuestao.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Relatóro Professores</a>  
+                        <a href="../Relatorios/RelatorioProfessoresQuestao.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Excluir Questão</a>  
                     </div>
                 </div>
             </div>

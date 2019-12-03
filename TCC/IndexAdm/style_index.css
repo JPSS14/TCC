@@ -25,3 +25,39 @@ body{
 #text_alterar {
     margin-left: -43%;
 }
+
+.tela_feed{
+    border: ridge gray;
+    border-radius:20px;
+    background-color:#f3f2f1;
+    left:50%;
+    top:25%;
+    margin-left:-430px; /* Metade do valor da Largura */
+    margin-top:-20px; /* Metade da valor da Altura */
+    margin-bottom: 100px;
+    position:absolute;
+    width:900px; /* Valor da Largura */
+   
+}
+.feed_margen{
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    margin-top: 10px
+}
+.text_feed{
+    margin-left: 35%;
+
+}
+.Enunciado{
+    margin-left: 1rem;
+    color: blue;
+}
+.reposta_certa{
+    margin-left: 1rem;
+    color: green;
+}
+.respostas_erradas{
+    margin-left: 1rem;
+    color: red;   
+}

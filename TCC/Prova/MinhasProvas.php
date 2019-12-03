@@ -27,29 +27,30 @@
   </head>
   <body>
         
-	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
+  <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
             <a class="navbar-brand" href="../Validacao.php"style="margin-left:45%">
                 <img src="../logoipp.png" width="110" height="auto" alt="">
             </a>
 		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-			  <span class="navbar-toggler-icon"></span>
-		    </button>
-		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:28%">
+			    <span class="navbar-toggler-icon"></span>
+            </button>
+		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:23%">
 			    <ul class="navbar-nav ">
-				    <li class="nav-item">
-					    <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
+                    <li class="nav-item">
+					  <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
                     </li>
                     <li class="nav-item dropdown" >
-                        <a class="nav-link active dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item active" href="Alterar.php" style="background-color: #f3f2f1; color: black" >Alterar meu usuario</a>
-                            <a class="dropdown-item" href="AlterarSenha.php">Alterar Senha</a>
+                            <a class="dropdown-item" href="../Index/Alterar.php"  >Alterar meu usuario</a>
+                            <a class="dropdown-item" href="../Index/AlterarSenha.php">Alterar Senha</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="../Logout.php">Sair</a>
                         </div>
                     </li>
 		  	    </ul>
 		    </div>
+	    </nav>
 	    </nav>
         <div class="externa">
             <div class="tela_alterar">

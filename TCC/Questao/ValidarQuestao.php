@@ -34,6 +34,7 @@
     <title>Index</title>
     </head>
     <body> 
+    <body> 
 	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
             <a class="navbar-brand" href="..\Validacao.php"style="margin-left:45%">
                 <img src="../logoipp.png" width="110" height="auto" alt="">
@@ -46,28 +47,30 @@
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >ADM</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item" href="GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
-                            <a class="dropdown-item" href="GerenciarMaterias.html"  >Gerenciar Matérias</a>
-                            <a class="dropdown-item" href="GerenciarNiveisEnsino.html"  >Gerenciar Niveis de Ensino</a>
-                            <a class="dropdown-item" href="GerenciarTopicos.html"  >Gerenciar Topicos</a>
-
+                            <a class="dropdown-item "  href="../IndexAdm/GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
+                            <a class="dropdown-item" href="../IndexAdm/GerenciarMaterias.html"  >Gerenciar Matérias</a>
+                            <a class="dropdown-item" href="../IndexAdm/GerenciarNiveldeensino.html"  >Gerenciar Niveis de Ensino</a>
+                            <a class="dropdown-item" href="../IndexAdm/GerenciarTopicos.html"  >Gerenciar Topicos</a>
+                            <a class="dropdown-item" href="../IndexAdm/GerenciarRelatorios.php"  >Gerenciar Relatórios</a>
+                            <a class="dropdown-item" href="../IndexAdm/GerenciarQuestoes.php"  >Gerenciar Questões</a>
+                            <a class="dropdown-item" href="../IndexAdm/Feedbacks.php"  >Feedbacks</a>
                         </div>	
                     <li class="nav-item">
-					  <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
+					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
                     </li>
-                   
+                    </li>
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
                             <a class="dropdown-item" href="..\Index/Alterar.php"  >Alterar meu usuario</a>
                             <a class="dropdown-item" href="..\Index/AlterarSenha.php">Alterar Senha</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="..\Logout.php">Sair</a>
+                            <a class="dropdown-item" href="Logout.php">Sair</a>
                         </div>
                     </li>
 		  	    </ul>
 		    </div>
-	    </nav>
+        </nav>
         <div class="externa">
             <h5 class="text_alterar">
                 Adicionar Administrador<br>
@@ -90,7 +93,7 @@
                 ?>
                 <ul>
                         
-                    <form action="Validacao.php" method="post" class="form-inline" >
+                    <form action="ValidarQuestao.php" method="post" class="form-inline" >
                        
                         <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo utf8_encode($linha["enunciado"]);?>" >
                         <?php

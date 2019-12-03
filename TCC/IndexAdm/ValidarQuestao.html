@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style_index.css" type="text/css">
+
+    <title>Feedback</title>
+  </head>
+  <body>
+        <div>
+        <div> 
+	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
+            <a class="navbar-brand" href="../Validacao.php"style="margin-left:45%">
+                <img src="logoipp.png" width="110" height="auto" alt="">
+            </a>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+			  <span class="navbar-toggler-icon"></span>
+		    </button>
+		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:28%">
+			    <ul class="navbar-nav ">
+				    <li class="nav-item">
+					    <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
+                    </li>
+                    <li class="nav-item dropdown" >
+                        <a class="nav-link active dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
+                        <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
+                            <a class="dropdown-item active" href="Alterar.php" style="background-color: #f3f2f1; color: black" >Alterar meu usuario</a>
+                            <a class="dropdown-item" href="AlterarSenha.php">Alterar Senha</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="../Logout.php">Sair</a>
+                        </div>
+                    </li>
+		  	    </ul>
+		    </div>
+	    </nav>
+        <div class="externa">
+    
+                    <form name="formalterar" action="Alterar.php" method="post">
+                        <h5 class="text_feed">
+                           Validar Questões<br>
+                        </h5>
+                        <div class="form-row">
+                            <div class="form-group col-md-3">
+                              <label for="inputEmail4">nivel</label>
+                              <input type="text" class="form-control" id="inputEmail4" placeholder="nivel" value="superior" readonly>
+                            </div>
+                            <div class="form-group col-md-3">
+                              <label for="inputPasswo">dificuldade</label>
+                              <input type="text" class="form-control" id="inputPasswo" placeholder="dificuldade" value="dificil" readonly>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="inputPassword">Matéria</label>
+                                <input type="text" class="form-control" id="inputPassword" placeholder="Matéria" value="redes" readonly>
+                              </div>
+                              <div class="form-group col-md-3">
+                                <label for="inputPasswor">Topico</label>
+                                <input type="text" class="form-control" id="inputPasswor" placeholder="Topico" value="IPv6" readonly>
+                              </div>
+                          </div>
+                         <label> Enunciado</label>
+                            <div class="Enunciado">
+                                    Os computadores em redes IPv6 são identificados por um conjunto de algarismos conhecidos como endereços IP. Considerando essa informação, assinale a alternativa que apresenta um endereço IPv6 incorreto. 
+                            </div>
+                            <label> alternativas</label>
+                            <div class="reposta_certa">
+                                    2001:0DH8:000:000:130G:000:000:140B
+                            </div>
+                            <div class="respostas_erradas">
+                                    2001:DB8:0:54:<br>
+                                    2001:DB8:0:0:130F::140B<br>
+                                    2001:DB8:0:54:0:0:0:0<br>
+                                    2001:DB8::130F:0:0:140B<br>
+                            </div>
+                        <button type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary" style="margin-left: 1rem; margin-right: 2rem;">Validar</button>
+                        <button type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-danger">Excluir</button>
+
+                          </div>
+                    </form>
+        </Div>
+
+        <!-- JavaScript (Opcional) -->
+        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </body>
+</html> 
+
