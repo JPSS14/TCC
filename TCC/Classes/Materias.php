@@ -62,6 +62,8 @@ class Materias{
         if(!$lista_materias){
             die("Erro no banco");
         }
+        
+         mb_convert_variables('UTF-8','iso-8859-1',$lista_materias);
         return $lista_materias;
     }
     

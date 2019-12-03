@@ -28,7 +28,7 @@
 		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:23%">
 			    <ul class="navbar-nav ">
                     <li class="nav-item">
-					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
+					  <a class="nav-link " href="Feedback.php" style="font-size:18px;">FEEDBACK</a>
                     </li>
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
@@ -42,7 +42,7 @@
 		  	    </ul>
 		    </div>
 	    </nav>
-        <div class="externa">
+       <div class="externa">
             <div class="card-columns " style="margin-left: 20%; margin-right: 25%; margin-top: 1%; width: 48rem">
                 <div class="card "  >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
@@ -53,17 +53,17 @@
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
-                        <a href="izone.html" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Visitar</a>  
+                        <a href="../Prova/GerarProva.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Gerar Prova</a>  
                     </div>
                 </div>    
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
-                        <a href="izone.html" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Visitar</a>  
+                        <a href="../Prova/MinhasProvas.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Minhas Provas</a>  
                     </div>
                 </div>
             </div>
-        </div> 
+        </div>  
         <!-- JavaScript (Opcional) -->
         <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

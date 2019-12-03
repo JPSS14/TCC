@@ -37,7 +37,7 @@
 		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:28%">
 			    <ul class="navbar-nav ">
 				    <li class="nav-item">
-					    <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
+					    <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
                     </li>
                     <li class="nav-item dropdown" >
                         <a class="nav-link active dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
@@ -54,7 +54,10 @@
         <div class="externa">
             <div class="tela_alterar">
                 <Div class="alterar_margen"> 
-                 
+                    <form action="gerando-pdf-com-mpdf/index.php" method="post">
+                        <input type="hidden" name="info" value="professoresQuestoes">
+                          <button  style="margin-top:2%;margin-bottom:2%;" value="Adicionar Adm" class="btn btn-primary">Gerar PDF</button>      
+                            </form>
                                     
                     <form action="RelatorioEstados.php" method="post" class="form-inline" >
                             <?php 
@@ -68,7 +71,7 @@
                                    $pes = $p->totalQuestoesProfessor($cx,$linha["cpf"]);
                                       $linha1 = mysqli_fetch_assoc($pes);
                             ?> 
-                                     
+                        
                          <input style="margin-right: 1rem;" class="form-control" type="text" id="estados[<?php echo $i ?>]" value="<?php echo utf8_encode($linha["usuario"]);?>" readonly>
                         <label id="lblTopico" for="topico">Questões Cadastradas: <?php echo (" ")?></label> 
                         <input style="margin-right: 1rem;" class="form-control" type="text" id="total" placeholder="usuario" value=" <?php echo $linha1["total"];  ?>" readonly>

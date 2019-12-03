@@ -58,10 +58,11 @@
                             <a class="dropdown-item" href="GerenciarTopicos.html"  >Gerenciar Topicos</a>
                             <a class="dropdown-item" href="GerenciarRelatorios.php"  >Gerenciar Relatórios</a>
                             <a class="dropdown-item" href="GerenciarQuestoes.php"  >Gerenciar Questões</a>
+                            <a class="dropdown-item" href="Feedbacks.php"  >Feedbacks</a>
                         </div>
                     </li>	
                     <li class="nav-item">
-					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
+					  <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
                    
                     </li>
                     <li class="nav-item dropdown" >

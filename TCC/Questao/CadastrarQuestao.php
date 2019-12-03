@@ -93,7 +93,7 @@ include ("../Classes/Conexão.php");
 		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:23%">
 			    <ul class="navbar-nav ">
                     <li class="nav-item">
-					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
+					  <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
                     </li>
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>

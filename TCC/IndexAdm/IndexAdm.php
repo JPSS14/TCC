@@ -26,23 +26,27 @@
 			    <span class="navbar-toggler-icon"></span>
             </button>
 		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:23%">
-			    <ul class="navbar-nav ">
-                    <li class="nav-item dropdown" >
+			    <ul class="navbar-nav">
+                    <li class="nav-item active dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >ADM</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
-                            <a class="dropdown-item" href="GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
+                            <a class="dropdown-item active" style="background-color: #f3f2f1; color: black" href="GerenciarUsuarios.html"  >Gerenciar Usuarios</a>
                             <a class="dropdown-item" href="GerenciarMaterias.html"  >Gerenciar Matérias</a>
-                            <a class="dropdown-item" href="GerenciarNiveisEnsino.html"  >Gerenciar Niveis de Ensino</a>
+                            <a class="dropdown-item" href="GerenciarNiveldeensino.html"  >Gerenciar Niveis de Ensino</a>
                             <a class="dropdown-item" href="GerenciarTopicos.html"  >Gerenciar Topicos</a>
+                            <a class="dropdown-item" href="GerenciarRelatorios.php"  >Gerenciar Relatórios</a>
+                            <a class="dropdown-item" href="GerenciarQuestoes.php"  >Gerenciar Questões</a>
+                            <a class="dropdown-item" href="Feedbacks.php"  >Feedbacks</a>
                         </div>
                     </li>	
                     <li class="nav-item">
-					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
+					  <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
                    
                     </li>
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
+                            <a class="dropdown-item" href="../Index/MeuRelatorio.php"  >Meu Relatório</a>
                             <a class="dropdown-item" href="../Index/Alterar.php"  >Alterar meu usuario</a>
                             <a class="dropdown-item" href="../Index/AlterarSenha.php">Alterar Senha</a>
                             <div class="dropdown-divider"></div>
@@ -69,7 +73,7 @@
                 <div class="card" >
                     <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
-                        <a href="izone.html" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Visitar</a>  
+                        <a href="../Prova/MinhasProvas.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Minhas Provas</a>  
                     </div>
                 </div>
             </div>

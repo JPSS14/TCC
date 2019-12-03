@@ -14,5 +14,6 @@ include ("Alternativas.php");
 include ("Discursiva.php");
 include ("Prova.php");
 include ("ProvaQuestoes.php");
+include ("Feedback.php");
 
 ?>
