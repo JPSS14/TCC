@@ -78,3 +78,24 @@ body{
         .text_alterar{
             margin-left: 32%;
         }
+
+        .tela_prova{
+            border: ridge gray;
+            border-radius:20px;
+            background-color:#f3f2f1;
+            left:50%;
+            top:50%;
+            margin-left:-475px; /* Metade do valor da Largura */
+            margin-top:-170px; /* Metade da valor da Altura */
+            margin-bottom: 100px;
+            position:absolute;
+            width:950px; /* Valor da Largura */
+			dislpay:flex;
+            }
+
+            .prova_margen{
+                margin-left: 10px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+                margin-top: 20px
+            }

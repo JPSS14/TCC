@@ -21,9 +21,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="style_index.css" type="text/css">
+    <link rel="stylesheet" href="../style_index.css" type="text/css">
 
-    <title>Alterar informoções da conta</title>
+    <title>Minhas provas</title>
   </head>
   <body>
         
@@ -51,10 +51,13 @@
 		  	    </ul>
 		    </div>
 	    </nav>
-	    </nav>
+        </nav>
+        <h5 class="text_alterar">
+                Minhas provas<br>
+            </h5>
         <div class="externa">
-            <div class="tela_alterar">
-                <Div class="alterar_margen"> 
+            <div class="tela_prova">
+                <Div class="prova_margen"> 
                  
                                     
                     
@@ -68,11 +71,11 @@
                                 while($linha = mysqli_fetch_assoc($pr)){ 
                                   
                             ?> 
-                        <div style="float:left; border:1px solid black">
+                        <div style="float:left; border:1px ridge #048abf">
                             <form action="MinhaProva.php" method="post" >             
                                 <input style="margin-right: 1rem;" class="form-control" type="text" name="nomeprova" id="nomeProva" placeholder="Nome Prova" value="<?php echo $linha["nome"]?>" readonly>
                                 <input style="margin-right: 1rem;" class="form-control" type="hidden" name="idprova"  placeholder="Nome Prova" value="<?php echo $linha["idprova"]?>" readonly>
-                                 <button type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Alterar</button>
+                                 <button style="margin-left:2rem;" type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Ver Prova</button>
                             </form>
                        </div>
                         

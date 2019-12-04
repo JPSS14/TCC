@@ -153,12 +153,12 @@ include ("../Classes/Conexão.php");
                     </div>
                     <div class="form-group" id="divDificil">
                         <label for="Estado">Questões Dificeis</label>
-                        <select class="form-control" name="dificil" id="dificil" onclick="totalQuestoes();gerarProvaDificil()">
+                        <select style="border: ridge #FF827A" class="form-control" name="dificil" id="dificil" onclick="totalQuestoes();gerarProvaDificil()">
                         </select>
                     </div>
                     <div class="form-group" id="divFacil" >
                         <label for="Estado">Questões Fáceis</label>
-                        <select class="form-control" name="facil" id="facil" onclick="totalQuestoes();gerarProvaFacil()">
+                        <select style=" border: ridge #BAFFBE;" class="form-control" name="facil" id="facil" onclick="totalQuestoes();gerarProvaFacil()">
                         </select>
                     </div>
                     <div class="form-group" id="totalQuestoesProva" >
@@ -176,11 +176,11 @@ include ("../Classes/Conexão.php");
                  <br>
 
                 <form id="formDificil" action="SalvarProva.php" method="post">
-                    <div id="provaFacil" style="background-color:#BAFFBE">
+                    <div id="provaFacil" style=" border: ridge #BAFFBE;border-radius:20px;">
                            
                     </div>
                         
-                    <div id="provaDificil" style="background-color:#FF827A">
+                    <div id="provaDificil" style="border: ridge #FF827A;border-radius:20px;">
 
                     </div>
                    
@@ -1089,7 +1089,7 @@ include ("../Classes/Conexão.php");
                     topico += '<input type="hidden" name="nome_prova" value="'+nome+'">';
                     topico += '<input type="hidden" name="nDificil" value="'+dificil+'">';
                     if(facil==0){
-                       topico += '<button  type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>';
+                       topico += '<button  type="submit" value="Inserir" onclick="return validarForm()" style=" margin-left: 10px;" class="btn btn-primary">Registrar</button>';
                     }
                     console.log(total);
                    console.log(topico);

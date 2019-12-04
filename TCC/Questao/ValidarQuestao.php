@@ -29,9 +29,9 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="style_index.css" type="text/css">
+    <link rel="stylesheet" href="../style_index.css" type="text/css">
 
-    <title>Index</title>
+    <title>Validar Questões</title>
     </head>
     <body> 
     <body> 
@@ -73,7 +73,7 @@
         </nav>
         <div class="externa">
             <h5 class="text_alterar">
-                Adicionar Administrador<br>
+                Validar Questões<br>
             </h5>
 			<div>
                 <?php
@@ -93,30 +93,30 @@
                 ?>
                 <ul>
                         
-                    <form action="ValidarQuestao.php" method="post" class="form-inline" >
-                       
-                        <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo utf8_encode($linha["enunciado"]);?>" >
+                <form action="ValidarQuestao.php" method="post" class="form-inline" >
+                       <div>
+                        <input style="margin-right: 1rem;width:1100px;margin-top=10px;" class="form-control" type="text" placeholder="usuario" value="<?php echo utf8_encode($linha["enunciado"]);?>" >
                         <?php
                                 if($linha["imagem"]!=""){
                         ?>
-                        <img src="<?php echo ($linha["imagem"])?>" style="width:20%">
+                        <img src="<?php echo ($linha["imagem"])?>" style="width:12%;"></div>
                         <?php
                                 }
                         ?>
                          <?php
                                 if($alternativa["idalternativa"]!=""){
                         ?>
-                        <input style="margin-right: 1rem;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["resposta"]);?>" >
-                        <input style="margin-right: 1rem;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa1"]);?>" >
-                        <input style="margin-right: 1rem;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa2"]);?>" >
-                        <input style="margin-right: 1rem;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa3"]);?>" >
-                        <input style="margin-right: 1rem;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa4"]);?>" >
+                        <input style="margin-right: 1rem; background-color:#BAFFBE;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["resposta"]);?>" >
+                        <input style="margin-right: 1rem; background-color:#FF827A;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa1"]);?>" >
+                        <input style="margin-right: 1rem; background-color:#FF827A;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa2"]);?>" >
+                        <input style="margin-right: 1rem; background-color:#FF827A;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa3"]);?>" >
+                        <input style="margin-right: 1rem; background-color:#FF827A;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa4"]);?>" >
                         <input  type="hidden" name="idquestaoNova" value="<?php echo $linha["idquestao"];?>">
                         <button type="submit" value="Adicionar Adm" class="btn btn-primary">Validar</button>
                         <?php
                                 }else{
                         ?>
-                        <input style="margin-right: 1rem;" class="form-control" type="text"  value="<?php echo utf8_encode($discursiva["resposta"]);?>" >
+                        <input style="margin-right: 1rem; background-color:#BAFFBE;width:1100px;" class="form-control" type="text"  value="<?php echo utf8_encode($discursiva["resposta"]);?>" >
                         <input  type="hidden" name="idquestaoNova" value="<?php echo $linha["idquestao"];?>">
                         <button type="submit" value="Adicionar Adm" class="btn btn-primary">Validar</button>
                         <?php

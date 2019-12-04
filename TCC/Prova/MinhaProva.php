@@ -20,7 +20,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="style_index.css" type="text/css">
+    <link rel="stylesheet" href="../style.css" type="text/css">
 
     <title>Alterar informoções da conta</title>
   </head>
@@ -50,9 +50,7 @@
 		  	    </ul>
 		    </div>
 	    </nav>
-        <div class="externa">
-            <div class="tela_alterar">
-                <Div class="alterar_margen"> 
+ 
                  
                              <?php
                                 print_r($_POST);
@@ -75,39 +73,37 @@
                                 }
                             ?>       
                     
+					<div class="prova_margen">
                             <input class="form-control" type="text" name="enunciado"value="<?php echo $questao["enunciado"]?>" readonly>
                             <?php
                                 if($questao["imagem"]!=""){
                             ?> 
-                            <img src="<?php echo ("../questao/".$questao["imagem"])?>" style="width:20%"> <br>
+                            <img src="<?php echo ("../questao/".$questao["imagem"])?>" style="width:10%"> <br>
                             <?php
                                 }
                             ?>
                             <?php
                                 if($linha["idalternativa"]!=""){
                             ?>
-                            <input class="form-control" type="text" name="enunciado"value="<?php echo $alternativa["resposta"]?>" readonly>
-                            <input class="form-control" type="text" name="enunciado"value="<?php echo $alternativa["alternativa1"]?>" readonly>
-                            <input class="form-control" type="text" name="enunciado"value="<?php echo $alternativa["alternativa2"]?>" readonly>
-                            <input class="form-control" type="text" name="enunciado"value="<?php echo $alternativa["alternativa3"]?>" readonly>
-                            <input class="form-control" type="text" name="enunciado"value="<?php echo $alternativa["alternativa4"]?>" readonly>
+                            <input class="form-control" type="text" style=" border: ridge #BAFFBE;" name="enunciado"value="<?php echo $alternativa["resposta"]?>" readonly>
+                            <input class="form-control" type="text" style="border: ridge #FF827A" name="enunciado"value="<?php echo $alternativa["alternativa1"]?>" readonly>
+                            <input class="form-control" type="text" style="border: ridge #FF827A" name="enunciado"value="<?php echo $alternativa["alternativa2"]?>" readonly>
+                            <input class="form-control" type="text" style="border: ridge #FF827A" name="enunciado"value="<?php echo $alternativa["alternativa3"]?>" readonly>
+                            <input class="form-control" type="text" style="border: ridge #FF827A" name="enunciado"value="<?php echo $alternativa["alternativa4"]?>" readonly>
                             <?php
                                 }
                             ?>
                             <?php
                                 if($linha["iddiscursiva"]!=""){
                             ?>
-                            <input class="form-control" type="text" name="enunciado"value="<?php echo $discursiva["resposta"]?>" readonly>
+                            <input class="form-control" style=" border: ridge #BAFFBE;" type="text" name="enunciado"value="<?php echo $discursiva["resposta"]?>" readonly></div>
                             <?php
                                 }
                             ?>
                         <?php 
                                 }
                         ?>
-                   
-                </Div>
-            </div> 
-        </div> 
+
      
         
        

@@ -68,19 +68,19 @@
         <div class="externa">
             <div class="card-columns " style="margin-left: 20%; margin-right: 25%; margin-top: 1%; width: 48rem">
                 <div class="card "  >
-                    <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
+                    <img class="card-img-top" src="../validar.png"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
                         <a href="../Questao/ValidarQuestao.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Validar Questão</a>  
                     </div>
                 </div>      
                 <div class="card" >
-                    <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
+                    <img class="card-img-top" src="../alterarquestao.png"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
                         <a href="../Relatorios/RelatorioMaterias.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Editar Questão</a>  
                     </div>
                 </div>    
                 <div class="card" >
-                    <img class="card-img-top" src="cadastrar.jpg"  alt="Imagem de capa do car">
+                    <img class="card-img-top" src="../exlcuirquestao.png"  alt="Imagem de capa do car">
                     <div class="card-img-overlay" style="margin-top: 160%;">
                         <a href="../Relatorios/RelatorioProfessoresQuestao.php" class="btn btn-lg btn-block" style=" color:black; background-color: #048abf; border: solid black 2px; font-weight: bold; padding: 5%;">Excluir Questão</a>  
                     </div>
