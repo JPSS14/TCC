@@ -96,10 +96,12 @@ else
                 $a->setAlternativa3(utf8_decode($_POST["alternativa3"]));
                 $a->setAlternativa4(utf8_decode($_POST["alternativa4"]));
                 $a->cadastrar($cx);
+                header("location:Sucesso.php");
             }else{
                 $d = new Discursiva();
                 $d->setResposta(utf8_decode($_POST["respostaDis"]));
                 $d->cadastrar($cx);
+                 header("location:Sucesso.php");
             }
         }else{
             $c = new Conexão();
@@ -119,10 +121,12 @@ else
                 $a->setAlternativa3(utf8_decode($_POST["alternativa3"]));
                 $a->setAlternativa4(utf8_decode($_POST["alternativa4"]));
                 $a->cadastrar($cx);
+                header("location:Sucesso.php");
             }else{
                 $d = new Discursiva();
                 $d->setResposta(utf8_decode($_POST["respostaDis"]));
                 $d->cadastrar($cx);
+                header("location:Sucesso.php");
             }
         }
         

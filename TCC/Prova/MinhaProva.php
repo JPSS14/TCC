@@ -51,9 +51,13 @@
 		    </div>
 	    </nav>
  
-                 
+                 <form action="../Relatorios/gerando-pdf-com-mpdf/index.php" method="post">
+                        <input type="hidden" name="info" value="prova">
+                        <input type="hidden" name="idprova" value="<?php echo $_POST["idprova"]?>">
+                          <button  style="margin-top:2%;margin-bottom:2%;" value="Adicionar Adm" class="btn btn-primary">Gerar PDF</button>      
+                            </form>
                              <?php
-                                print_r($_POST);
+                                
 
                                 $p = new Prova();
                                 $c = new Conexão();
@@ -72,34 +76,40 @@
                                          $discursiva = mysqli_fetch_assoc($d);
                                 }
                             ?>       
-                    
-					<div class="prova_margen">
-                            <input class="form-control" type="text" name="enunciado"value="<?php echo $questao["enunciado"]?>" readonly>
+                    <div style="margin-left:10%">
+					        <label>Enunciado:</label>
+                            <input style="width:1100px;" class="form-control" type="text" placeholder="usuario" value="<?php echo utf8_encode($questao["enunciado"]);?>" >
                             <?php
                                 if($questao["imagem"]!=""){
                             ?> 
-                            <img src="<?php echo ("../questao/".$questao["imagem"])?>" style="width:10%"> <br>
+                            <label>Imagem:</label>
+                            <img src="<?php echo ("../questao/".$questao["imagem"])?>" style="width:20%"> <br>
                             <?php
                                 }
                             ?>
                             <?php
                                 if($linha["idalternativa"]!=""){
                             ?>
-                            <input class="form-control" type="text" style=" border: ridge #BAFFBE;" name="enunciado"value="<?php echo $alternativa["resposta"]?>" readonly>
-                            <input class="form-control" type="text" style="border: ridge #FF827A" name="enunciado"value="<?php echo $alternativa["alternativa1"]?>" readonly>
-                            <input class="form-control" type="text" style="border: ridge #FF827A" name="enunciado"value="<?php echo $alternativa["alternativa2"]?>" readonly>
-                            <input class="form-control" type="text" style="border: ridge #FF827A" name="enunciado"value="<?php echo $alternativa["alternativa3"]?>" readonly>
-                            <input class="form-control" type="text" style="border: ridge #FF827A" name="enunciado"value="<?php echo $alternativa["alternativa4"]?>" readonly>
+                            <label>Resposta:</label>
+                            <input style="background-color:#BAFFBE;width:1100px;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["resposta"]);?>" >
+                            <label>Alternativas:</label>
+                            <input style=" background-color:#FF827A;width:1100px;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa1"]);?>" >
+                            <input style="background-color:#FF827A;width:1100px;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa2"]);?>" >
+                            <input style="background-color:#FF827A;width:1100px;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa3"]);?>" >
+                            <input  style=" background-color:#FF827A;width:1100px;margin-right: 1rem;" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa4"]);?>" >
+                            <input  type="hidden" name="idalternativa" value="<?php echo $alternativa["idalternativa"];?>">
+                            <input  type="hidden" name="idQuestaoDeletar" value="<?php echo $linha["idquestao"];?>">
                             <?php
                                 }
                             ?>
                             <?php
                                 if($linha["iddiscursiva"]!=""){
                             ?>
-                            <input class="form-control" style=" border: ridge #BAFFBE;" type="text" name="enunciado"value="<?php echo $discursiva["resposta"]?>" readonly></div>
+                            <input class="form-control" style=" border: ridge #BAFFBE;" type="text" name="enunciado"value="<?php echo $discursiva["resposta"]?>" readonly>
                             <?php
                                 }
                             ?>
+                        </div>
                         <?php 
                                 }
                         ?>

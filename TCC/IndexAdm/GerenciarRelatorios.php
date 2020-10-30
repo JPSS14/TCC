@@ -5,9 +5,13 @@
 
 <?php
     session_start();
+
     if (!isset($_SESSION["cpf"])){
     header("location:Login.php");
+    }if($_SESSION["adm"]==0){
+        header("location:../Logout.php");
     }else $cpfS = $_SESSION["cpf"];
+    print_r($_SESSION);
 ?>
 
 

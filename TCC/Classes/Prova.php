@@ -132,18 +132,28 @@ class Prova {
         return $inserir;
     }
     
-    public function deletar($cx,$topicoS){
-        $topico = $topicoS;
+    public function deletarProva($cx,$idProvaS){
+        $idProva = $idProvaS;
         $conecta = $cx;
        
-        $select = "DELETE  FROM topico  ";
-        $select .= "WHERE idtopico={$topico}";
+        $select = "DELETE  FROM prova_questoes  ";
+        $select .= "WHERE idprova={$idProva}";
        
         
         $inserir = mysqli_query($conecta, $select);
         
         if (!$inserir){
-            die("Erro no Banco");
+            die("Erro no Banco prova questoes");
+        }
+        
+        $select = "DELETE  FROM prova  ";
+        $select .= "WHERE idprova={$idProva}";
+       
+        
+        $inserir = mysqli_query($conecta, $select);
+        
+        if (!$inserir){
+            die("Erro no Banco prova ");
         }
         
         return $inserir;

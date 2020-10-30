@@ -91,8 +91,8 @@
                     <form action="Feedbacks.php" method="post" class="form-inline" >
                        
                             <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["cpf"];?>" readonly>
-                            <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["assunto"];?>" readonly>
-                            <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["mensagem"];?>">
+                            <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo utf8_encode($linha["assunto"]);?>" readonly>
+                            <input style="margin-right: 1rem; width:700px;" class="form-control" type="text" placeholder="usuario" value="<?php echo utf8_encode($linha["mensagem"]);?>">
                             <input  type="hidden" name="idDeletar" value="<?php echo $linha["idfeedback"];?>">
                             <button type="submit" value="Deletar Usuário" class="btn btn-danger">Encerrar</button>
                     </form>

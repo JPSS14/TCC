@@ -92,9 +92,9 @@
                 <ul>
                         
                     <form action="DeletarNivelEnsino.php" method="post" class="form-inline" >
-                            <input  type="hidden" name="nomeNivel" value="<?php echo $linha["nome_nivel"];?>">
+                            <input  type="hidden" name="nomeNivel" value="<?php echo utf8_encode($linha["nome_nivel"]);?>">
                             <input  type="hidden" name="idNivel" value="<?php echo $linha["idnivel"];?>">
-                            <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["nome_nivel"];?>" readonly>
+                            <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo utf8_encode($linha["nome_nivel"]);?>" readonly>
                             <button type="submit" value="Deletar" class="btn btn-danger">Deletar</button>
                     </form>
                     

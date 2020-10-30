@@ -67,6 +67,7 @@
             }
             else{
                 $_SESSION["email"] = $_POST["email"];
+                $_SESSION["adm"]=0;
                 header("location:Index.php");
             }
         }

@@ -34,6 +34,21 @@ class Discursiva extends Questao{
             die("Erro no banco discursiva");
         }
     }
+    
+    public function alterar($cx, $idDiscursivaS){
+        $conecta = $cx;
+        $idDiscursiva= $idDiscursivaS;
+         
+        $select = "UPDATE alternativa SET ";
+        $select .= "resposta='{$this->getResposta()}' ";
+        $select .= "WHERE iddiscursiva ={$idDiscursiva} "; 
+        
+        $inserir = mysqli_query($conecta, $select);
+        
+        if(!$inserir){
+            die("Erro no banco alt");
+        }
+    }
 }
 
 

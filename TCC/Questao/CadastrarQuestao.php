@@ -3,7 +3,7 @@
     if (!isset($_SESSION["cpf"])){
         header("location:../Login.php");
     }
-    echo ("Bem vindo " . $_SESSION["nivel"]);
+    
 ?>
 
 <?php
@@ -24,14 +24,14 @@ include ("../Classes/Conexão.php");
 
     if (mysqli_connect_errno()){
         die("Falha na conexão");
-    }else echo ("Você conseguiu!!");
+    }
         
           $c = new Conexão();
         $cx = $c->conexão();
       $q = new Questao();
-        $qe = $q->idQuestao($cx, $_SESSION["cpf"], "O que é? o que é?");
-        $linha = mysqli_fetch_assoc($qe);
-        echo ($linha["idquestao"] . "11");
+      
+       
+      
     
 ?>
 

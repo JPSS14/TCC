@@ -1,6 +1,6 @@
 <?php
-    include("..\Classes/Classes.php");
-    include("..\Classes/Conexão.php");
+    include("../Classes/Classes.php");
+    include("../Classes/Conexão.php");
 ?>
 
 <?php
@@ -11,12 +11,28 @@
 ?>
 
 <?php
-    if(isset($_POST["idquestaoNova"])){
+    if(isset($_POST["idQuestaoAlterar"])){
         
         $c = new Conexão();
         $cx = $c->conexão(); 
         $q = new Questao();
-        $que = $q->validarQuestao($cx,$_POST["idquestaoNova"]);
+       
+        if (isset($_POST["idalternativa"])){
+            $a = new Alternativas();
+            $a->setResposta(utf8_decode($_POST["resposta"]));
+            $a->setAlternativa1(utf8_decode($_POST["alternativa1"]));
+            $a->setAlternativa2(utf8_decode($_POST["alternativa2"]));
+            $a->setAlternativa3(utf8_decode($_POST["alternativa3"]));
+            $a->setAlternativa4(utf8_decode($_POST["alternativa4"]));
+            $alt = $a->alterar($cx,$_POST["idalternativa"]);
+            $q->setEnunciado(utf8_decode($_POST["enunciado"]));
+            $que = $q->alterar($cx,$_POST["idQuestaoAlterar"]);
+        }if (isset($_POST["iddiscursiva"])){
+            $d = new Discursiva();
+            $q->setEnunciado(utf8_decode($_POST["enunciado"]));
+            $d->setResposta(utf8_decode($_POST["resposta"]));
+            $que = $q->alterar($cx,$_POST["idQuestaoAlterar"],$_POST["iddiscursiva"]);
+        }
     }
 ?>
 
@@ -91,50 +107,51 @@
                     
                     $d = $q->retornarDiscursiva($cx,$linha["idquestao"]);
                     $discursiva = mysqli_fetch_assoc($d); 
-                        
+                    
                     $ma = $m->retornarMaterias($cx, $linha["idmateria"]);
                     $materia = mysqli_fetch_assoc($ma);
                         
                     $to = $t->retornarTopico($cx, $linha["idtopico"]);
-                    $topico = mysqli_fetch_assoc($to); 
+                    $topico = mysqli_fetch_assoc($to);    
+                        
                 ?>
                 <ul>
                         
-                <form action="ValidarQuestao.php" method="post" class="form-inline" >
+                <form action="AlterarQuestao.php" method="post" class="form-inline" >
+                       <label style="margin-right:1000px;">Matéria: <?php echo $materia["nome_materia"]?></label>
+                       <label style="margin-right:1000px;">Tópico: <?php echo $topico["nome_topico"]?></label>
                     
-                    <label style="margin-right:1000px;">Matéria: <?php echo $materia["nome_materia"]?></label>
-                    <label style="margin-right:1000px;">Tópico: <?php echo $topico["nome_topico"]?></label>
-                       
-                        <input style="width:1100px;" class="form-control" type="text" placeholder="usuario" value="<?php echo utf8_encode($linha["enunciado"]);?>" >
+                        <input style="width:1100px;" class="form-control" type="text" name="enunciado" placeholder="usuario" value="<?php echo utf8_encode($linha["enunciado"]);?>" >
                        
                                 
                          <?php
                                 if($alternativa["idalternativa"]!=""){
                                     if($linha["imagem"]!=""){
                         ?>
-                        <img src="<?php echo ($linha["imagem"])?>" style="width:12%;">
+                        <img src="<?php echo ($linha["imagem"])?>" style="width:20%;">
                         <?php
                                 }
                        
                         ?>
-                       <input style="background-color:#BAFFBE;width:1100px;" class="form-control" name="resposta" type="text"  value="<?php echo utf8_encode($alternativa["resposta"]);?>" >
+                        <input style="background-color:#BAFFBE;width:1100px;" class="form-control" name="resposta" type="text"  value="<?php echo utf8_encode($alternativa["resposta"]);?>" >
                         <input style=" background-color:#FF827A;width:1100px;" name="alternativa1" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa1"]);?>" >
                         <input style="background-color:#FF827A;width:1100px;" name="alternativa2" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa2"]);?>" >
                         <input style="background-color:#FF827A;width:1100px;" name="alternativa3" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa3"]);?>" >
                         <input  style=" background-color:#FF827A;width:1100px;margin-right: 1rem;" name="alternativa4" class="form-control" type="text"  value="<?php echo utf8_encode($alternativa["alternativa4"]);?>" >
                         <input  type="hidden" name="idalternativa" value="<?php echo $alternativa["idalternativa"];?>">
-                        <input  type="hidden" name="idquestaoNova" value="<?php echo $linha["idquestao"];?>">
-                        <button type="submit" value="Adicionar Adm" class="btn btn-primary">Validar</button>
+                        <input  type="hidden" name="idQuestaoAlterar" value="<?php echo $linha["idquestao"];?>">
+                        <button   type="submit" value="Deletar" class="btn btn-danger">Alterar</button>
                         <?php
                                 }else{ if($linha["imagem"]!=""){
                         ?>
-                        <img src="<?php echo ($linha["imagem"])?>" style="width:12%;">
+                        <img src="<?php echo ($linha["imagem"])?>" style="width:20%;">
                         <?php
                                 }
                         ?>
-                        <input style="margin-right: 1rem; background-color:#BAFFBE;width:1100px;" class="form-control" type="text"  value="<?php echo utf8_encode($discursiva["resposta"]);?>" >
-                        <input  type="hidden" name="idquestaoNova" value="<?php echo $linha["idquestao"];?>">
-                        <button type="submit" value="Adicionar Adm" class="btn btn-primary">Validar</button>
+                        <input style="margin-right: 1rem; background-color:#BAFFBE;width:1100px;" name="resposta" class="form-control" type="text"  value="<?php echo utf8_encode($discursiva["resposta"]);?>" >
+                        <input  type="hidden" name="idQuestaoAlterar" value="<?php echo $linha["idquestao"];?>">
+                        <input  type="hidden" name="iddiscursiva" value="<?php echo $discursiva["iddiscursiva"];?>">
+                        <button  type="submit" value="Deletar" class="btn btn-danger">Alterar</button>
                         <?php
                                 }
                         ?>

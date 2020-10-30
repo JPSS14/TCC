@@ -88,7 +88,7 @@ include ("../Classes/Conexão.php");
             $m = new Materias();
             $ma = $m->listaMaterias();
             while($linha = mysqli_fetch_assoc($ma)){
-                echo $linha["nome_materia"];
+               
             
             
         ?>
@@ -96,8 +96,8 @@ include ("../Classes/Conexão.php");
             <ul>
                         
                     <form action="DeletarMaterias.php" method="post" class="form-inline" >
-                        <input  type="hidden" name="nomeMateria" value="<?php echo $linha["nome_materia"];?>">
-                        <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo $linha["nome_materia"];?>" readonly>
+                        <input  type="hidden" name="nomeMateria" value="<?php echo utf8_encode($linha["idmateria"]);?>">
+                        <input style="margin-right: 1rem;" class="form-control" type="text" placeholder="usuario" value="<?php echo utf8_encode($linha["nome_materia"]);?>" readonly>
                             
                         <button type="submit" value="Deletar" class="btn btn-danger">Deletar Materia</button>
                     </form>

@@ -5,6 +5,7 @@
     unset($_SESSION["senha"]);
     unset($_SESSION["usuario"]);
     unset($_SESSION["nivel"]);
+    unset($_SESSION["adm"]);
     header("location:Login.php");
 
 ?>

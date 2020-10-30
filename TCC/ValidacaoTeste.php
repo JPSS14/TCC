@@ -53,12 +53,14 @@
             $_SESSION["cpf"]=$informacao["cpf"];
             $_SESSION["email"]=$informacao["email"];
             $_SESSION["nivel"]=$informacaoN["idnivel"];
+            $_SESSION["adm"]=$informacao["adm"];
         }
         else if (($informacao["email"]==$email)&&($informacao["senha"]==(md5($senha)))){
             header("location:Index/Index.php");
             $_SESSION["cpf"]=$informacao["cpf"];
             $_SESSION["email"]=$informacao["email"];
             $_SESSION["nivel"]=$informacaoN["idnivel"];
+            $_SESSION["adm"]=$informacao["adm"];
         }
         else{
             $mensagem = "Deu ruim";

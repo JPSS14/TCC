@@ -11,60 +11,69 @@
 ?>
 
 <?php
-   
+    if(isset($_POST["cpfNovoAdm"])){
+        
+        $c = new Conexão();
+        $cx = $c->conexão(); 
+        $p = new Pessoa();
+        $pe = $p->adicionarAdm($cx, $_POST["cpfNovoAdm"]);
+    }
 ?>
 
 <!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <!-- Meta tags Obrigatórias -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<html>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style_index.css" type="text/css">
 
-    <head>
-    
+    <title>Index</title>
     </head>
-    
-    <body>
-        
-        <p>Bem vindo!</p>
-        
-        <div>
-            <?php
-                $c = new Conexão();
-                $cx = $c->conexão(); 
-                $p = new Pessoa();
-                $pe = $p->listaPessoa($cx);
-                while($linha = mysqli_fetch_assoc($pe)){
-                    
-                    if($linha["adm"]!=1){
-            ?>
-            <ul>
-                
-                
-                
-                
-                <li><?php echo $linha["usuario"];?></li>
-                <li><?php echo $linha["nome_completo"];?></li>
-                <li><?php echo $linha["email"];?></li>
-                <li><?php echo $linha["cpf"];?></li>
-             
+    <body> 
+	    <nav class="navbar navbar-expand-lg navbar-light"  style="background-color:#048abf">
+            <a class="navbar-brand" href="../Validacao.php"style="margin-left:45%">
+                <img src="../logoipp.png" width="110" height="auto" alt="">
+            </a>
+		    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
+			    <span class="navbar-toggler-icon"></span>
+            </button>
+		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:23%">
+			    <ul class="navbar-nav">	
+                    <li class="nav-item">
+					  <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
+                   
+                    </li>
+                    <li class="nav-item dropdown" >
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
+                        <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
+                            <a class="dropdown-item" href="../Index/MeuRelatorio.php"  >Meu Relatório</a>
+                            <a class="dropdown-item" href="../Index/Alterar.php"  >Alterar meu usuario</a>
+                            <a class="dropdown-item" href="../Index/AlterarSenha.php">Alterar Senha</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="../Logout.php">Sair</a>
+                        </div>
+                    </li>
+		  	    </ul>
+		    </div>
+	    </nav>
+        <div class="externa">
+            <h1>Sua questão foi enviada para ser validada por um de nossos administradores, obrigado!</h1>
+          
+                  
+            </div>
+            
+         
 
-            </ul>
-              
-        </div>
         
-        <?php
-                    }
-                }
-        
-        ?>
-       
-        
-        
-            <p><a href="../Logout.php">Sair</a></p>
-            <p><a href="../Validacao.php">Voltar</a></p>
-   
-      
-
+        <!-- JavaScript (Opcional) -->
+        <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
     </body>
+</html> 
 
-
-</html>

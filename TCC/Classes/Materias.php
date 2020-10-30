@@ -72,12 +72,14 @@ class Materias{
         $materia = $materiaDeletar;
         
         $select = "DELETE FROM materias ";
-        $select .= "WHERE idmateria = (SELECT idmateria FROM materias WHERE nome_materia = '{$materia}')";
+        $select .= "WHERE idmateria = '{$materia}'";
             
         $deletar = mysqli_query($conecta, $select);
         
         if(!$deletar){
+            header("location:DeletarMateriaErro.php");
             die("Erro no Banco");
+              
         }
         
         return $deletar;
@@ -126,19 +128,34 @@ class Materias{
             die("Erro no banco 1");
         }
         $select = "CREATE VIEW relatorio AS ";
-        $select .= "SELECT m.nome_materia FROM materias AS m ";
+        $select .= "SELECT m.nome_materia, q.publico FROM materias AS m ";
         $select .= "RIGHT JOIN questao AS q ON m.idmateria=q.idmateria";
         $total = mysqli_query($conecta, $select);
           if(!$total){
             die("Erro no banco 2");
           }
-        $select = "SELECT nome_materia, COUNT(nome_materia) AS total FROM relatorio WHERE nome_materia='{$materias}'";
+        $select = "SELECT nome_materia, COUNT(nome_materia) AS total FROM relatorio WHERE nome_materia='{$materias}' AND publico=1";
         $total = mysqli_query($conecta, $select);
           if(!$total){
             die("Erro no banco 3");
         }
              
         return $total;
+    }
+    
+     public function retornarMaterias($cx, $idMateriaS){
+        $conecta = $cx;       
+        $idMateria = $idMateriaS;
+        
+        
+        $select = "SELECT * FROM materias WHERE idmateria={$idMateria}  ";
+         $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco alterar questao");
+        }
+        
+        
+        return $busca;
     }
     
 }

@@ -178,6 +178,68 @@ class Questao{
         return $busca;
     }
     
+    public function deletarQuestaoAlternativa($cx, $idQuestaoS, $idAlternativaS){
+        $conecta = $cx;       
+        $idQuestao = $idQuestaoS;
+        $idAlternativa = $idAlternativaS;
+        
+        $select = "DELETE FROM alternativa ";
+        $select .= "WHERE  idquestao={$idQuestao}";
+         $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco deletar alternativa");
+        }
+        $select = "DELETE FROM questao ";
+        $select .= "WHERE  idquestao={$idQuestao}";
+        
+        $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco deletar");
+        }
+        
+        return $busca;
+    }
+    
+    public function deletarQuestaoDiscursiva($cx, $idQuestaoS, $idDiscursivaS){
+        $conecta = $cx;       
+        $idQuestao = $idQuestaoS;
+        $idDiscursiva = $idDiscursivaS;
+        
+        $select = "DELETE FROM discursiva ";
+        $select .= "WHERE  idquestao={$idQuestao}";
+         $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco deletar discursiva");
+        }
+        $select = "DELETE FROM questao ";
+        $select .= "WHERE  idquestao={$idQuestao}";
+        
+        $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco deletar");
+        }
+        
+        return $busca;
+    }
+    
+    public function alterar($cx, $idQuestaoS){
+        $conecta = $cx;       
+        $idQuestao = $idQuestaoS;
+        
+        
+        $select = "UPDATE questao SET ";
+        $select .= "enunciado='{$this->getEnunciado()}' ";
+        $select .= "WHERE  idquestao={$idQuestao} ";
+         $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco alterar questao");
+        }
+        
+        
+        return $busca;
+    }
+    
+    
     
     
 }

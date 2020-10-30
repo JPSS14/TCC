@@ -92,7 +92,7 @@
                         
                     <form action="AlterarNivelEnsino.php" method="post" class="form-inline" >
                        
-                            <input style="margin-right: 1rem;" name="nomeNivel" class="form-control" type="text" placeholder="Nome Nivel" value="<?php echo $linha["nome_nivel"];?>" >
+                            <input style="margin-right: 1rem;" name="nomeNivel" class="form-control" type="text" placeholder="Nome Nivel" value="<?php echo utf8_encode($linha["nome_nivel"]);?>" >
                             <input  type="hidden" name="idNivel" value="<?php echo $linha["idnivel"];?>">
                             <button type="submit" value="Alterar" class="btn btn-primary">Alterar Nivel</button>
                     </form>

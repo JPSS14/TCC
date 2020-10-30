@@ -29,9 +29,9 @@ include ("../Classes/Conexão.php");
           $c = new Conexão();
         $cx = $c->conexão();
       $q = new Questao();
-        $qe = $q->idQuestao($cx, $_SESSION["cpf"], "O que é? o que é?");
-        $linha = mysqli_fetch_assoc($qe);
-        echo ($linha["idquestao"] . "11");
+        
+      
+        
     
 ?>
 
@@ -965,7 +965,9 @@ include ("../Classes/Conexão.php");
                 }).done(function(data){
                     var topico = "";
                     var i=1;
-                   
+                    if(facil!=0){
+                       topico += '<button  type="submit" value="Inserir" onclick="return validarForm()" style=" margin-left: 40%;" class="btn btn-primary">Registrar</button><br>';
+                    }
                     $.each($.parseJSON(data), function(chave,valor){
                         console.log(valor.idquestao);
                         if (ti==0){
@@ -980,14 +982,12 @@ include ("../Classes/Conexão.php");
                                 topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
                             }
                             topico += ' <label for="Estado">Resposta</label> ';
-                            topico += '<input class="form-control" type="text" name="respostaf['+ i +']"value="'+ valor.resposta +'" readonly>' ;
-                            topico += ' <label for="Estado">Nivel da questão</label> ';
-                            topico += '<input class="form-control" type="text" name="respostaf['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
+                            topico += '<input style="background-color:#BAFFBE;width:478px;" class="form-control" type="text" name="respostaf['+ i +']"value="'+ valor.resposta +'" readonly>' ;
                             topico += ' <label for="Estado">Alternativas</label> ';
-                            topico += '<input class="form-control" type="text" name="alternativa1f['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
-                            topico += '<input class="form-control" type="text" name="alternativa2f['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
-                            topico += '<input class="form-control" type="text" name="alternativa3f['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
-                            topico += '<input class="form-control" type="text" name="alternativa4f['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
+                            topico += '<input style="background-color:#FF827A;width:478px;" class="form-control" type="text" name="alternativa1f['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
+                            topico += '<input style="background-color:#FF827A;width:478px;" class="form-control" type="text" name="alternativa2f['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
+                            topico += '<input style="background-color:#FF827A;width:478px;" class="form-control" type="text" name="alternativa3f['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
+                            topico += '<input style="background-color:#FF827A;width:478px;" class="form-control" type="text" name="alternativa4f['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
                             topico += '</div>';
                             i++;
                         }else{
@@ -1013,9 +1013,7 @@ include ("../Classes/Conexão.php");
                     var nome = document.getElementById('nomeProva').value;
                     topico += '<input type="hidden" name="nome_prova" value="'+nome+'">';
                     topico += '<input type="hidden" name="nFacil" value="'+facil+'">';
-                    if(dificil==0){
-                       topico += '<button  type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Registrar</button>';
-                    }
+                   
                     
                     console.log(total);
                    console.log(topico);
@@ -1040,11 +1038,14 @@ include ("../Classes/Conexão.php");
                 }).done(function(data){
                     var topico = "";
                     var i = 1;
-                   
+                    if((facil==0)&&(dificil!=0)){
+                       topico += '<button  type="submit" value="Inserir" onclick="return validarForm()" style=" margin-left: 40%;" class="btn btn-primary">Registrar</button><br>';
+                    }
                     $.each($.parseJSON(data), function(chave,valor){
                         console.log(valor.idquestao);
                         if (ti==0){
-                            topico += ' <div class="form-group"> ';
+                            topico += ' <div > ';
+                           
                             topico += ' <label for="Estado" style="margin-top:5%">Enunciado</label> ';
                             topico += '<input class="form-control" type="text" name="enunciado['+i+'] "value="'+ valor.enunciado +'" readonly>' ;
                             topico += '<input class="form-control" type="hidden" name="idquestao'+i+' "value="'+ valor.idquestao +'" readonly>';
@@ -1055,14 +1056,12 @@ include ("../Classes/Conexão.php");
                                 topico += '<img src="../questao/'+ valor.imagem +'" style="width:40%"> <br>' ;
                             }
                             topico += ' <label for="Estado">Resposta</label> ';
-                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
-                            topico += ' <label for="Estado">Nivel da questão</label> ';
-                            topico += '<input class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.nivel_questao +'" readonly>' ;
+                            topico += '<input style="background-color:#BAFFBE;width:478px;" class="form-control" type="text" name="resposta['+ i +']"value="'+ valor.resposta +'" readonly>' ;
                             topico += ' <label for="Estado">Alternativas</label> ';
-                            topico += '<input class="form-control" type="text" name="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
-                            topico += '<input class="form-control" type="text" name="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
-                            topico += '<input class="form-control" type="text" name="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
-                            topico += '<input class="form-control" type="text" name="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
+                            topico += '<input style=" background-color:#FF827A;width:478px;" class="form-control" type="text" name="alternativa1['+ i +']"value="'+ valor.alternativa1 +'" readonly>' ;
+                            topico += '<input style=" background-color:#FF827A;width:478px;" class="form-control" type="text" name="alternativa2['+ i +']"value="'+ valor.alternativa2 +'" readonly>' ;
+                            topico += '<input style=" background-color:#FF827A;width:478px;" class="form-control" type="text" name="alternativa3['+ i +']"value="'+ valor.alternativa3 +'" readonly>' ;
+                            topico += '<input style=" background-color:#FF827A;width:478px;margim-bottom:10px;" class="form-control" type="text" name="alternativa4['+ i +']"value="'+ valor.alternativa4 +'" readonly>' ;
                             topico += '</div>';
                             i++;
                         }else{
@@ -1088,9 +1087,7 @@ include ("../Classes/Conexão.php");
                     var nome = document.getElementById('nomeProva').value;
                     topico += '<input type="hidden" name="nome_prova" value="'+nome+'">';
                     topico += '<input type="hidden" name="nDificil" value="'+dificil+'">';
-                    if(facil==0){
-                       topico += '<button  type="submit" value="Inserir" onclick="return validarForm()" style=" margin-left: 10px;" class="btn btn-primary">Registrar</button>';
-                    }
+                    
                     console.log(total);
                    console.log(topico);
                     $('#provaDificil').html(topico);

@@ -78,6 +78,25 @@ class Alternativas extends Questao{
             die("Erro no banco alt");
         }
     }
+    
+     public function alterar($cx, $idAlternativaS){
+        $conecta = $cx;
+        $idAlternativa = $idAlternativaS;
+         
+        $select = "UPDATE alternativa SET ";
+        $select .= "resposta='{$this->getResposta()}', ";
+        $select .= "alternativa1='{$this->getAlternativa1()}', ";
+        $select .= "alternativa2='{$this->getAlternativa2()}', "; 
+        $select .= "alternativa3='{$this->getAlternativa3()}', "; 
+        $select .= "alternativa4='{$this->getAlternativa4()}' ";
+        $select .= "WHERE idalternativa ={$idAlternativa} "; 
+        
+        $inserir = mysqli_query($conecta, $select);
+        
+        if(!$inserir){
+            die("Erro no banco alt");
+        }
+    }
 
 }
 

@@ -24,7 +24,7 @@
             }
             $selecao = "CREATE VIEW prova_alternativa AS ";
             $selecao .= "SELECT q.cpf, q.idtopico, q.idmateria, q.nivel_ensino, q.nivel_questao, q.enunciado, q.imagem, a.idalternativa, ";
-            $selecao .= "a.idquestao, a.resposta, a.alternativa1, a.alternativa2, a.alternativa3 ";
+            $selecao .= "a.idquestao, a.resposta, a.alternativa1, a.alternativa2, a.alternativa3, a.alternativa4 ";
             $selecao .= "FROM questao AS q RIGHT JOIN alternativa AS a ";
             $selecao .= "ON q.idquestao = a.idquestao ";
             $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao=0 AND publico=1 LIMIT {$facil}";
@@ -83,7 +83,7 @@
                 }
                 $selecao = "CREATE VIEW prova_alternativa AS ";
                 $selecao .= "SELECT q.cpf, q.idtopico, q.idmateria, q.nivel_ensino, q.nivel_questao, q.enunciado, q.imagem, a.idalternativa, ";
-                $selecao .= "a.idquestao, a.resposta, a.alternativa1, a.alternativa2, a.alternativa3 ";
+                $selecao .= "a.idquestao, a.resposta, a.alternativa1, a.alternativa2, a.alternativa3, a.alternativa4 ";
                 $selecao .= "FROM questao AS q RIGHT JOIN alternativa AS a ";
                 $selecao .= "ON q.idquestao = a.idquestao ";
                 $selecao .= "WHERE q.idtopico={$topico} AND q.nivel_ensino={$nivel_ensino} AND q.nivel_questao=1 AND publico=1 LIMIT {$dificil}";

@@ -39,16 +39,16 @@
                             <a class="dropdown-item" href="../IndexAdm/Feedbacks.php"  >Feedbacks</a>
                         </div>	
                     <li class="nav-item">
-					  <a class="nav-link " href="#" style="font-size:18px;">FEEDBACK</a>
+					  <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
                     </li>
-                    </li>
+                    
                     <li class="nav-item dropdown" >
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" style="font-size:18px;" href="#" role="button" aria-haspopup="true" aria-expanded="false" >USUARIO</a>
                         <div class="dropdown-menu dropdown-menu-right"   style="background-color: #048abf; ">
                             <a class="dropdown-item" href="..\Index/Alterar.php"  >Alterar meu usuario</a>
                             <a class="dropdown-item" href="..\Index/AlterarSenha.php">Alterar Senha</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="Logout.php">Sair</a>
+                            <a class="dropdown-item" href="..\Logout.php">Sair</a>
                         </div>
                     </li>
 		  	    </ul>

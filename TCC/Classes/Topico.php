@@ -80,6 +80,21 @@ class Topico {
         
         return $inserir;
     }
+    
+    public function retornarTopico($cx, $idTopicoS){
+        $conecta = $cx;       
+        $idTopico = $idTopicoS;
+        
+        
+        $select = "SELECT * FROM topico WHERE idtopico={$idTopico}  ";
+         $busca = mysqli_query($conecta, $select);
+        if(!$busca){
+            die("erro no banco topico");
+        }
+        
+        
+        return $busca;
+    }
  
 }
 

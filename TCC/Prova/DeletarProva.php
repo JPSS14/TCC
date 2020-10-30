@@ -10,6 +10,19 @@
     }else $cpfS = $_SESSION["cpf"];
 ?>
 
+<?php
+    
+    if(isset($_POST["idprova"])){
+        
+        $p = new Prova();
+        $c = new Conexão();
+        $cx = $c->conexão();
+        $p -> deletarProva($cx, $_POST["idprova"]);
+    
+    }
+
+?>
+
 
 
 <!DOCTYPE html>
@@ -37,7 +50,7 @@
 		    <div class="collapse navbar-collapse" id="navbarNav" style="margin-left:17%">
 			    <ul class="navbar-nav ">
                      <li class="nav-item">
-					  <a class="nav-link " href="../Prova/DeletarProva.php" style="font-size:18px;">DELETAR PROVA</a>
+					  <a class="nav-link " href="MinhasProvas.php" style="font-size:18px;">MINHAS PROVAS</a>
                     </li>
                     <li class="nav-item">
 					  <a class="nav-link " href="../Index/Feedback.php" style="font-size:18px;">FEEDBACK</a>
@@ -75,10 +88,11 @@
                             ?> 
                         <div style="float:left; border:1px ridge #048abf">
                            
-                                <form action="MinhaProva.php" method="post" name="minhaProva">             
+                                <form action="DeletarProva.php" method="post" name="minhaProva">             
                                     <input style="margin-right: 1rem;" class="form-control" type="text" name="nomeprova" id="nomeProva" placeholder="Nome Prova" value="<?php echo $linha["nome"]?>" readonly>
                                     <input style="margin-right: 1rem;" class="form-control" type="hidden" name="idprova" id="idprova"  placeholder="Nome Prova" value="<?php echo $linha["idprova"]?>" readonly>
-                                     <button style="margin-left:2rem;" type="submit" value="Inserir" onclick="return validarForm()" class="btn btn-primary">Ver Prova</button>
+                                     
+                                    <button style="margin-left:5rem;" type="submit" value="Deletar" class="btn btn-danger">Deletar</button>
                                     
                                 </form>
                                 

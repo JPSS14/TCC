@@ -79,14 +79,7 @@
             <h5 class="text_alterar">
                 Adicionar Materia<br>
             </h5>
-            <?php 
-            $m = new Materias();
-            $ma = $m->listaMaterias();
-            while($linha = mysqli_fetch_assoc($ma)){
-                echo $linha["nome_materia"];
-            }
-            
-        ?>
+
                 <ul>
                         
                     <form action="AdicionarMaterias.php" method="post" class="form-inline" >
@@ -96,6 +89,15 @@
                     </form>
                     
                 </ul>
+            
+                        <?php 
+            $m = new Materias();
+            $ma = $m->listaMaterias();
+            while($linha = mysqli_fetch_assoc($ma)){
+                '<p>' .  utf8_encode($linha["nome_materia"]) . '<p>';
+            }
+            
+        ?>
                   
             </div>
         </div> 

@@ -153,7 +153,9 @@ class Pessoa{
         $deletar = mysqli_query($conecta, $select);
         
         if (!$deletar){
-            die("Erro no Banco b " . $cpf);
+            header("location:DeletarUsuarioErro.php");
+            die("Erro no Banco b oi" . $cpf);
+            echo "oi";
         }
          
         $select = "DELETE FROM professor ";
@@ -162,7 +164,9 @@ class Pessoa{
         $deletar = mysqli_query($conecta, $select);
         
         if (!$deletar){
+            header("location:DeletarUsuarioErro.php");
             die("Erro no Banco a " . $cpf);
+            
         } 
         
         $select = "DELETE FROM niveis_professores ";
@@ -239,13 +243,13 @@ class Pessoa{
             die("Erro no banco 1");
         }
         $select = "CREATE VIEW relatorio AS ";
-        $select .= "SELECT p.cpf FROM pessoa AS p ";
+        $select .= "SELECT p.cpf,q.publico FROM pessoa AS p ";
         $select .= "RIGHT JOIN questao AS q ON p.cpf=q.cpf";
         $total = mysqli_query($conecta, $select);
           if(!$total){
             die("Erro no banco 2");
           }
-        $select = "SELECT cpf, COUNT(cpf) AS total FROM relatorio WHERE cpf='{$cpf}'";
+        $select = "SELECT cpf, COUNT(cpf) AS total FROM relatorio WHERE cpf='{$cpf}' AND publico=1";
         $total = mysqli_query($conecta, $select);
           if(!$total){
             die("Erro no banco 3");
