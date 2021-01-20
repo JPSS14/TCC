@@ -1,0 +1,90 @@
+CREATE DATABASE tcc;
+use tcc;
+CREATE TABLE pessoa (
+cpf VARCHAR(11) PRIMARY KEY,
+email VARCHAR(50) UNIQUE,
+usuario VARCHAR(50),
+senha VARCHAR(50),
+nome_completo VARCHAR(50),
+adm BOOLEAN);
+
+CREATE TABLE professor (
+idprofessor INTEGER AUTO_INCREMENT PRIMARY KEY,
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+estado VARCHAR(50));
+
+CREATE TABLE nivel (
+idnivel INTEGER AUTO_INCREMENT PRIMARY KEY,
+nome_nivel VARCHAR(50));
+
+INSERT INTO nivel VALUES (default, "Fundamental");
+
+CREATE TABLE niveis_professores(
+idniveis INTEGER AUTO_INCREMENT PRIMARY KEY,
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+email VARCHAR(50),
+nome_nivel VARCHAR(50),
+idnivel INTEGER NOT NULL, FOREIGN KEY(idnivel) REFERENCES nivel(idnivel));
+
+CREATE TABLE materias (
+idmateria INTEGER NOT NULL AUTO_INCREMENT, 
+nome_materia VARCHAR (50) NOT NULL,
+PRIMARY KEY(idmateria));
+
+CREATE TABLE estados (
+  idestado INTEGER NOT NULL AUTO_INCREMENT,
+  sigla VARCHAR(2) NOT NULL,
+  nome_estado VARCHAR(30) NOT NULL,
+  PRIMARY KEY(idestado)
+);
+
+CREATE TABLE topico (
+idtopico INTEGER AUTO_INCREMENT PRIMARY KEY,
+idmateria INTEGER NOT NULL, FOREIGN KEY(idmateria) REFERENCES materias(idmateria),
+nome_topico VARCHAR(50));
+
+CREATE TABLE questao (
+idquestao INTEGER AUTO_INCREMENT PRIMARY KEY,
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+enunciado VARCHAR(250),
+nivel_questao BOOLEAN,
+nivel_ensino INTEGER NOT NULL, FOREIGN KEY(nivel_ensino) REFERENCES nivel(idnivel),
+idmateria INTEGER NOT NULL, FOREIGN KEY(idmateria) REFERENCES materias(idmateria),
+idtopico INTEGER NOT NULL, FOREIGN KEY(idtopico) REFERENCES topico(idtopico),
+publico INTEGER NOT NULL,
+imagem VARCHAR(200),
+data DATE);
+
+CREATE TABLE alternativa (
+idquestao INTEGER NOT NULL, FOREIGN KEY(idquestao) REFERENCES questao(idquestao),
+idalternativa INTEGER AUTO_INCREMENT PRIMARY KEY,
+resposta VARCHAR(150),
+alternativa1 VARCHAR(150),
+alternativa2 VARCHAR(150),
+alternativa3 VARCHAR(150),
+alternativa4 VARCHAR(150));
+
+CREATE TABLE discursiva (
+idquestao INTEGER NOT NULL, FOREIGN KEY(idquestao) REFERENCES questao(idquestao),
+iddiscursiva INTEGER AUTO_INCREMENT PRIMARY KEY,
+resposta VARCHAR(200));
+
+CREATE TABLE feedback (
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+idfeedback INTEGER AUTO_INCREMENT PRIMARY KEY,
+assunto VARCHAR(100),
+mensagem VARCHAR(250)
+);
+CREATE TABLE prova (
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+idprova INTEGER AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100)
+);
+
+CREATE TABLE prova_questoes (
+idprova INTEGER NOT NULL, FOREIGN KEY(idprova) REFERENCES prova(idprova),
+idprova_questoes INTEGER AUTO_INCREMENT PRIMARY KEY,
+idquestao INTEGER NOT NULL, FOREIGN KEY(idquestao) REFERENCES questao(idquestao),
+idalternativa INTEGER NOT NULL, FOREIGN KEY(idalternativa) REFERENCES alternativa(idalternativa),
+iddiscursiva INTEGER NOT NULL, FOREIGN KEY(iddiscursiva) REFERENCES discursiva(iddiscursiva)
+);

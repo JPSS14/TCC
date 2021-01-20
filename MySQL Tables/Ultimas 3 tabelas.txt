@@ -1,0 +1,19 @@
+CREATE TABLE feedback (
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+idfeedback INTEGER AUTO_INCREMENT PRIMARY KEY,
+assunto VARCHAR(100),
+mensagem VARCHAR(250)
+);
+CREATE TABLE prova (
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+idprova INTEGER AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100)
+);
+
+CREATE TABLE prova_questoes (
+idprova INTEGER NOT NULL, FOREIGN KEY(idprova) REFERENCES prova(idprova),
+idprova_questoes INTEGER AUTO_INCREMENT PRIMARY KEY,
+idquestao INTEGER NOT NULL, FOREIGN KEY(idquestao) REFERENCES questao(idquestao),
+idalternativa INTEGER NOT NULL, FOREIGN KEY(idalternativa) REFERENCES alternativa(idalternativa),
+iddiscursiva INTEGER NOT NULL, FOREIGN KEY(iddiscursiva) REFERENCES discursiva(iddiscursiva)
+);

@@ -1,0 +1,98 @@
+USE tcc;
+
+SELECT * FROM pessoa;
+
+DROP TABLE pessoa;
+DROP TABLE professor;
+DROP TABLE niveis_professores;
+DROP TABLE materias_lecionadas;
+
+CREATE TABLE pessoa (
+cpf VARCHAR(11) PRIMARY KEY,
+email VARCHAR(50) UNIQUE,
+usuario VARCHAR(50),
+senha VARCHAR(50),
+nome_completo VARCHAR(50),
+adm BOOLEAN);
+
+CREATE TABLE professor (
+idprofessor INTEGER AUTO_INCREMENT PRIMARY KEY,
+cpf VARCHAR(11) REFERENCES pessoa(cpf),
+estado VARCHAR(50));
+
+CREATE TABLE niveis_professores(
+idniveis INTEGER AUTO_INCREMENT PRIMARY KEY,
+cpf VARCHAR(11) REFERENCES pessoa(cpf),
+nome_nivel VARCHAR(50));
+
+CREATE TABLE materias_lecionadas(
+idmateria_lecionada INTEGER AUTO_INCREMENT PRIMARY KEY,
+cpf VARCHAR(11) REFERENCES pessoa(cpf),
+nome_materia VARCHAR(30));
+
+SELECT cpf FROM pessoa
+WHERE email = 'federer@atp.com';
+SELECT * FROM pessoa;
+UPDATE pessoa SET
+adm = 1
+WHERE email = 'federer@atp.com';
+
+SELECT * FROM pessoa
+WHERE email = 'federer@atp.com' AND
+senha = '7a674153c63cff1ad7f0e261c369ab2c';
+
+
+use teste;
+USE tcc;
+SELECT * FROM professores;
+
+USE tcc;
+
+SELECT * FROM questao;
+SELECT * FROM alternativa;
+SELECT * FROM discursiva;
+
+SELECT * FROM questao;
+DROP VIEW total_dificil_alternativa;
+CREATE VIEW prova_alternativa AS
+SELECT q.cpf, q.idtopico, q.idmateria, q.nivel_ensino, 
+q.nivel_questao, q.enunciado, a.idalternativa, a.idquestao,
+a.resposta, a.alternativa1, a.alternativa2, a.alternativa3
+FROM questao AS q RIGHT JOIN alternativa AS a
+ON q.idquestao = a.idquestao
+WHERE q.idtopico=1 AND q.nivel_ensino=1;
+
+SELECT * FROM prova_alternativa;
+
+SELECT * FROM alternativa;
+SELECT COUNT(*) as result FROM total_dificil_alternativa;
+SELECT * FROM total_dificil_alternativa;
+
+INSERT INTO topico VALUES (default, 5, 'Excel');
+
+
+SELECT COUNT(*) AS result FROM questao WHERE idtopico=(SELECT idquestao FROM alternativa);
+
+CREATE TABLE feedback (
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+idfeedback INTEGER AUTO_INCREMENT PRIMARY KEY,
+assunto VARCHAR(100),
+mensagem VARCHAR(250)
+);
+CREATE TABLE prova (
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+idprova INTEGER AUTO_INCREMENT PRIMARY KEY,
+nome VARCHAR(100)
+);
+
+CREATE TABLE prova_questoes (
+idprova INTEGER NOT NULL, FOREIGN KEY(idprova) REFERENCES prova(idprova),
+idprova_questoes INTEGER AUTO_INCREMENT PRIMARY KEY,
+idquestao INTEGER NOT NULL, FOREIGN KEY(idquestao) REFERENCES questao(idquestao),
+idalternativa INTEGER NOT NULL, FOREIGN KEY(idalternativa) REFERENCES alternativa(idalternativa),
+iddiscursiva INTEGER NOT NULL, FOREIGN KEY(iddiscursiva) REFERENCES discursiva(iddiscursiva)
+);
+
+
+
+SELECT * FROM questao;

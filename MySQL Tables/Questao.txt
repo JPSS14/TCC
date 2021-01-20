@@ -1,0 +1,12 @@
+ORIGINAL
+CREATE TABLE questao (
+idquestao INTEGER AUTO_INCREMENT PRIMARY KEY,
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+enunciado VARCHAR(250),
+nivel_questao BOOLEAN,
+nivel_ensino INTEGER NOT NULL, FOREIGN KEY(nivel_ensino) REFERENCES nivel(idnivel),
+idmateria INTEGER NOT NULL, FOREIGN KEY(idmateria) REFERENCES materias(idmateria),
+idtopico INTEGER NOT NULL, FOREIGN KEY(idtopico) REFERENCES topico(idtopico),
+publico INTEGER NOT NULL,
+imagem VARCHAR(200),
+data DATE);

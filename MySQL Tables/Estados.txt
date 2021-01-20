@@ -1,0 +1,36 @@
+CREATE TABLE estados (
+  idestado INTEGER NOT NULL AUTO_INCREMENT,
+  sigla VARCHAR(2) NOT NULL,
+  nome_estado VARCHAR(30) NOT NULL,
+  PRIMARY KEY(idestado)
+);
+
+SELECT * FROM estados;
+
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('AC', 'Acre');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('AL', 'Alagoas');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('AP', 'Amapá');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('AM', 'Amazonas');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('BA', 'Bahia');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('CE', 'Ceará');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('DF', 'Distrito Federal');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('ES', 'Espírito Santo');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('GO', 'Goiás');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('MA', 'Maranhão');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('MT', 'Mato Grosso');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('MS', 'Mato Grosso do Sul');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('MG', 'Minas Gerais');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('PA', 'Pará');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('PB', 'Paraíba');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('PR', 'Paraná');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('PE', 'Pernambuco');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('PI', 'Piauí');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('RJ', 'Rio de Janeiro');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('RN', 'Rio Grande do Norte');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('RS', 'Rio Grande do Sul');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('RO', 'Rondônia');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('RR', 'Roraima');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('SC', 'Santa Catarina');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('SP', 'São Paulo');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('SE', 'Sergipe');
+INSERT INTO estados (`sigla`, `nome_estado`) VALUES ('TO', 'Tocantins');

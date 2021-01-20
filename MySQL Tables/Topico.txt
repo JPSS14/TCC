@@ -1,0 +1,6 @@
+ORIGINAL
+
+CREATE TABLE topico (
+idtopico INTEGER AUTO_INCREMENT PRIMARY KEY,
+idmateria INTEGER NOT NULL, FOREIGN KEY(idmateria) REFERENCES materias(idmateria),
+nome_topico VARCHAR(50));

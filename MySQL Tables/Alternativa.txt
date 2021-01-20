@@ -1,0 +1,13 @@
+ORIGINAL
+
+CREATE TABLE alternativa (
+idquestao INTEGER NOT NULL, FOREIGN KEY(idquestao) REFERENCES questao(idquestao),
+idalternativa INTEGER AUTO_INCREMENT PRIMARY KEY,
+resposta VARCHAR(150),
+alternativa1 VARCHAR(150),
+alternativa2 VARCHAR(150),
+alternativa3 VARCHAR(150),
+alternativa4 VARCHAR(150));
+
+ALTER TABLE alternativa ADD CONSTRAINT idquestao
+FOREIGN KEY(idquestao) REFERENCES questao(idquestao);

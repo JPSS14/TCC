@@ -1,0 +1,9 @@
+ALTERADO
+
+CREATE TABLE pessoa (
+cpf VARCHAR(11) PRIMARY KEY,
+email VARCHAR(50) UNIQUE,
+usuario VARCHAR(50),
+senha VARCHAR(50),
+nome_completo VARCHAR(50),
+adm BOOLEAN);

@@ -1,0 +1,6 @@
+ACADIS ORIGINAL
+
+CREATE TABLE discursiva (
+idquestao INTEGER NOT NULL, FOREIGN KEY(idquestao) REFERENCES questao(idquestao),
+iddiscursiva INTEGER AUTO_INCREMENT PRIMARY KEY,
+resposta VARCHAR(200));

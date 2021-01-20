@@ -1,0 +1,8 @@
+ALTERADO
+
+CREATE TABLE niveis_professores(
+idniveis INTEGER AUTO_INCREMENT PRIMARY KEY,
+cpf VARCHAR(11) NOT NULL, FOREIGN KEY(cpf) REFERENCES pessoa(cpf),
+email VARCHAR(50),
+nome_nivel VARCHAR(50),
+idnivel INTEGER NOT NULL, FOREIGN KEY(idnivel) REFERENCES nivel(idnivel));

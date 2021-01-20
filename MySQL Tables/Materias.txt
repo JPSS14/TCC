@@ -1,0 +1,4 @@
+CREATE TABLE materias (
+idmateria INTEGER NOT NULL AUTO_INCREMENT, 
+nome_materia VARCHAR (50) NOT NULL,
+PRIMARY KEY(idmateria));
